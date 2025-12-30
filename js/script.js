@@ -1,126 +1,161 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
+// Module for Custom Cursor
+const CustomCursor = (() => {
+    const dot = document.getElementById('cursor-dot');
+    const outline = document.getElementById('cursor-outline');
 
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
+    const init = () => {
+        // Only initialize on desktop (pointer fine)
+        if (window.matchMedia("(pointer: fine)").matches) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
 
-        // Dot follows instantly
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
+                // Move dot instantly
+                dot.style.left = `${posX}px`;
+                dot.style.top = `${posY}px`;
 
-        // Outline follows with slight delay/animation
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
+                // Move outline with delay (css transition handles smooth)
+                outline.style.left = `${posX}px`;
+                outline.style.top = `${posY}px`;
 
-    // Cursor interaction with clickable elements
-    const clickables = document.querySelectorAll('a, button, .card');
-    clickables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorOutline.style.width = '60px';
-            cursorOutline.style.height = '60px';
-            cursorOutline.style.backgroundColor = 'rgba(207, 170, 109, 0.1)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorOutline.style.width = '40px';
-            cursorOutline.style.height = '40px';
-            cursorOutline.style.backgroundColor = 'transparent';
-        });
-    });
+                // Animate outline using Web Animations API for smoother trail if needed
+                // But CSS transition is usually sufficient for simple lag
+            });
 
-    // Navbar Scroll Effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+            // Hover effects
+            const interactables = document.querySelectorAll('a, button, .card');
+            interactables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    document.body.classList.add('hovering');
+                });
+                el.addEventListener('mouseleave', () => {
+                    document.body.classList.remove('hovering');
+                });
+            });
         } else {
-            navbar.classList.remove('scrolled');
+            // Hide cursor elements on touch devices
+            dot.style.display = 'none';
+            outline.style.display = 'none';
         }
-    });
-
-    // Mobile Menu Toggle
-    const mobileToggle = document.querySelector('.mobile-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    mobileToggle.addEventListener('click', () => {
-        mobileToggle.classList.toggle('active');
-        if (mobileToggle.classList.contains('active')) {
-            navLinks.style.display = 'flex';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.background = '#0f0e0e';
-            navLinks.style.padding = '2rem';
-        } else {
-            navLinks.style.display = 'none';
-        }
-    });
-
-    // Intersection Observer for Reveal Animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing once revealed
-                // observer.unobserve(entry.target);
-            }
+    return { init };
+})();
+
+// Module for Scroll Progress
+const ScrollProgress = (() => {
+    const bar = document.getElementById('progress-bar');
+
+    const init = () => {
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            bar.style.width = scrolled + "%";
         });
-    }, observerOptions);
+    };
 
-    const revealElements = document.querySelectorAll('.card, .tool-item, .quote-big, p');
-    revealElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
-    });
+    return { init };
+})();
 
-    // Add visible class styling dynamically
-    const styleSheet = document.createElement("style");
-    styleSheet.innerText = `
-        .visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(styleSheet);
+// Module for Navigation
+const Navigation = (() => {
+    const header = document.getElementById('site-header');
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('main-nav');
+    let lastScroll = 0;
 
-    // Smooth Scroll for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu if open
-                if (mobileToggle.classList.contains('active')) {
-                    mobileToggle.click();
+    const init = () => {
+        // Sticky/Hide Header on Scroll
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                header.classList.remove('hidden');
+                return;
+            }
+
+            if (currentScroll > lastScroll && !header.classList.contains('hidden')) {
+                // Scroll Down
+                header.classList.add('hidden');
+            } else if (currentScroll < lastScroll && header.classList.contains('hidden')) {
+                // Scroll Up
+                header.classList.remove('hidden');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Mobile Menu Toggle
+        toggle.addEventListener('click', () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', !isExpanded);
+            nav.classList.toggle('open');
+            document.body.style.overflow = isExpanded ? 'auto' : 'hidden'; // Lock scroll
+        });
+
+        // Close menu when clicking a link
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    };
+
+    return { init };
+})();
+
+// Module for Scroll Reveals (Intersection Observer)
+const ScrollReveal = (() => {
+    const init = () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
                 }
-            }
-        });
-    });
+            });
+        }, observerOptions);
 
-    // Parallax Effect for Hero Background
-    const heroBg = document.querySelector('.sacred-geometry');
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY;
-        if (scrollPos < window.innerHeight) {
-            heroBg.style.transform = `translateY(${scrollPos * 0.5}px) scale(${1 + scrollPos * 0.0005})`;
-        }
-    });
+        const elements = document.querySelectorAll('.reveal, .fade-in');
+        elements.forEach(el => observer.observe(el));
+    };
+
+    return { init };
+})();
+
+// Module for Parallax
+const Parallax = (() => {
+    const init = () => {
+        const parallaxLayers = document.querySelectorAll('.parallax-layer');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+
+            parallaxLayers.forEach(layer => {
+                // Simple parallax: move background slower than scroll
+                // Speed factor can be adjusted
+                const speed = 0.5;
+                layer.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        });
+    };
+
+    return { init };
+})();
+
+// Main Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    CustomCursor.init();
+    ScrollProgress.init();
+    Navigation.init();
+    ScrollReveal.init();
+    Parallax.init();
 });

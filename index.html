@@ -3,211 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odisha Sacred Odyssey | A Pilgrim's Journey</title>
-    <meta name="description" content="A sacred odyssey through Odisha, from the tribal roots of the Iron Age to the futuristic prophecies of the Malika.">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Odisha Sacred Odyssey - A spiritual journey through the temples and culture of Odisha.">
+    <title>Odisha Sacred Odyssey | TravelBlog</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/back-to-top.css">
 </head>
 <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
 
-    <nav id="navbar">
-        <div class="logo">OSO</div>
-        <div class="nav-links">
-            <a href="#hero" class="active">Home</a>
-            <a href="#intro">The Odyssey</a>
-            <a href="#itinerary">The Journey</a>
-            <a href="#practical">Toolkit</a>
-        </div>
-        <div class="mobile-toggle">
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <main>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="site-header" id="site-header">
+        <div class="container header-container">
+            <a href="#" class="logo">Sacred Odyssey</a>
+
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#intro" class="nav-link">Journal</a></li>
+                    <li><a href="#timeline" class="nav-link">Itinerary</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
         <!-- Hero Section -->
-        <section id="hero">
-            <div class="hero-content">
-                <div class="reveal-text">
-                    <h1>Odisha Sacred Odyssey</h1>
-                </div>
-                <div class="reveal-text delay-1">
-                    <h2>Where the Divine Meets the Soul</h2>
-                </div>
-                <div class="hero-scroll-indicator">
-                    <span>Explore</span>
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="hero-background">
-                <div class="overlay"></div>
-                <!-- CSS Art/Gradient representation of Jagannath Eyes/Temple silhouette -->
-                <div class="sacred-geometry"></div>
+        <section id="hero" class="hero-section parallax-container">
+            <div class="parallax-layer background-layer"></div>
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">Odisha Sacred Odyssey</h1>
+                <p class="hero-subtitle">Where the Divine Meets the Soul</p>
+                <a href="#intro" class="btn btn-primary">Begin the Journey</a>
             </div>
         </section>
 
-        <!-- Introduction -->
-        <section id="intro">
+        <!-- Introduction Section -->
+        <section id="intro" class="section intro-section">
             <div class="container">
-                <blockquote class="quote-big">
-                    "Jai Jagannath!"
-                </blockquote>
-                <p class="lead-text">
-                    In Odisha, this is not merely a greeting; it is a rhythmic punctuation to life itself. It is the code that unlocks the spirit of a land where history breathes in the stone of towering temples.
-                </p>
-                <div class="divider"></div>
-                <p>
-                    Between <strong>December 22nd and 25th, 2024</strong>, I embarked on a pilgrimage—not just of distance, but of dimension. From the sandstone echoes of Bhubaneswar to the silver-clad goddess of Cuttack, from the fierce Shakti of Jajpur to the solar majesty of Konark, and finally, to the cosmic embrace of Puri.
-                </p>
+                <div class="content-wrapper reveal">
+                    <h2 class="section-title">"Jai Jagannath!"</h2>
+                    <blockquote class="quote-big">
+                        In Odisha, this is not merely a greeting; it is a rhythmic punctuation to life itself.
+                    </blockquote>
+                    <p class="lead-text">
+                        Between December 22nd and 25th, 2024, I embarked on a pilgrimage—not just of distance, but of dimension. What was planned as a travel itinerary evolved into a sacred odyssey through time, spanning the tribal roots of the Iron Age to the futuristic prophecies of the Malika.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- Itinerary -->
-        <section id="itinerary">
-            <!-- Day 1 & 2 -->
-            <article class="day-section" id="day1-2">
-                <div class="day-header">
-                    <span class="day-number">Day 01 & 02</span>
-                    <h3>The Temple City</h3>
-                    <p class="location">Bhubaneswar</p>
-                </div>
-
-                <div class="content-grid">
-                    <div class="card glass-card">
-                        <div class="card-image-placeholder pattern-lingaraj"></div>
-                        <div class="card-content">
-                            <h4>Lingaraj Temple</h4>
-                            <p class="time">09:30 AM</p>
-                            <p>A symphony of Harihara. The 180-foot Deula dominates the skyline. A fusion of Vishnu and Shiva, quelling sectarian wars with a syncretic embrace.</p>
-                        </div>
-                    </div>
-
-                    <div class="card glass-card">
-                        <div class="card-image-placeholder pattern-tribal"></div>
-                        <div class="card-content">
-                            <h4>Tribal Museum</h4>
-                            <p class="time">12:30 PM</p>
-                            <p>To understand Odisha's gods, one must understand its people. The "High Hinduism" of the temples is built on the bedrock of tribal spirituality.</p>
-                        </div>
-                    </div>
-
-                    <div class="card glass-card">
-                        <div class="card-image-placeholder pattern-caves"></div>
-                        <div class="card-content">
-                            <h4>Udayagiri & Khandagiri</h4>
-                            <p class="time">04:00 PM</p>
-                            <p>The Jain Silence. Honeycombed caves carved by King Kharavela. A story of extreme austerity and the acoustic marvel of Rani Gumpha.</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Day 3 -->
-            <article class="day-section" id="day3">
-                <div class="day-header">
-                    <span class="day-number">Day 03</span>
-                    <h3>The Shakti Trail</h3>
-                    <p class="location">Cuttack • Jajpur</p>
-                </div>
-
-                <div class="content-grid reversed">
-                    <div class="card glass-card">
-                        <div class="card-image-placeholder pattern-silver"></div>
-                        <div class="card-content">
-                            <h4>Cuttack Chandi</h4>
-                            <p class="time">08:00 AM</p>
-                            <p>The Living Guardian. Unearthing 40 cartloads of vermilion. A deity adorned in silver filigree, guarding the Silver City.</p>
-                        </div>
-                    </div>
-
-                    <div class="card glass-card">
-                        <div class="card-image-placeholder pattern-revolution"></div>
-                        <div class="card-content">
-                            <h4>Netaji Birthplace</h4>
-                            <p class="time">10:00 AM</p>
-                            <p>Janakinath Bhawan. The cradle of revolution where Subhash Chandra Bose was born. <em>Dharma</em> is not just about prayer; sometimes, it is about the sword.</p>
-                        </div>
-                    </div>
-
-                    <div class="card glass-card">
-                        <div class="card-image-placeholder pattern-future"></div>
-                        <div class="card-content">
-                            <h4>Chhatia Bata</h4>
-                            <p class="time">04:30 PM</p>
-                            <p>The Fortress of the Future. Prophecy states Lord Jagannath will relocate here. A mirror in the sanctum reflects the truth of the Kali Yuga.</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Day 4 -->
-            <article class="day-section" id="day4">
-                <div class="day-header">
-                    <span class="day-number">Day 04</span>
-                    <h3>The Solar Path</h3>
-                    <p class="location">Konark • Puri</p>
-                </div>
-
-                <div class="content-grid">
-                    <div class="card glass-card span-2">
-                        <div class="card-image-placeholder pattern-sun"></div>
-                        <div class="card-content">
-                            <h4>Konark Sun Temple</h4>
-                            <p class="time">11:00 AM</p>
-                            <p>The Chariot of Time. A colossal stone chariot for the Sun God, rolling on 24 magnificent wheels. A monument to human ambition and sacrifice.</p>
-                        </div>
-                    </div>
-
-                    <div class="card glass-card span-2 highlight-card">
-                        <div class="card-image-placeholder pattern-jagannath"></div>
-                        <div class="card-content">
-                            <h4>Puri Jagannath Dham</h4>
-                            <p class="time">05:00 PM</p>
-                            <p>The Climax. The Black God of the Universe. Incomplete yet perfect. The "Mystery of the Seven Pots" and the infinite hospitality of the Mahaprasad.</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
-
-        <!-- Practical Toolkit -->
-        <section id="practical">
+        <!-- Timeline / Itinerary Section -->
+        <section id="timeline" class="section timeline-section">
             <div class="container">
-                <h2>The Practical Toolkit</h2>
-                <div class="toolkit-grid">
-                    <div class="tool-item">
-                        <h3>Getting There</h3>
-                        <p><strong>Air:</strong> Biju Patnaik Intl Airport (BBI)<br><strong>Rail:</strong> Bhubaneswar (BBS) & Puri (PURI)</p>
+                <h2 class="section-title text-center reveal">The Sacred Itinerary</h2>
+                <div class="timeline">
+                    <!-- Day 1 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Day 1: The Temple City</h3>
+                            <span class="timeline-date">December 22</span>
+                            <p>Arrival in Bhubaneswar. The syncretism of Lingaraj, the tribal heartbeat, and the Jain silence of Udayagiri.</p>
+                            <a href="#day1" class="read-more">Read More →</a>
+                        </div>
                     </div>
-                    <div class="tool-item">
-                        <h3>Best Time</h3>
-                        <p>Nov-Feb. Avoid peak summer. Rath Yatra in June/July for the brave.</p>
+                    <!-- Day 2 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Day 2: Culinary & Spiritual Duality</h3>
+                            <span class="timeline-date">December 23</span>
+                            <p>Deep dive into Bhubaneswar's culinary delights (Dahibara Aloodum) and spiritual anchors.</p>
+                            <a href="#day2" class="read-more">Read More →</a>
+                        </div>
                     </div>
-                    <div class="tool-item">
-                        <h3>Dress Code</h3>
-                        <p>Modest wear. Cover shoulders & knees. No leather in orthodox shrines.</p>
+                    <!-- Day 3 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Day 3: The Shakti Trail</h3>
+                            <span class="timeline-date">December 24</span>
+                            <p>Cuttack Chandi, Netaji's Birthplace, Jajpur's Maa Biraja, and the futuristic fortress of Chhatia Bata.</p>
+                            <a href="#day3" class="read-more">Read More →</a>
+                        </div>
                     </div>
-                    <div class="tool-item">
-                        <h3>Souvenirs</h3>
-                        <p>Sambalpuri Ikat, Silver Filigree, Pattachitra paintings, Khaja sweets.</p>
+                    <!-- Day 4 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Day 4: The Solar Path</h3>
+                            <span class="timeline-date">December 25</span>
+                            <p>64 Yoginis, Dhauli Shanti Stupa, Konark Sun Temple, and the climax at Puri Jagannath Dham.</p>
+                            <a href="#day4" class="read-more">Read More →</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <p>"We are not human beings having a spiritual experience; we are spiritual beings having a human experience."</p>
-                <div class="signature">Jai Jagannath</div>
+        <!-- Day 1 Content -->
+        <section id="day1" class="section day-section">
+            <div class="container">
+                <span class="day-label reveal">Day 1 & 2</span>
+                <h2 class="section-title reveal">Validating the Temple City</h2>
+
+                <article class="journal-entry reveal">
+                    <h3 class="entry-title">The Lingaraj Temple: A Symphony of Harihara</h3>
+                    <div class="meta">09:30 AM • Bhubaneswar</div>
+                    <p>Our first spiritual anchor was the Lingaraj Temple, the crown jewel of Kalinga architecture. Standing 180 feet tall, the Deula dominates the skyline. Unlike other Shiva temples, the deity here is Harihara—a fusion of Hari (Vishnu) and Hara (Shiva).</p>
+                    <blockquote class="inline-quote">This syncretism quelled the sectarian wars of medieval India, reminding us that the preserver and the destroyer are but two faces of the same cosmic coin.</blockquote>
+                </article>
+
+                <article class="journal-entry reveal">
+                    <h3 class="entry-title">The Tribal Heart</h3>
+                    <div class="meta">12:30 PM • Odisha State Tribal Museum</div>
+                    <p>To understand Odisha's gods, one must understand its people. The "High Hinduism" of the temples is built on the bedrock of tribal spirituality. Lord Jagannath himself began as Nila Madhava, a tribal deity.</p>
+                </article>
+
+                <article class="journal-entry reveal">
+                    <h3 class="entry-title">Udayagiri & Khandagiri: The Jain Silence</h3>
+                    <div class="meta">04:00 PM • Twin Hills</div>
+                    <p>Standing on the summit, watching the sun dip below the horizon, we felt the weight of two millennia. The silence here is not empty; it is full of the discipline of thousands of monks who sought to conquer not lands, but the self.</p>
+                </article>
             </div>
-        </footer>
+        </section>
+
+        <!-- Day 2 Content (Merged nicely as per blog structure) -->
+        <section id="day2" class="section day-section alt-bg">
+            <div class="container">
+                <h2 class="section-title reveal">The Odyssey of Taste</h2>
+                <div class="card-grid">
+                    <div class="card reveal">
+                        <div class="card-content">
+                            <h4>Dahibara Aloodum</h4>
+                            <p>The legendary street food—spicy potato curry over vadas soaked in yogurt. A riot of textures.</p>
+                        </div>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-content">
+                            <h4>Chhena Poda</h4>
+                            <p>The "burnt cheese" cake. The caramelized crust gives way to a soft, smoky, sweet cottage cheese center.</p>
+                        </div>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-content">
+                            <h4>Rasagola</h4>
+                            <p>The original. It melts in the mouth, leaving a trail of pure sweetness.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 3 Content -->
+        <section id="day3" class="section day-section">
+            <div class="container">
+                <span class="day-label reveal">Day 3</span>
+                <h2 class="section-title reveal">The Shakti Trail & The Inner War</h2>
+                <p class="lead-text reveal">If Bhubaneswar is the city of Shiva, the north belongs to Shakti—the primordial feminine energy.</p>
+
+                <div class="feature-block reveal">
+                    <h3>Cuttack Chandi</h3>
+                    <p>The Living Guardian of the Silver City. Legend says a priest unearthed 40 cartloads of Red Sindoor here before revealing the deity.</p>
+                </div>
+
+                <div class="feature-block reveal">
+                    <h3>Netaji Birthplace Museum</h3>
+                    <p>In that quiet corner, amidst family portraits, the "Prince of Patriots" took his first breath. Dharma is not just about prayer; sometimes, it is about the sword.</p>
+                </div>
+
+                <div class="feature-block reveal">
+                    <h3>Chhatia Bata: Fortress of the Future</h3>
+                    <p>According to the <em>Bhavishya Malika</em>, this is the Second Srikshetra. Legend whispers that the sword (Nandaka) in the Lord's hand is slowly growing. When it unsheathes completely, the final battle begins.</p>
+                    <blockquote>In this age of falsehood (Kali Yuga), we can only perceive the Truth through reflection, never directly.</blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 4 Content -->
+        <section id="day4" class="section day-section alt-bg">
+            <div class="container">
+                <span class="day-label reveal">Day 4</span>
+                <h2 class="section-title reveal">The Solar Chariot & Lord of the Universe</h2>
+
+                <article class="journal-entry reveal">
+                    <h3 class="entry-title">Konark Sun Temple</h3>
+                    <div class="meta">11:00 AM • The Black Pagoda</div>
+                    <p>Even in ruins, Konark is overwhelming. Built as a colossal chariot for the Sun God, pulled by 7 horses and rolling on 24 magnificent stone wheels. We stood before one of the wheels—a functioning sundial—telling time to the exact minute.</p>
+                </article>
+
+                <article class="journal-entry reveal">
+                    <h3 class="entry-title">Puri Jagannath Dham: The Climax</h3>
+                    <div class="meta">05:00 PM • Sankha Kshetra</div>
+                    <p>All roads lead to Puri. We witnessed the "Mystery of the Seven Pots" in the Rosaghara kitchen and stood before the siblings—Jagannath, Balabhadra, and Subhadra.</p>
+                    <p><em>Why incomplete?</em> They are Darubrahma (Wooden Absolute). They need no hands to catch the devotee, no feet to reach them.</p>
+                    <p>As we walked out, the massive flag (Patitapabana) was flying in the opposite direction of the wind—a daily miracle that science has yet to explain, and faith doesn't need to.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <h2 class="section-title text-center reveal">Glimpses of Divinity</h2>
+                <div class="gallery-grid" id="gallery-grid">
+                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #4a3b32;"><span>Lingaraj Temple</span></div></div>
+                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #d45d00;"><span>Konark Wheel</span></div></div>
+                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #cfaa6d;"><span>Jagannath Flag</span></div></div>
+                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #3a3532;"><span>Chausathi Yogini</span></div></div>
+                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #6d5a45;"><span>Tribal Art</span></div></div>
+                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #8c7b65;"><span>Puri Beach</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Final Reflection -->
+        <section id="about" class="section intro-section">
+            <div class="container">
+                <div class="content-wrapper reveal">
+                    <h2 class="section-title">Final Reflection</h2>
+                    <p>The Odisha Sacred Odyssey was more than a tour. It was a reminder that we are not human beings having a spiritual experience; we are spiritual beings having a human experience.</p>
+                    <p>In the stone of Konark, the darkness of the Chhatia sanctum, and the wide eyes of Jagannath, we didn't just see history. We saw ourselves.</p>
+                    <div class="signature">Jai Jagannath.</div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <footer id="footer" class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>Odisha Sacred Odyssey</h3>
+                <p>A journey into the soul of Incredible India.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#timeline">Itinerary</a>
+                <a href="#gallery">Gallery</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Sacred Odyssey. Created with reverence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="js/script.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/back-to-top.js"></script>
 </body>
 </html>
