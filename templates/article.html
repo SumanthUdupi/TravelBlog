@@ -1,58 +1,70 @@
 {% extends "base.html" %}
 
+{% block title %}{{ title }} | Odisha Sacred Odyssey{% endblock %}
+
 {% block content %}
-<article class="long-form-content">
-    <header class="article-header">
-        <div class="container">
-            <h1 class="article-title">{{ title }}</h1>
-            {% if metadata %}
-            <div class="article-meta">
-                {% for key, value in metadata.items() %}
-                <span class="meta-item"><strong>{{ key }}:</strong> {{ value }}</span>
-                {% endfor %}
-            </div>
-            {% endif %}
-            <div class="article-meta">
-                <span class="meta-item"><strong>Reading Time:</strong> {{ reading_time }} min</span>
-            </div>
-        </div>
-    </header>
-
-    <div class="container content-wrapper">
-        <aside class="sidebar">
-            <div class="sticky-toc">
-                <h3>Table of Contents</h3>
-                <nav id="toc">
-                    {{ toc | safe }}
-                </nav>
-            </div>
-        </aside>
-
-        <div class="main-text">
-            {{ content | safe }}
-        </div>
-    </div>
-
+<article class="article-page section">
     <div class="container">
-        <nav class="post-navigation">
-            {% if prev_page %}
-            <a href="{{ prev_page.filename }}" class="nav-link prev">
-                <span class="nav-label">Previous</span>
-                <span class="nav-title">{{ prev_page.title }}</span>
-            </a>
-            {% else %}
-            <span></span>
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li><span aria-hidden="true">/</span></li>
+                <li><a href="index.html#{{ category }}">{{ category|title }}</a></li>
+                <li><span aria-hidden="true">/</span></li>
+                <li aria-current="page">{{ title }}</li>
+            </ol>
+        </nav>
+
+        <header class="article-header reveal">
+            <h1 class="article-title">{{ title }}</h1>
+            <div class="article-meta">
+                <span class="read-time">{{ reading_time }} min read</span>
+                {% if date %}
+                <span class="date">• {{ date }}</span>
+                {% endif %}
+            </div>
+        </header>
+
+        <div class="content-wrapper reveal">
+             {% if toc %}
+            <aside class="toc-container">
+                <h3>Table of Contents</h3>
+                <div class="toc">
+                    {{ toc|safe }}
+                </div>
+            </aside>
             {% endif %}
 
-            {% if next_page %}
-            <a href="{{ next_page.filename }}" class="nav-link next">
-                <span class="nav-label">Next</span>
-                <span class="nav-title">{{ next_page.title }}</span>
-            </a>
-            {% else %}
-            <span></span>
-            {% endif %}
-        </nav>
+            <div class="article-content">
+                {{ content|safe }}
+            </div>
+        </div>
+
+        <!-- Related Content / Navigation -->
+        <div class="article-navigation section">
+            <hr>
+            <h3>Continue the Journey</h3>
+            <div class="grid-2">
+                {% if prev_page %}
+                <div class="card prev-link">
+                    <span>&larr; Previous</span>
+                    <h4><a href="{{ prev_page.filename }}">{{ prev_page.title }}</a></h4>
+                </div>
+                {% endif %}
+
+                {% if next_page %}
+                <div class="card next-link">
+                    <span>Next &rarr;</span>
+                    <h4><a href="{{ next_page.filename }}">{{ next_page.title }}</a></h4>
+                </div>
+                {% endif %}
+            </div>
+
+             <div class="center-btn" style="margin-top: 2rem; text-align: center;">
+                 <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
     </div>
 </article>
 {% endblock %}
