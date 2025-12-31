@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puri Jagannath Temple - Research | Odisha Sacred Odyssey</title>
-    <meta name="description" content="">
+    <meta name="description" content="A spiritual journey through Odisha">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,11 +15,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/dark-mode.css" id="darkModeCss" disabled>
 </head>
-<body class="article-page">
-    <!-- Custom Cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-outline" id="cursor-outline"></div>
-
+<body>
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -53,22 +49,32 @@
 
     <main id="main-content">
 
-<article class="long-form-content">
-    <header class="article-header">
-        <div class="container">
+<article class="article-page section">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li><span aria-hidden="true">/</span></li>
+                <li><a href="index.html#"></a></li>
+                <li><span aria-hidden="true">/</span></li>
+                <li aria-current="page">Puri Jagannath Temple - Research</li>
+            </ol>
+        </nav>
+
+        <header class="article-header reveal">
             <h1 class="article-title">Puri Jagannath Temple - Research</h1>
-
             <div class="article-meta">
-                <span class="meta-item"><strong>Reading Time:</strong> 2 min</span>
-            </div>
-        </div>
-    </header>
+                <span class="read-time">2 min read</span>
 
-    <div class="container content-wrapper">
-        <aside class="sidebar">
-            <div class="sticky-toc">
+            </div>
+        </header>
+
+        <div class="content-wrapper reveal">
+
+            <aside class="toc-container">
                 <h3>Table of Contents</h3>
-                <nav id="toc">
+                <div class="toc">
                     <div class="toc">
 <ul>
 <li><a href="#puri-jagannath-temple-research">Puri Jagannath Temple - Research</a><ul>
@@ -81,12 +87,12 @@
 </ul>
 </div>
 
-                </nav>
-            </div>
-        </aside>
+                </div>
+            </aside>
 
-        <div class="main-text">
-            <h1 id="puri-jagannath-temple-research">Puri Jagannath Temple - Research</h1>
+
+            <div class="article-content">
+                <h1 id="puri-jagannath-temple-research">Puri Jagannath Temple - Research</h1>
 <h2 id="historical-background">Historical Background</h2>
 <ul>
 <li><strong>Construction</strong>: The temple was built in the 12th century by King Anantavarman Chodaganga Deva of the Ganga Dynasty.</li>
@@ -120,25 +126,33 @@
 <li><strong>Chandan Yatra</strong>: A 21-day festival.</li>
 <li><strong>Accessibility</strong>: The temple provides facilities for senior citizens and differently-abled devotees.</li>
 </ul>
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <nav class="post-navigation">
+        <!-- Related Content / Navigation -->
+        <div class="article-navigation section">
+            <hr>
+            <h3>Continue the Journey</h3>
+            <div class="grid-2">
 
-            <a href="lingaraj_temple.html" class="nav-link prev">
-                <span class="nav-label">Previous</span>
-                <span class="nav-title">The Ecclesiastical Majesty of Ekamra Kshetra: A Monograph on the Lingaraj Temple</span>
-            </a>
+                <div class="card prev-link">
+                    <span>&larr; Previous</span>
+                    <h4><a href="lingaraj_temple.html">The Ecclesiastical Majesty of Ekamra Kshetra: A Monograph on the Lingaraj Temple</a></h4>
+                </div>
 
 
 
-            <a href="ram_mandir.html" class="nav-link next">
-                <span class="nav-label">Next</span>
-                <span class="nav-title">The Ram Mandir of Bhubaneswar: An Architectural, Theological, and Socio-Urban Analysis</span>
-            </a>
+                <div class="card next-link">
+                    <span>Next &rarr;</span>
+                    <h4><a href="ram_mandir.html">The Ram Mandir of Bhubaneswar: An Architectural, Theological, and Socio-Urban Analysis</a></h4>
+                </div>
 
-        </nav>
+            </div>
+
+             <div class="center-btn" style="margin-top: 2rem; text-align: center;">
+                 <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
     </div>
 </article>
 
@@ -178,17 +192,31 @@
             toggleButton.textContent = '☀️';
         }
 
-        toggleButton.addEventListener('click', () => {
-            if (darkModeCss.hasAttribute('disabled')) {
-                darkModeCss.removeAttribute('disabled');
-                localStorage.setItem('darkMode', 'enabled');
-                toggleButton.textContent = '☀️';
-            } else {
-                darkModeCss.setAttribute('disabled', 'true');
-                localStorage.setItem('darkMode', 'disabled');
-                toggleButton.textContent = '🌙';
-            }
-        });
+        if (toggleButton) {
+            toggleButton.addEventListener('click', () => {
+                if (darkModeCss.hasAttribute('disabled')) {
+                    darkModeCss.removeAttribute('disabled');
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggleButton.textContent = '☀️';
+                } else {
+                    darkModeCss.setAttribute('disabled', 'true');
+                    localStorage.setItem('darkMode', 'disabled');
+                    toggleButton.textContent = '🌙';
+                }
+            });
+        }
+
+        // Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                menuToggle.setAttribute('aria-expanded', !expanded);
+                mainNav.classList.toggle('open');
+            });
+        }
     </script>
 </body>
 </html>
