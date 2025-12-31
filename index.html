@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/lightbox.css">
     <link rel="stylesheet" href="css/back-to-top.css">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -254,6 +255,57 @@
             </div>
         </section>
 
+        <!-- Blog Section -->
+        <section id="blog" class="section blog-section">
+            <div class="container">
+                <h2 class="section-title text-center reveal">Sacred Odyssey Blog</h2>
+                <p class="section-subtitle text-center reveal">Explore the spiritual journey through detailed accounts, research, and reflections</p>
+
+                <!-- Blog Navigation and Controls -->
+                <div class="blog-controls reveal">
+                    <div class="control-group">
+                        <button class="btn-filter active" data-filter="all">All Posts</button>
+                        <button class="btn-filter" data-filter="timeline">Timeline View</button>
+                        <button class="btn-filter" data-filter="themes">Thematic View</button>
+                    </div>
+                    
+                    <div class="control-group">
+                        <div class="search-box">
+                            <input type="text" id="blog-search" placeholder="Search blog posts...">
+                            <button class="btn-search">🔍</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Content Container -->
+                <div class="blog-container" id="blog-container">
+                    <!-- Blog content will be loaded dynamically here -->
+                    <div class="loading-indicator">
+                        <div class="spinner"></div>
+                        <p>Loading sacred content...</p>
+                    </div>
+                </div>
+                
+                <!-- Blog Sidebar -->
+                <div class="blog-sidebar">
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Thematic Arcs</h3>
+                        <div class="thematic-arcs" id="thematic-arcs"></div>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Categories</h3>
+                        <div class="categories-list" id="categories-list"></div>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Tags</h3>
+                        <div class="tags-cloud" id="tags-cloud"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer id="footer" class="site-footer">
@@ -273,9 +325,18 @@
         </div>
     </footer>
 
+    <!-- Blog Modal -->
+    <div class="blog-modal">
+        <div class="blog-modal-content">
+            <!-- Modal content will be loaded dynamically -->
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="js/script.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/back-to-top.js"></script>
+    <script src="js/blog-content.js" type="module"></script>
+    <script src="js/blog.js"></script>
 </body>
 </html>
