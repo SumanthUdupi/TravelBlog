@@ -1,0 +1,167 @@
+import os
+import re
+import markdown
+import jinja2
+import math
+import json
+import shutil
+from bs4 import BeautifulSoup
+
+# Configuration
+CONTENT_DIRS = ['Blog/raw', 'Blog/research']
+OUTPUT_DIR = 'built_site'
+TEMPLATE_DIR = 'templates'
+ASSETS_DIR = 'assets'
+
+# Setup Jinja2 environment
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
+
+def slugify(text):
+    text = text.replace('.md', '').replace(' ', '_')
+    return text
+
+def estimate_reading_time(text):
+    words = len(text.split())
+    minutes = math.ceil(words / 200)
+    return minutes
+
+def parse_markdown_file(filepath):
+    with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+        content = f.read()
+
+    # Extract Title
+    title_match = re.search(r'^#\s+(.*)', content, re.MULTILINE)
+    title = title_match.group(1) if title_match else os.path.basename(filepath).replace('.md', '')
+
+    # Handle Image Suggestions
+    content = re.sub(
+        r'> \*\*\[🖼️ (.*?)\]\*\*',
+        r'<div class="image-placeholder"><span class="icon">🖼️</span> \1</div>',
+        content
+    )
+
+    # Pre-process citations
+    content = re.sub(r'<sup>(\d+)</sup>', r'<sup id="cite-ref-\1"><a href="#ref-\1">\1</a></sup>', content)
+
+    # Render Markdown
+    md = markdown.Markdown(extensions=['toc', 'extra', 'smarty'])
+    html_content = md.convert(content)
+
+    # Post-process HTML
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Identify References List
+    ref_list = None
+    ref_header = None
+
+    for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+        if 'reference' in header.get_text().lower() or 'source' in header.get_text().lower() or 'bibliography' in header.get_text().lower():
+            ref_header = header
+            next_elem = ref_header.find_next_sibling(['ul', 'ol'])
+            if next_elem:
+                ref_list = next_elem
+            break
+
+    if not ref_list:
+        lists = soup.find_all(['ul', 'ol'])
+        if lists:
+            last_list = lists[-1]
+            text_content = last_list.get_text()
+            if "accessed on" in text_content or "http" in text_content:
+                ref_list = last_list
+
+    if ref_list:
+        for i, li in enumerate(ref_list.find_all('li'), 1):
+            li['id'] = f'ref-{i}'
+            back_link = soup.new_tag('a', href=f'#cite-ref-{i}', **{'class': 'back-to-cite'})
+            back_link.string = '↩'
+            li.append(back_link)
+
+    html_content = str(soup)
+
+    return {
+        'title': title,
+        'content': html_content,
+        'toc': md.toc,
+        'reading_time': estimate_reading_time(content),
+        'filename': slugify(os.path.basename(filepath)) + '.html',
+        'category': 'research' if 'research' in filepath else 'narrative',
+        'excerpt': BeautifulSoup(content[:500], 'html.parser').get_text()[:200] + '...'
+    }
+
+def main():
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
+
+    # Copy Assets
+    if os.path.exists(ASSETS_DIR):
+        output_assets = os.path.join(OUTPUT_DIR, 'assets')
+        if os.path.exists(output_assets):
+            shutil.rmtree(output_assets)
+        shutil.copytree(ASSETS_DIR, output_assets)
+        print("Assets copied.")
+
+    pages = []
+    search_index = []
+
+    # Collect all filepaths first to maintain order if needed (e.g. alphanumeric)
+    all_filepaths = []
+    for content_dir in CONTENT_DIRS:
+        files = sorted(os.listdir(content_dir))
+        for filename in files:
+            if filename.startswith('.'): continue
+            if not filename.endswith('.md') and filename not in ['Sri Jagannath Temple Complex', 'THE MIRROR OF THE SOUL']:
+                continue
+            all_filepaths.append(os.path.join(content_dir, filename))
+
+    # Process files
+    for filepath in all_filepaths:
+        print(f"Processing {filepath}...")
+        page_data = parse_markdown_file(filepath)
+        pages.append(page_data)
+
+        search_index.append({
+            'title': page_data['title'],
+            'url': page_data['filename'],
+            'content': page_data['excerpt']
+        })
+
+    # Render pages with prev/next links
+    template = env.get_template('article.html')
+    for i, page in enumerate(pages):
+        prev_page = pages[i-1] if i > 0 else None
+        next_page = pages[i+1] if i < len(pages) - 1 else None
+
+        output_html = template.render(
+            title=page['title'],
+            content=page['content'],
+            toc=page['toc'],
+            metadata={},
+            reading_time=page['reading_time'],
+            prev_page=prev_page,
+            next_page=next_page,
+            body_class="article-page"
+        )
+
+        with open(os.path.join(OUTPUT_DIR, page['filename']), 'w', encoding='utf-8') as f:
+            f.write(output_html)
+
+    # Render Index
+    index_template = env.get_template('index.html')
+    index_html = index_template.render(
+        title="Home",
+        pages=pages,
+        body_class="home-page"
+    )
+
+    with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+        f.write(index_html)
+
+    # Write Search Index
+    with open(os.path.join(OUTPUT_DIR, 'search.json'), 'w', encoding='utf-8') as f:
+        json.dump(search_index, f)
+
+    print("Site built successfully!")
+
+if __name__ == "__main__":
+    main()

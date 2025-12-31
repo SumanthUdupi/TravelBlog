@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="long-form-content">
+    <header class="article-header">
+        <div class="container">
+            <h1 class="article-title">{{ title }}</h1>
+            {% if metadata %}
+            <div class="article-meta">
+                {% for key, value in metadata.items() %}
+                <span class="meta-item"><strong>{{ key }}:</strong> {{ value }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="article-meta">
+                <span class="meta-item"><strong>Reading Time:</strong> {{ reading_time }} min</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container content-wrapper">
+        <aside class="sidebar">
+            <div class="sticky-toc">
+                <h3>Table of Contents</h3>
+                <nav id="toc">
+                    {{ toc | safe }}
+                </nav>
+            </div>
+        </aside>
+
+        <div class="main-text">
+            {{ content | safe }}
+        </div>
+    </div>
+
+    <div class="container">
+        <nav class="post-navigation">
+            {% if prev_page %}
+            <a href="{{ prev_page.filename }}" class="nav-link prev">
+                <span class="nav-label">Previous</span>
+                <span class="nav-title">{{ prev_page.title }}</span>
+            </a>
+            {% else %}
+            <span></span>
+            {% endif %}
+
+            {% if next_page %}
+            <a href="{{ next_page.filename }}" class="nav-link next">
+                <span class="nav-label">Next</span>
+                <span class="nav-title">{{ next_page.title }}</span>
+            </a>
+            {% else %}
+            <span></span>
+            {% endif %}
+        </nav>
+    </div>
+</article>
+{% endblock %}
