@@ -478,6 +478,27 @@
     font-size: 1.05rem;
 }
 
+/* Ensure text is readable in modal regardless of source */
+.blog-modal-content-text h1,
+.blog-modal-content-text h2,
+.blog-modal-content-text h3,
+.blog-modal-content-text h4,
+.blog-modal-content-text h5,
+.blog-modal-content-text h6 {
+    color: var(--color-accent);
+}
+
+.blog-modal-content-text p,
+.blog-modal-content-text li,
+.blog-modal-content-text span {
+    color: var(--color-text);
+}
+
+/* Fix for dark mode if present or default dark modal background */
+.blog-modal-content {
+    color: var(--color-text); /* Ensure base color is set */
+}
+
 .blog-modal-tags {
     display: flex;
     flex-wrap: wrap;

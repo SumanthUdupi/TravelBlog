@@ -10,6 +10,35 @@ const BlogContent = (() => {
     let tags = [];
     let timelineData = [];
     
+    // Helper function to extract relevant content from full HTML page
+    const extractContentFromHTML = (htmlString) => {
+        try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            // Try to find the main text container
+            // In built_site, content is in .main-text
+            const mainText = doc.querySelector('.main-text');
+            if (mainText) {
+                return mainText.innerHTML;
+            }
+            // Fallback to article
+            const article = doc.querySelector('article');
+            if (article) {
+                return article.innerHTML;
+            }
+            // Fallback to body content if no specific container found
+            // but strip scripts and styles if possible
+            const body = doc.querySelector('body');
+            if (body) {
+                return body.innerHTML;
+            }
+            return htmlString;
+        } catch (e) {
+            console.error('Error parsing HTML content:', e);
+            return htmlString;
+        }
+    };
+
     // Helper function to load HTML file content
     const loadHTMLFile = async (filePath) => {
         try {
@@ -29,7 +58,7 @@ const BlogContent = (() => {
                 
                 if (content && content.trim()) {
                     console.log(`Successfully loaded content from ${filePath}`);
-                    return content;
+                    return extractContentFromHTML(content);
                 } else {
                     console.warn(`Empty content from ${filePath}, falling back to mock`);
                     return getFallbackHTMLContent(filePath);
@@ -50,7 +79,7 @@ const BlogContent = (() => {
     // Helper function to provide fallback HTML content
     const getFallbackHTMLContent = (filePath) => {
         const fallbackContent = {
-            'Blog/html/raw/jai-jagannath.html': `<div class="blog-fallback-content">
+            'built_site/Jai_Jagannath.html': `<div class="blog-fallback-content">
                 <h3>A Pilgrim's Journey Through Odisha: December 2024</h3>
                 <p>Embark on a sacred odyssey through the spiritual heart of Odisha. This journey takes you from the ancient temples of Bhubaneswar to the divine presence of Lord Jagannath in Puri, exploring the deep spiritual heritage and transformative power of India's sacred sites.</p>
                 <p><strong>Day 1:</strong> Arrival in Bhubaneswar. The syncretism of Lingaraj, the tribal heartbeat, and the Jain silence of Udayagiri.</p>
@@ -59,7 +88,7 @@ const BlogContent = (() => {
                 <p><strong>Day 4:</strong> The Solar Path culminating at Puri Jagannath Dham.</p>
                 <p><em>Full content loading... The complete spiritual journey will be available soon.</em></p>
             </div>`,
-            'Blog/html/raw/odisha-sacred-odyssey.html': `<div class="blog-fallback-content">
+            'built_site/odisha_sacred_odyssey.html': `<div class="blog-fallback-content">
                 <h3>Odisha Sacred Odyssey: Where the Divine Meets the Soul</h3>
                 <p>"Jai Jagannath!" In Odisha, this is not merely a greeting; it is a rhythmic punctuation to life itself. Join us on a transformative pilgrimage through the sacred sites of Odisha, where ancient temples, powerful goddesses, and divine encounters await.</p>
                 <p><strong>The Sacred Itinerary:</strong></p>
@@ -233,9 +262,9 @@ const BlogContent = (() => {
             // Load the HTML file content
             let filePath = '';
             if (postId === 'jai-jagannath') {
-                filePath = 'Blog/html/raw/jai-jagannath.html';
+                filePath = 'built_site/Jai_Jagannath.html';
             } else if (postId === 'odisha-sacred-odyssey') {
-                filePath = 'Blog/html/raw/odisha-sacred-odyssey.html';
+                filePath = 'built_site/odisha_sacred_odyssey.html';
             }
 
             if (filePath) {
@@ -287,29 +316,37 @@ const BlogContent = (() => {
         return fallbackContent[postId] || `<p>Content for ${postId} is loading. Please check back soon for the full spiritual journey experience.</p>`;
     };
     
-    // Mapping for research file names
+    // Mapping for research file names in built_site
     const researchFileMap = {
-        'Chausath Yogini': 'Chausath Yogini.html',
-        'Chhatia Bata': 'Chhatia Bata.html',
-        'Cuttack Chandi Shakti Peetha': 'Cuttack Chandi Shakti Peetha.html',
+        'Chausath Yogini': 'Chausath_Yogini.html',
+        'Chhatia Bata': 'Chhatia_Bata.html',
+        'Cuttack Chandi Shakti Peetha': 'Cuttack_Chandi_Shakti_Peetha.html',
         'jain_temple_caves': 'jain_temple_caves.html',
-        'Konark Sun Temple': 'Konark Sun Temple.html',
+        'Konark Sun Temple': 'Konark_Sun_Temple.html',
         'lingaraj_temple': 'lingaraj_temple.html',
-        'Maa Biraja Shakti Peetha': 'Maa Biraja Shakti Peetha.html',
-        'Parashurameshwar Temple': 'Parashurameshwar Temple.html',
+        'Maa Biraja Shakti Peetha': 'Maa_Biraja_Shakti_Peetha.html',
+        'Parashurameshwar Temple': 'Parashurameshwar_Temple.html',
         'puri_jagannath_temple': 'puri_jagannath_temple.html',
-        'ram mandir': 'ram mandir.html',
-        'Sri Jagannath Temple Complex': 'Sri Jagannath Temple Complex.html',
+        'ram mandir': 'ram_mandir.html',
+        'Sri Jagannath Temple Complex': 'Sri_Jagannath_Temple_Complex.html',
         'subhash_chandra_bose_museum': 'subhash_chandra_bose_museum.html',
-        'THE MIRROR OF THE SOUL': 'the-mirror-of-the-soul.html',
-        'The Rajarani Temple': 'The Rajarani Temple.html'
+        'THE MIRROR OF THE SOUL': 'THE_MIRROR_OF_THE_SOUL.html',
+        'The Rajarani Temple': 'The_Rajarani_Temple.html'
     };
     
     // Helper function to get research content from HTML files
     const getResearchContent = async (topic) => {
         try {
-            const fileName = researchFileMap[topic] || `${topic}.html`;
-            const filePath = `Blog/html/research/${fileName}`;
+            // Get correct filename from map or use default strategy
+            let fileName = researchFileMap[topic];
+
+            // If not in map, try to construct it matching built_site conventions
+            // (usually spaces/dashes to underscores, keeping extension)
+            if (!fileName) {
+                fileName = topic.replace(/ /g, '_') + '.html';
+            }
+
+            const filePath = `built_site/${fileName}`;
             console.log(`Loading research content from: ${filePath}`);
             const htmlContent = await loadHTMLFile(filePath);
             
