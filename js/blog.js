@@ -1,4 +1,6 @@
 // Blog Module - Main functionality for blog content integration
+import BlogContent from './blog-content.js';
+
 const Blog = (() => {
     // DOM Elements
     let blogContainer;
@@ -31,6 +33,11 @@ const Blog = (() => {
         
         // Update navigation menu
         updateNavigation();
+
+        // Signal readiness for tests
+        window.__BLOG_READY__ = true;
+        window.dispatchEvent(new Event('blog:ready'));
+        console.log('Blog initialized and ready');
     };
     
     // Cache DOM elements
@@ -43,7 +50,6 @@ const Blog = (() => {
         categoriesContainer = document.getElementById('categories-list');
         tagsContainer = document.getElementById('tags-cloud');
         blogModal = document.querySelector('.blog-modal');
-        blogModalClose = document.querySelector('.blog-modal-close');
         blogModalContent = document.querySelector('.blog-modal-content');
     };
     
@@ -62,12 +68,9 @@ const Blog = (() => {
         blogSearch.addEventListener('input', handleSearch);
         blogSearchBtn.addEventListener('click', handleSearch);
         
-        // Modal close button
-        blogModalClose.addEventListener('click', closeModal);
-        
-        // Close modal when clicking outside content
+        // Close modal when clicking outside content or close button
         blogModal.addEventListener('click', (e) => {
-            if (e.target === blogModal) {
+            if (e.target === blogModal || e.target.classList.contains('blog-modal-close')) {
                 closeModal();
             }
         });
