@@ -25,6 +25,30 @@ def estimate_reading_time(text):
     minutes = math.ceil(words / 200)
     return minutes
 
+def get_tags_and_categories(filename, title):
+    # Define tags and categories based on filename or title
+    assignments = {
+        'Jai Jagannath.md': {'category': 'Journey', 'tags': ['spiritual', 'cultural', 'historical', 'mythological', 'pilgrimage', 'temples', 'Shakti Peethas', 'Odisha']},
+        'odisha_sacred_odyssey_temp.md': {'category': 'Journey', 'tags': ['spiritual', 'cultural', 'historical', 'mythological', 'pilgrimage', 'temples', 'Shakti Peethas', 'Odisha']},
+        'odisha_sacred_odyssey.md': {'category': 'Journey', 'tags': ['spiritual', 'cultural', 'historical', 'mythological', 'pilgrimage', 'temples', 'Shakti Peethas', 'Odisha']},
+        'Chausath Yogini.md': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'architectural', 'temples', 'Shakti Peethas', 'Odisha']},
+        'Chhatia Bata.md': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'historical', 'temples', 'Odisha']},
+        'Cuttack Chandi Shakti Peetha.md': {'category': 'Shakti Peethas', 'tags': ['spiritual', 'mythological', 'temples', 'Shakti Peethas', 'Odisha']},
+        'jain_temple_caves.md': {'category': 'Jain Sites', 'tags': ['spiritual', 'historical', 'architectural', 'Jain', 'Odisha']},
+        'Konark Sun Temple.md': {'category': 'Temples', 'tags': ['spiritual', 'historical', 'mythological', 'architectural', 'temples', 'Odisha', 'science']},
+        'lingaraj_temple.md': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'architectural', 'temples', 'Odisha']},
+        'Maa Biraja Shakti Peetha.md': {'category': 'Shakti Peethas', 'tags': ['spiritual', 'mythological', 'temples', 'Shakti Peethas', 'Odisha']},
+        'Parashurameshwar Temple.md': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'temples', 'Odisha']},
+        'puri_jagannath_temple.md': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'temples', 'Odisha']},
+        'ram mandir.md': {'category': 'Temples', 'tags': ['spiritual', 'cultural', 'temples', 'Odisha']},
+        'Sri Jagannath Temple Complex': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'temples', 'Odisha']},
+        'subhash_chandra_bose_museum.md': {'category': 'Museums', 'tags': ['historical', 'cultural', 'revolution', 'Odisha']},
+        'The Rajarani Temple.md': {'category': 'Temples', 'tags': ['spiritual', 'architectural', 'temples', 'Odisha']},
+        'THE MIRROR OF THE SOUL': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'historical', 'temples', 'Odisha']},
+    }
+    key = os.path.basename(filename)
+    return assignments.get(key, {'category': 'Sacred Sites', 'tags': ['spiritual', 'Odisha']})
+
 def parse_markdown_file(filepath):
     with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
         content = f.read()
@@ -32,6 +56,9 @@ def parse_markdown_file(filepath):
     # Extract Title
     title_match = re.search(r'^#\s+(.*)', content, re.MULTILINE)
     title = title_match.group(1) if title_match else os.path.basename(filepath).replace('.md', '')
+
+    # Get tags and categories
+    metadata = get_tags_and_categories(filepath, title)
 
     # Handle Image Suggestions
     content = re.sub(
@@ -85,8 +112,9 @@ def parse_markdown_file(filepath):
         'toc': md.toc,
         'reading_time': estimate_reading_time(content),
         'filename': slugify(os.path.basename(filepath)) + '.html',
-        'category': 'research' if 'research' in filepath else 'narrative',
-        'excerpt': BeautifulSoup(content[:500], 'html.parser').get_text()[:200] + '...'
+        'category': metadata['category'],
+        'tags': metadata['tags'],
+        'excerpt': BeautifulSoup(html_content, 'html.parser').get_text()[:200] + '...'
     }
 
 def main():
@@ -123,8 +151,16 @@ def main():
         search_index.append({
             'title': page_data['title'],
             'url': page_data['filename'],
-            'content': page_data['excerpt']
+            'content': page_data['excerpt'],
+            'category': page_data['category']
         })
+
+    # Collect unique categories and tags
+    categories = sorted(list(set(p['category'] for p in pages)))
+    all_tags = set()
+    for p in pages:
+        all_tags.update(p['tags'])
+    tags = sorted(list(all_tags))
 
     # Render pages with prev/next links
     template = env.get_template('article.html')
@@ -141,7 +177,8 @@ def main():
             prev_page=prev_page,
             next_page=next_page,
             body_class="article-page",
-            pages=pages # Pass all pages to every template for navigation/sitemap
+            pages=pages, # Pass all pages to every template for navigation/sitemap
+            category=page['category']
         )
 
         with open(os.path.join(OUTPUT_DIR, page['filename']), 'w', encoding='utf-8') as f:
@@ -152,7 +189,9 @@ def main():
     index_html = index_template.render(
         title="Home",
         pages=pages,
-        body_class="home-page"
+        body_class="home-page",
+        categories=categories,
+        tags=tags
     )
 
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:

@@ -35,8 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Observe Blog Cards for Staggered Fade In
     document.querySelectorAll('.card').forEach((el, index) => {
-        el.classList.add('fade-in-scroll');
+        el.classList.add('stagger-item');
         el.style.transitionDelay = `${index * 0.1}s`; // Stagger effect
+        observer.observe(el);
+    });
+
+    // Observe Timeline Items for Animated Progression
+    document.querySelectorAll('.timeline-item').forEach((el, index) => {
+        el.classList.add('scroll-slide-right');
+        el.style.transitionDelay = `${index * 0.2}s`;
         observer.observe(el);
     });
 

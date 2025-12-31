@@ -111,20 +111,24 @@ const ScrollReveal = (() => {
     const init = () => {
         const observerOptions = {
             root: null,
-            rootMargin: '0px',
+            rootMargin: '0px 0px -50px 0px',
             threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    // Add staggered delay for better visual flow
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 100);
                     observer.unobserve(entry.target); // Only animate once
                 }
             });
         }, observerOptions);
 
-        const elements = document.querySelectorAll('.reveal, .fade-in');
+        // Observe various animation classes
+        const elements = document.querySelectorAll('.reveal, .fade-in, .scroll-fade-in, .scroll-slide-left, .scroll-slide-right, .stagger-item');
         elements.forEach(el => observer.observe(el));
     };
 
@@ -144,6 +148,39 @@ const Parallax = (() => {
                 // Speed factor can be adjusted
                 const speed = 0.5;
                 layer.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        });
+    };
+
+    return { init };
+})();
+
+// Module for Page Transitions
+const PageTransition = (() => {
+    const init = () => {
+        // Add page transition class to body
+        document.body.classList.add('page-transition');
+
+        // Trigger page load animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+        });
+
+        // Handle navigation clicks for smooth transitions
+        document.querySelectorAll('a[href]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                // Only handle internal links
+                if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                    e.preventDefault();
+                    document.body.classList.remove('loaded');
+
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                }
             });
         });
     };
@@ -171,4 +208,5 @@ document.addEventListener('DOMContentLoaded', () => {
     Navigation.init();
     ScrollReveal.init();
     Parallax.init();
+    PageTransition.init();
 });

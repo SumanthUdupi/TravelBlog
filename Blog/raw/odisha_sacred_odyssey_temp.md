@@ -57,17 +57,10 @@ The caves tell a story of extreme austerity. The *Rani Gumpha* (Queen’s Cave) 
 
 Standing on the summit, watching the sun dip below the horizon, we felt the weight of two millennia. The silence here is not empty; it is full of the discipline of thousands of monks who sought to conquer not lands, but the self.
 
-### The Evening Pulse: Ram Mandir & The Odyssey of Taste
+### The Evening Pulse: Ram Mandir
 *Time: 07:00 PM*
 
 We ended our Bhubaneswar leg at the **Ram Mandir** on Janpath. A modern contrast to the ancient Lingaraj, this high-spired temple is the social and spiritual hub of new Bhubaneswar. The evening *aarti*, bathed in orange light and the chanting of "Jai Shri Ram," was electric. It’s a place where the community gathers—to pray, to connect, and to breathe.
-
-And then, the **Culinary Odyssey**. No trip to Odisha is complete without it:
-*   **Dahibara Aloodum:** The legendary street food—spicy potato curry over vadas soaked in yogurt. A riot of textures.
-*   **Chhena Poda:** The "burnt cheese" cake. The caramelized crust gives way to a soft, smoky, sweet cottage cheese center. It is, quite simply, divine.
-*   **Rasagola:** The *original* (yes, the GI tag debate is settled!). It melts in the mouth, leaving a trail of pure sweetness.
-
-> **[🖼️ Image Suggestion: A mouth-watering close-up of Chhena Poda or a plate of Dahibara Aloodum.]**
 
 
 ## ⚔️ Day 3: The Shakti Trail & The Inner War (Cuttack to Jajpur)

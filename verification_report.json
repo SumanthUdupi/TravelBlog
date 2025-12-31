@@ -1,0 +1,59 @@
+{
+  "load_times": {
+    "index.html": {
+      "success": true,
+      "load_time": 0.08292841911315918
+    },
+    "odisha_sacred_odyssey.html": {
+      "success": true,
+      "load_time": 0.030364513397216797
+    },
+    "immersive_odyssey.html": {
+      "success": true,
+      "load_time": 0.007993221282958984
+    },
+    "Jai_Jagannath.html": {
+      "success": true,
+      "load_time": 0.009003162384033203
+    }
+  },
+  "content_checks": {
+    "odisha_sacred_odyssey.html": {
+      "no_odyssey_of_taste": true,
+      "has_timeline": false,
+      "has_day_sections": true,
+      "has_tags_categories": false
+    },
+    "index.html": {
+      "rustic_theme": false,
+      "blog_posts": true
+    }
+  },
+  "link_checks": {
+    "index.html": {
+      "total": 44,
+      "broken": 0
+    },
+    "odisha_sacred_odyssey.html": {
+      "total": 34,
+      "broken": 0
+    },
+    "immersive_odyssey.html": {
+      "total": 9,
+      "broken": 0
+    },
+    "Jai_Jagannath.html": {
+      "total": 43,
+      "broken": 0
+    }
+  },
+  "performance": true,
+  "console_errors": "Manual check required",
+  "responsive": true,
+  "accessibility": {
+    "index.html": true,
+    "odisha_sacred_odyssey.html": true,
+    "immersive_odyssey.html": true,
+    "Jai_Jagannath.html": true
+  }
+}
