@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immersive Odyssey | Odisha Sacred Odyssey</title>
+    <meta name="description" content="A non-linear, immersive storytelling experience of the Odisha Sacred Odyssey.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/immersive.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css" id="darkModeCss" disabled>
+</head>
+<body class="immersive-page">
+
+    <!-- Header (Shared Structure) -->
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">Odisha Sacred Odyssey</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="immersive_odyssey.html" class="active">The Journey</a></li>
+                    <li><button id="darkModeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button></li>
+                </ul>
+            </nav>
+            <div class="progress-container">
+                <div class="progress-bar" id="readingProgress"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="immersive-hero">
+            <div class="parallax-bg"></div>
+            <div class="hero-content">
+                <h1 class="hero-title-large">The Sacred Odyssey</h1>
+                <p class="hero-subtitle">A Journey Through Time, Spirit, and Stone</p>
+                <div style="margin-top: 2rem;">
+                    <a href="#narrative-start" class="cta-button">Begin the Pilgrimage</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scrollytelling Section: The Call -->
+        <section id="narrative-start" class="scrolly-section">
+            <div class="scrolly-bg" style="background-image: url('assets/images/konark-bg.jpg');"></div> <!-- Placeholder image -->
+            <div class="container">
+                <div class="scrolly-content">
+                    <h2>The Call of the Divine</h2>
+                    <p>It begins not with a step, but with a summons. The land of Kalinga, now Odisha, whispers ancient secrets through the winds of the Bay of Bengal. From the sun-drenched ruins of Konark to the mystic chants of Puri, the journey transforms the soul.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h2 style="text-align: center;">Explore the Sacred Geography</h2>
+                <p style="text-align: center;">Navigate the map to discover the temples and shrines of the Odyssey.</p>
+
+                <div class="interactive-map-container">
+                    <!-- SVG Map Placeholder -->
+                    <svg class="map-svg" viewBox="0 0 800 600">
+                        <!-- Abstract Map Path -->
+                        <path d="M100,500 Q400,100 700,500" stroke="#c5a059" stroke-width="2" fill="none" stroke-dasharray="10,5"/>
+
+                        <!-- Markers -->
+                        <circle class="location-marker" cx="200" cy="450" r="10" fill="#8b4513" data-title="Bhubaneswar: City of Temples" data-link="lingaraj_temple.html" />
+                        <circle class="location-marker" cx="400" cy="200" r="10" fill="#8b4513" data-title="Puri: Abode of Jagannath" data-link="Sri_Jagannath_Temple_Complex.html" />
+                        <circle class="location-marker" cx="600" cy="450" r="10" fill="#8b4513" data-title="Konark: The Sun Temple" data-link="Konark_Sun_Temple.html" />
+                    </svg>
+                    <div id="mapTooltip" class="map-tooltip"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scrollytelling Section: The History -->
+        <section class="scrolly-section">
+            <div class="scrolly-bg" style="background-image: url('assets/images/puri-bg.jpg');"></div>
+            <div class="container">
+                <div class="scrolly-content" style="margin-left: auto; margin-right: 10%;">
+                    <h2>Echoes of History</h2>
+                    <p>Centuries of devotion are etched into stone. The Kalinga architecture stands as a testament to engineering marvels and spiritual dedication. Every carving tells a story, every spire points to the heavens.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="container">
+                <h2>The Chronology of Faith</h2>
+                <div class="timeline-container">
+                    <div class="timeline-card">
+                        <h3>7th Century</h3>
+                        <p><strong>Parashurameshwar Temple</strong></p>
+                        <p>The dawn of the Kalinga architectural style.</p>
+                        <a href="Parashurameshwar_Temple.html">Read Monograph</a>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>10th Century</h3>
+                        <p><strong>Rajarani Temple</strong></p>
+                        <p>The Indresvara shrine and the evolution of form.</p>
+                        <a href="The_Rajarani_Temple.html">Read Monograph</a>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>11th Century</h3>
+                        <p><strong>Lingaraj Temple</strong></p>
+                        <p>The ecclesiastical majesty of Ekamra Kshetra.</p>
+                        <a href="lingaraj_temple.html">Read Monograph</a>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>12th Century</h3>
+                        <p><strong>Jagannath Temple</strong></p>
+                        <p>The eternal abode of the Dark Lord in Puri.</p>
+                        <a href="Sri_Jagannath_Temple_Complex.html">Read Monograph</a>
+                    </div>
+                    <div class="timeline-card">
+                        <h3>13th Century</h3>
+                        <p><strong>Konark Sun Temple</strong></p>
+                        <p>The Black Pagoda, a hymn to the Sun God.</p>
+                        <a href="Konark_Sun_Temple.html">Read Monograph</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog/Articles Grid (Dynamic Content) -->
+        <section id="articles" class="section">
+            <div class="container">
+                <h2>The Narrative Archive</h2>
+                <div class="grid">
+
+
+                    <div class="card">
+                        <h3>A Pilgrim's Journey Through Odisha: December 2024</h3>
+                        <p># A Pilgrim's Journey Through Odisha: December 2024
+
+## Day One: The Journey Begins - December 22nd
+
+The railway station clock glowed 4:05 AM when we arrived, our bags heavy with clothes but our heart...</p>
+                        <a href="Jai_Jagannath.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>Odisha Sacred Odyssey: Where the Divine Meets the Soul</h3>
+                        <p># Odisha Sacred Odyssey: Where the Divine Meets the Soul
+
+*"Jai Jagannath!"*
+
+In Odisha, this is not merely a greeting; it is a rhythmic punctuation to life itself. It is the sigh of the weary travele...</p>
+                        <a href="odisha_sacred_odyssey.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>Odisha Sacred Odyssey: Where the Divine Meets the Soul</h3>
+                        <p># Odisha Sacred Odyssey: Where the Divine Meets the Soul
+
+*"Jai Jagannath!"*
+
+In Odisha, this is not merely a greeting; it is a rhythmic punctuation to life itself. It is the sigh of the weary travele...</p>
+                        <a href="odisha_sacred_odyssey_temp.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Hypaethral Mandala: A Monograph on the Chausath Yogini Temple of Hirapur</h3>
+                        <p># The Hypaethral Mandala: A Monograph on the Chausath Yogini Temple of Hirapur
+
+## 1\. Introduction: The Enigma of the Circular Shrine
+
+The Chausath Yogini Temple at Hirapur, situated in the verdant p...</p>
+                        <a href="Chausath_Yogini.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Sentinel of the Satya Yuga: An Exhaustive Ethnographic and Theological Report on Chhatia Bata and the Malika Prophecies</h3>
+                        <p># The Sentinel of the Satya Yuga: An Exhaustive Ethnographic and Theological Report on Chhatia Bata and the Malika Prophecies
+
+## Executive Summary
+
+This comprehensive research report provides an in-d...</p>
+                        <a href="Chhatia_Bata.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Living Goddess of the Silver City: An Exhaustive Monograph on the Cuttack Chandi Shakti Peetha</h3>
+                        <p># The Living Goddess of the Silver City: An Exhaustive Monograph on the Cuttack Chandi Shakti Peetha
+
+## 1\. Introduction: The Spiritual Citadel of Utkala
+
+The cultural landscape of Odisha, historical...</p>
+                        <a href="Cuttack_Chandi_Shakti_Peetha.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Black Pagoda: An Exhaustive Analytical Report on the Konark Sun Temple</h3>
+                        <p># The Black Pagoda: An Exhaustive Analytical Report on the Konark Sun Temple
+
+## Executive Summary and Introduction
+
+The Konark Sun Temple, situated on the eastern shores of the Indian subcontinent in...</p>
+                        <a href="Konark_Sun_Temple.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>Maa Biraja Shakti Peetha: An Archetypal Monograph on the History, Theology, and Living Traditions of the Viraja Kshetra</h3>
+                        <p># Maa Biraja Shakti Peetha: An Archetypal Monograph on the History, Theology, and Living Traditions of the Viraja Kshetra
+
+## 1\. Introduction: The Primordial Seat of Shakti in Utkala
+
+In the sacred g...</p>
+                        <a href="Maa_Biraja_Shakti_Peetha.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Parashurameshwar Temple: An Architectural and Hagiographic Monograph on the Cradle of Kalinga Temple Art</h3>
+                        <p># The Parashurameshwar Temple: An Architectural and Hagiographic Monograph on the Cradle of Kalinga Temple Art
+
+## 1\. Introduction: The Genesis of the Ekamra Kshetra
+
+The landscape of Bhubaneswar, hi...</p>
+                        <a href="Parashurameshwar_Temple.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Eternal Abode of the Dark Lord: A Comprehensive Architectural, Theological, and Socio-Administrative Analysis of the Sri Jagannath Temple Complex, Puri</h3>
+                        <p># The Eternal Abode of the Dark Lord: A Comprehensive Architectural, Theological, and Socio-Administrative Analysis of the Sri Jagannath Temple Complex, Puri
+
+## 1\. Introduction: The Syncretic Heart ...</p>
+                        <a href="Sri_Jagannath_Temple_Complex.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>**THE MIRROR OF THE SOUL**</h3>
+                        <p># **THE MIRROR OF THE SOUL**
+
+**A Comprehensive Pilgrimage Report on Chattia Bata**
+
+**Date of Visit:** \[Insert Date\] | **Time of Arrival:** 4:45 PM
+
+### **I. The Arrival and The Encounter**
+
+We rea...</p>
+                        <a href="THE_MIRROR_OF_THE_SOUL.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Rajarani Temple of Bhubaneswar: A Monograph on the Indresvara Shrine</h3>
+                        <p># The Rajarani Temple of Bhubaneswar: A Monograph on the Indresvara Shrine
+
+## 1\. Introduction: The Gem of Ekamra Kshetra
+
+In the dense architectural tapestry of Bhubaneswar, Odisha-historically reve...</p>
+                        <a href="The_Rajarani_Temple.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Twin Hills of Kumariparvata: An Exhaustive Monograph on the Archaeology, Epigraphy, and Architectural History of the Udayagiri and Khandagiri Cave Complex</h3>
+                        <p># The Twin Hills of Kumariparvata: An Exhaustive Monograph on the Archaeology, Epigraphy, and Architectural History of the Udayagiri and Khandagiri Cave Complex
+
+## 1\. Introduction: The Lithic Landsc...</p>
+                        <a href="jain_temple_caves.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Ecclesiastical Majesty of Ekamra Kshetra: A Monograph on the Lingaraj Temple</h3>
+                        <p># The Ecclesiastical Majesty of Ekamra Kshetra: A Monograph on the Lingaraj Temple
+
+## Executive Summary
+
+The Lingaraj Temple, dominating the skyline of Bhubaneswar, Odisha, is not merely an architect...</p>
+                        <a href="lingaraj_temple.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>Puri Jagannath Temple - Research</h3>
+                        <p># Puri Jagannath Temple - Research
+
+## Historical Background
+- **Construction**: The temple was built in the 12th century by King Anantavarman Chodaganga Deva of the Ganga Dynasty.
+- **Mythological Or...</p>
+                        <a href="puri_jagannath_temple.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Ram Mandir of Bhubaneswar: An Architectural, Theological, and Socio-Urban Analysis</h3>
+                        <p># The Ram Mandir of Bhubaneswar: An Architectural, Theological, and Socio-Urban Analysis
+
+## 1\. Introduction: The Dual Identity of the Temple City
+
+Bhubaneswar, the capital of Odisha, occupies a uniq...</p>
+                        <a href="ram_mandir.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+
+                    <div class="card">
+                        <h3>The Janakinath Bhawan as Historiographical Artifact: A Comprehensive Curatorial and Historical Analysis of the Netaji Birth Place Museum</h3>
+                        <p># The Janakinath Bhawan as Historiographical Artifact: A Comprehensive Curatorial and Historical Analysis of the Netaji Birth Place Museum
+
+## 1\. Introduction: The Genesis of a National Monument
+
+The...</p>
+                        <a href="subhash_chandra_bose_museum.html" class="read-more">Explore Narrative</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Odisha Sacred Odyssey. Preserving Heritage.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/immersive.js"></script>
+</body>
+</html>

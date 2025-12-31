@@ -1,0 +1,210 @@
+/* Immersive Design CSS */
+
+/* Variables - Extending existing design system */
+:root {
+    --transition-slow: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+    --transition-base: 0.4s ease-out;
+}
+
+/* Base Styles Override for Immersive Page */
+body.immersive-page {
+    overflow-x: hidden;
+}
+
+/* Hero Section with Parallax */
+.immersive-hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%; /* Taller for parallax */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('../images/hero-bg.jpg');
+    background-color: #333; /* Fallback on the element itself */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    will-change: transform;
+}
+
+.hero-content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 1;
+}
+
+.hero-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-title-large {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border: none; /* Override default h1 border */
+    color: #fff !important; /* Force white text in hero */
+}
+
+/* Scrollytelling Section */
+.scrolly-section {
+    position: relative;
+    padding: 8rem 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    /* Removed background-color to let child z-index -1 show */
+}
+
+.scrolly-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin-left: 10%;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
+    color: #333 !important; /* Force readable text */
+}
+
+.scrolly-content h2 {
+    color: #8b4513 !important; /* Force header contrast */
+}
+
+.scrolly-content p {
+    color: #333 !important;
+}
+
+.scrolly-content.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scrolly-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Fallback gradient */
+    background-size: cover;
+    background-attachment: fixed; /* Simple parallax */
+    opacity: 0.8;
+}
+
+/* Ensure background image overrides gradient if present */
+.scrolly-bg[style*="url"] {
+    background-color: transparent;
+}
+
+/* Interactive Map Section */
+.map-section {
+    padding: 4rem 0;
+    background: var(--color-bg);
+}
+
+.interactive-map-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: #e6e6e6;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.map-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.location-marker {
+    cursor: pointer;
+    transition: fill 0.3s, r 0.3s;
+}
+
+.location-marker:hover {
+    fill: var(--color-secondary);
+    r: 12;
+}
+
+.map-tooltip {
+    position: absolute;
+    background: white;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Timeline Section */
+.timeline-section {
+    padding: 6rem 0;
+    overflow: hidden;
+}
+
+.timeline-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 2rem;
+    scroll-behavior: smooth;
+    gap: 2rem;
+    padding-left: 20px; /* Container padding */
+}
+
+.timeline-card {
+    min-width: 300px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--color-accent);
+    transition: transform 0.3s;
+}
+
+.timeline-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Blog Grid Animation */
+.card.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.fade-in-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Dark Mode Overrides for New Components */
+body[data-theme='dark'] .scrolly-content,
+body[data-theme='dark'] .timeline-card {
+    background: #333;
+    color: #e0e0e0;
+}
+
+body[data-theme='dark'] .interactive-map-container {
+    background: #222;
+    border-color: #444;
+}
