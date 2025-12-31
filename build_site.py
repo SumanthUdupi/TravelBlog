@@ -157,6 +157,17 @@ def main():
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(index_html)
 
+    # Render Immersive Odyssey Page
+    immersive_template = env.get_template('immersive_odyssey.html')
+    immersive_html = immersive_template.render(
+        title="Immersive Odyssey",
+        pages=pages,
+        body_class="immersive-page"
+    )
+
+    with open(os.path.join(OUTPUT_DIR, 'immersive_odyssey.html'), 'w', encoding='utf-8') as f:
+        f.write(immersive_html)
+
     # Write Search Index
     with open(os.path.join(OUTPUT_DIR, 'search.json'), 'w', encoding='utf-8') as f:
         json.dump(search_index, f)
