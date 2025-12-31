@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1 class="hero-title">Odisha Sacred Odyssey</h1>
+        <p class="hero-subtitle">Where the Divine Meets the Soul</p>
+        <a href="#featured" class="cta-button">Begin the Journey</a>
+    </div>
+</div>
+
+<section id="intro" class="section">
+    <div class="container">
+        <h2>About the Project</h2>
+        <p>This is a comprehensive documentation of the sacred landscape of Odisha, exploring its temples, myths, and living traditions. From the towering spire of Lingaraj to the sun-drenched ruins of Konark, this archive preserves the narratives of a land steeped in divinity.</p>
+
+        <div class="search-container" style="margin-top: 2rem;">
+            <input type="text" id="searchInput" placeholder="Search the archives..." style="width: 100%; padding: 1rem; font-size: 1.1rem; border: 1px solid #ccc; border-radius: 4px;">
+            <div id="searchResults" class="grid" style="margin-top: 2rem;"></div>
+        </div>
+    </div>
+</section>
+
+<section id="featured" class="section">
+    <div class="container">
+        <h2>Featured Narratives</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>The Journey Begins</h3>
+                <p>Follow the pilgrim's path through the heart of Odisha.</p>
+                <a href="Jai_Jagannath.html" class="read-more">Read "Jai Jagannath"</a>
+            </div>
+            <div class="card">
+                <h3>The Sacred Itinerary</h3>
+                <p>A day-by-day guide to the spiritual odyssey.</p>
+                <a href="odisha_sacred_odyssey.html" class="read-more">View Itinerary</a>
+            </div>
+             <div class="card">
+                <h3>The Mirror of the Soul</h3>
+                <p>A philosophical encounter with the divine.</p>
+                <a href="THE_MIRROR_OF_THE_SOUL.html" class="read-more">Read Essay</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="destinations" class="section">
+    <div class="container">
+        <h2>Research Monographs & Detailed Studies</h2>
+        <div class="grid-3">
+            {% for page in pages %}
+            {% if page.category == 'research' and page.filename != 'THE_MIRROR_OF_THE_SOUL.html' %}
+            <div class="card">
+                <h3>{{ page.title }}</h3>
+                <p>{{ page.excerpt | truncate(150) }}</p>
+                <a href="{{ page.filename }}" class="read-more">Read Monograph</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+    // Simple Client-Side Search
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput');
+        const resultsContainer = document.getElementById('searchResults');
+
+        let searchIndex = [];
+
+        fetch('search.json')
+            .then(response => response.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 3) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            const results = searchIndex.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.content.toLowerCase().includes(query)
+            );
+
+            resultsContainer.innerHTML = results.slice(0, 5).map(item => `
+                <div class="card">
+                    <h3>${item.title}</h3>
+                    <p>${item.content.substring(0, 100)}...</p>
+                    <a href="${item.url}" class="read-more">Read Article</a>
+                </div>
+            `).join('');
+        });
+    });
+</script>
+{% endblock %}

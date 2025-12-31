@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Odisha Sacred Odyssey</title>
+    <meta name="description" content="{{ description }}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css" id="darkModeCss" disabled>
+
+    <style>
+        :root {
+            --font-heading: 'Cinzel', serif;
+            --font-subheading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+
+            --color-bg: #fdfbf7;
+            --color-text: #2c2c2c;
+            --color-accent: #c5a059; /* Gold */
+            --color-secondary: #8b4513; /* Earthy brown */
+            --color-link: #a0522d;
+
+            --spacing-unit: 1.5rem;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.8;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="{{ body_class }}">
+
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">Odisha Sacred Odyssey</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#destinations">Destinations</a></li>
+                    <li><button id="darkModeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button></li>
+                </ul>
+            </nav>
+            <div class="progress-container">
+                <div class="progress-bar" id="readingProgress"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Odisha Sacred Odyssey. Preserving Heritage.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

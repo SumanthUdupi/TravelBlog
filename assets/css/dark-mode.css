@@ -1,0 +1,40 @@
+body {
+    background-color: #222;
+    color: #e0e0e0;
+}
+
+a {
+    color: #ffd700;
+}
+
+.site-header {
+    background-color: #333;
+    border-bottom: 1px solid #444;
+}
+
+.logo {
+    color: #ffd700;
+}
+
+.card {
+    background-color: #333;
+    border-color: #444;
+}
+
+.card h3 {
+    color: #ffd700;
+}
+
+.sticky-toc a {
+    color: #aaa;
+}
+
+.sticky-toc a.active {
+    color: #ffd700;
+}
+
+.image-placeholder {
+    background-color: #333;
+    border-color: #555;
+    color: #aaa;
+}
