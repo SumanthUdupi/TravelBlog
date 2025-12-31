@@ -11,53 +11,47 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/dark-mode.css" id="darkModeCss" disabled>
-
-    <style>
-        :root {
-            --font-heading: 'Cinzel', serif;
-            --font-subheading: 'Playfair Display', serif;
-            --font-body: 'Lato', sans-serif;
-
-            --color-bg: #fdfbf7;
-            --color-text: #2c2c2c;
-            --color-accent: #c5a059; /* Gold */
-            --color-secondary: #8b4513; /* Earthy brown */
-            --color-link: #a0522d;
-
-            --spacing-unit: 1.5rem;
-        }
-
-        body {
-            font-family: var(--font-body);
-            line-height: 1.8;
-            color: var(--color-text);
-            background-color: var(--color-bg);
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 </head>
 <body class="article-page">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
 
-    <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="logo">Odisha Sacred Odyssey</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#destinations">Destinations</a></li>
-                    <li><button id="darkModeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button></li>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="site-header" id="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Sacred Odyssey</a>
+
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html#hero" class="nav-link">Home</a></li>
+                    <li><a href="index.html#intro" class="nav-link">Journal</a></li>
+                    <li><a href="index.html#timeline" class="nav-link">Itinerary</a></li>
+                    <li><a href="index.html#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="index.html#research" class="nav-link">Research</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><button id="darkModeToggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🌙</button></li>
                 </ul>
             </nav>
-            <div class="progress-container">
-                <div class="progress-bar" id="readingProgress"></div>
-            </div>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
 
 <article class="long-form-content">
     <header class="article-header">
@@ -258,12 +252,51 @@ November to February is pleasant. Avoid peak summer (May-June). For the intrepid
 
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Odisha Sacred Odyssey. Preserving Heritage.</p>
+    <footer id="footer" class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>Odisha Sacred Odyssey</h3>
+                <p>A journey into the soul of Incredible India.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html#hero">Home</a>
+                <a href="index.html#timeline">Itinerary</a>
+                <a href="index.html#gallery">Gallery</a>
+                <a href="search.json">Search</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2024 Sacred Odyssey. Created with reverence.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/gallery.js"></script>
+    <script src="assets/js/back-to-top.js"></script>
     <script src="assets/js/app.js"></script>
+
+    <script>
+         // Dark Mode Toggle Logic (Simple implementation to match memory)
+        const toggleButton = document.getElementById('darkModeToggle');
+        const darkModeCss = document.getElementById('darkModeCss');
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            darkModeCss.removeAttribute('disabled');
+            toggleButton.textContent = '☀️';
+        }
+
+        toggleButton.addEventListener('click', () => {
+            if (darkModeCss.hasAttribute('disabled')) {
+                darkModeCss.removeAttribute('disabled');
+                localStorage.setItem('darkMode', 'enabled');
+                toggleButton.textContent = '☀️';
+            } else {
+                darkModeCss.setAttribute('disabled', 'true');
+                localStorage.setItem('darkMode', 'disabled');
+                toggleButton.textContent = '🌙';
+            }
+        });
+    </script>
 </body>
 </html>

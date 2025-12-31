@@ -140,7 +140,8 @@ def main():
             reading_time=page['reading_time'],
             prev_page=prev_page,
             next_page=next_page,
-            body_class="article-page"
+            body_class="article-page",
+            pages=pages # Pass all pages to every template for navigation/sitemap
         )
 
         with open(os.path.join(OUTPUT_DIR, page['filename']), 'w', encoding='utf-8') as f:
