@@ -37,7 +37,7 @@
                         <div class="timeline-content">
                             <h3 class="timeline-title">The Sacred Beginning</h3>
                             <p>Arrival in Bhubaneswar. The syncretism of Lingaraj, the tribal heartbeat, the Jain silence of Udayagiri, and culinary delights.</p>
-                            <a href="Jai_Jagannath.html" class="read-more">Read More →</a>
+                            <a href="#sacred-beginning" class="read-more">Read More →</a>
                         </div>
                     </div>
                     <!-- Mountain Paths -->
@@ -46,7 +46,7 @@
                         <div class="timeline-content">
                             <h3 class="timeline-title">Mountain Paths</h3>
                             <p>Cuttack Chandi, Netaji's Birthplace, Jajpur's Maa Biraja, and the futuristic fortress of Chhatia Bata.</p>
-                            <a href="Cuttack_Chandi_Shakti_Peetha.html" class="read-more">Read More →</a>
+                            <a href="#mountain-paths" class="read-more">Read More →</a>
                         </div>
                     </div>
                     <!-- Revelation -->
@@ -55,7 +55,7 @@
                         <div class="timeline-content">
                             <h3 class="timeline-title">Revelation</h3>
                             <p>64 Yoginis, Dhauli Shanti Stupa, Konark Sun Temple, and the climax at Puri Jagannath Dham.</p>
-                            <a href="Konark_Sun_Temple.html" class="read-more">Read More →</a>
+                            <a href="#revelation" class="read-more">Read More →</a>
                         </div>
                     </div>
                     <!-- Return -->
@@ -72,7 +72,7 @@
         </section>
 
         <!-- The Sacred Beginning -->
-        <section id="sacred-beginning" class="section day-section">
+        <section id="sacred-beginning" class="section">
             <div class="container">
                 <h2 class="section-title reveal">The Sacred Beginning</h2>
 
@@ -101,34 +101,40 @@
         </section>
 
         <!-- Mountain Paths -->
-        <section id="mountain-paths" class="section day-section alt-bg">
+        <section id="mountain-paths" class="section alt-bg">
             <div class="container">
                 <h2 class="section-title reveal">Mountain Paths</h2>
                 <p class="lead-text reveal">If Bhubaneswar is the city of Shiva, the north belongs to Shakti—the primordial feminine energy.</p>
 
-                <div class="feature-block reveal">
+                <div class="card reveal" style="margin-bottom: 2rem;">
+                    <div class="card-content">
                     <h3>Cuttack Chandi</h3>
                     <p>The Living Guardian of the Silver City. Legend says a priest unearthed 40 cartloads of Red Sindoor here before revealing the deity.</p>
                     <a href="Cuttack_Chandi_Shakti_Peetha.html" class="read-more">Read Monograph</a>
+                    </div>
                 </div>
 
-                <div class="feature-block reveal">
+                <div class="card reveal" style="margin-bottom: 2rem;">
+                    <div class="card-content">
                     <h3>Netaji Birthplace Museum</h3>
                     <p>In that quiet corner, amidst family portraits, the "Prince of Patriots" took his first breath. Dharma is not just about prayer; sometimes, it is about the sword.</p>
                     <a href="subhash_chandra_bose_museum.html" class="read-more">Read Monograph</a>
+                    </div>
                 </div>
 
-                <div class="feature-block reveal">
+                <div class="card reveal" style="margin-bottom: 2rem;">
+                    <div class="card-content">
                     <h3>Chhatia Bata: Fortress of the Future</h3>
                     <p>According to the <em>Bhavishya Malika</em>, this is the Second Srikshetra. Legend whispers that the sword (Nandaka) in the Lord's hand is slowly growing. When it unsheathes completely, the final battle begins.</p>
                     <blockquote>In this age of falsehood (Kali Yuga), we can only perceive the Truth through reflection, never directly.</blockquote>
                     <a href="Chhatia_Bata.html" class="read-more">Read Monograph</a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Revelation -->
-        <section id="revelation" class="section day-section">
+        <section id="revelation" class="section">
             <div class="container">
                 <h2 class="section-title reveal">Revelation</h2>
 
@@ -181,18 +187,25 @@
         <section id="narratives" class="section">
             <div class="container">
                 <h2 class="section-title text-center reveal">Journals & Narratives</h2>
+                <div class="text-center" style="margin-bottom: 2rem;">
+                    <a href="blog.html" class="btn btn-primary">View All Posts</a>
+                </div>
                 <div class="grid-3">
                     <div class="card reveal">
+                        <div class="card-content">
                         <h3>Immersive Odyssey</h3>
                         <p>Experience the journey through a non-linear, interactive storytelling format.</p>
                         <a href="immersive_odyssey.html" class="read-more">Enter Experience</a>
+                        </div>
                     </div>
                      {% for page in pages %}
                     {% if page.category == 'narrative' %}
                     <div class="card reveal">
+                        <div class="card-content">
                         <h3>{{ page.title }}</h3>
                         <p>{{ page.excerpt | truncate(100) }}</p>
                         <a href="{{ page.filename }}" class="read-more">Read Article</a>
+                        </div>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -208,9 +221,11 @@
                     {% for page in pages %}
                     {% if page.category == 'research' %}
                     <div class="card reveal">
+                        <div class="card-content">
                         <h3>{{ page.title }}</h3>
                         <p>{{ page.excerpt | truncate(100) }}</p>
                         <a href="{{ page.filename }}" class="read-more">Read Monograph</a>
+                        </div>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -224,6 +239,7 @@
                 <h2 class="section-title text-center reveal">Site Index</h2>
                  <div class="links-list" style="column-count: 2; column-gap: 40px; text-align: left;">
                     <a href="index.html" style="display:block; margin-bottom: 10px;">Home</a>
+                    <a href="blog.html" style="display:block; margin-bottom: 10px;">All Posts (Blog)</a>
                     <a href="immersive_odyssey.html" style="display:block; margin-bottom: 10px;">Immersive Odyssey</a>
                     {% for page in pages %}
                         <a href="{{ page.filename }}" style="display:block; margin-bottom: 10px;">{{ page.title }}</a>

@@ -10,16 +10,7 @@ This is the chronicle of those four days. It is a guide for the seeker, a memoir
 
 ---
 
-## 📅 The Sacred Itinerary at a Glance
-
-*   **Day 1 (Dec 22):** Arrival in Bhubaneswar ("The Temple City"). The syncretism of Lingaraj, the tribal heartbeat, and the Jain silence of Udayagiri.
-*   **Day 2 (Dec 23):** Deep dive into Bhubaneswar's culinary and spiritual duality.
-*   **Day 3 (Dec 24):** The Shakti Trail. Cuttack Chandi, Netaji's Birthplace, the mystic "Living Goddess" of Jajpur (Biraja), and the futuristic fortress of Chhatia Bata.
-*   **Day 4 (Dec 25):** The Solar Path. 64 Yoginis, Dhauli Shanti Stupa, Konark Sun Temple, and the climax at Puri Jagannath Dham.
-
----
-
-## 🏛️ Days 1 & 2: Validating the Temple City (Bhubaneswar)
+## 🏛️ Validating the Temple City (Bhubaneswar)
 
 Bhubaneswar, the capital of Kalinga, is a paradox. It represents the "Old" fighting the "New," yet somehow, they dance together. Here, smart city grids intersect with 7th-century sandstone pavements, and the smell of filters coffee mingles with the camphor of *aartis*.
 
@@ -63,9 +54,9 @@ Standing on the summit, watching the sun dip below the horizon, we felt the weig
 We ended our Bhubaneswar leg at the **Ram Mandir** on Janpath. A modern contrast to the ancient Lingaraj, this high-spired temple is the social and spiritual hub of new Bhubaneswar. The evening *aarti*, bathed in orange light and the chanting of "Jai Shri Ram," was electric. It’s a place where the community gathers—to pray, to connect, and to breathe.
 
 ---
-## ⚔️ Day 3: The Shakti Trail & The Inner War (Cuttack to Jajpur)
+## ⚔️ The Shakti Trail & The Inner War (Cuttack to Jajpur)
 
-If Bhubaneswar is the city of Shiva, the north belongs to **Shakti**—the primordial feminine energy. Day 3 was not a tour; it was a pilgrimage through power, revolution, and prophecy.
+If Bhubaneswar is the city of Shiva, the north belongs to **Shakti**—the primordial feminine energy. This was not a tour; it was a pilgrimage through power, revolution, and prophecy.
 
 ### Cuttack Chandi: The Living Guardian
 *Time: 08:00 AM*
@@ -116,7 +107,7 @@ As the sun set behind the ancient Banyan tree (*Bata*), the sound of constructio
 > **[🖼️ Image Suggestion: The fortified walls of Chhatia Bata or the equestrian idols of Jagannath and Balabhadra.]**
 
 ---
-## ☀️ Day 4: The Solar Chariot & The Lord of the Universe (Konark to Puri)
+## ☀️ The Solar Chariot & The Lord of the Universe (Konark to Puri)
 
 The finale of our odyssey was a journey from the circular eternity of Tantra to the infinite hospitality of Jagannath.
 
@@ -191,4 +182,3 @@ As I stood on the beach in Puri, watching the waves crash against the shore, the
 The Odisha Sacred Odyssey was more than a tour. It was a reminder that we are not human beings having a spiritual experience; we are spiritual beings having a human experience. In the stone of Konark, the darkness of the Chhatia sanctum, and the wide eyes of Jagannath, we didn't just see history. We saw ourselves.
 
 **Jai Jagannath.**
-

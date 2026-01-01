@@ -135,25 +135,33 @@ def main():
     # Collect all filepaths first to maintain order if needed (e.g. alphanumeric)
     all_filepaths = []
     for content_dir in CONTENT_DIRS:
+        if not os.path.exists(content_dir):
+            continue
         files = sorted(os.listdir(content_dir))
         for filename in files:
             if filename.startswith('.'): continue
+            # Looser check to include more files, as we want complete population
             if not filename.endswith('.md') and filename not in ['Sri Jagannath Temple Complex', 'THE MIRROR OF THE SOUL']:
-                continue
+                 # Check if it is a folder or file without extension that contains markdown?
+                 # Assuming simple md files for now.
+                 continue
             all_filepaths.append(os.path.join(content_dir, filename))
 
     # Process files
     for filepath in all_filepaths:
         print(f"Processing {filepath}...")
-        page_data = parse_markdown_file(filepath)
-        pages.append(page_data)
+        try:
+            page_data = parse_markdown_file(filepath)
+            pages.append(page_data)
 
-        search_index.append({
-            'title': page_data['title'],
-            'url': page_data['filename'],
-            'content': page_data['excerpt'],
-            'category': page_data['category']
-        })
+            search_index.append({
+                'title': page_data['title'],
+                'url': page_data['filename'],
+                'content': page_data['excerpt'],
+                'category': page_data['category']
+            })
+        except Exception as e:
+            print(f"Error processing {filepath}: {e}")
 
     # Collect unique categories and tags
     categories = sorted(list(set(p['category'] for p in pages)))
@@ -196,6 +204,19 @@ def main():
 
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(index_html)
+
+    # Render Blog/All Posts Page
+    blog_template = env.get_template('blog.html')
+    blog_html = blog_template.render(
+        title="All Posts",
+        pages=pages,
+        body_class="blog-page",
+        categories=categories,
+        tags=tags
+    )
+
+    with open(os.path.join(OUTPUT_DIR, 'blog.html'), 'w', encoding='utf-8') as f:
+        f.write(blog_html)
 
     # Render Immersive Odyssey Page
     immersive_template = env.get_template('immersive_odyssey.html')
