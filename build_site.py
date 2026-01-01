@@ -8,7 +8,8 @@ import shutil
 from bs4 import BeautifulSoup
 
 # Configuration
-CONTENT_DIRS = ['Blog/raw', 'Blog/research']
+# Source directories - we will walk 'Blog' but filter for .md
+SOURCE_ROOT = 'Blog'
 OUTPUT_DIR = 'built_site'
 TEMPLATE_DIR = 'templates'
 ASSETS_DIR = 'assets'
@@ -17,16 +18,16 @@ ASSETS_DIR = 'assets'
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
 def slugify(text):
-    text = text.replace('.md', '').replace(' ', '_')
-    return text
+    text = text.replace('.md', '').replace(' ', '_').lower()
+    return re.sub(r'[^a-z0-9_]', '', text)
 
 def estimate_reading_time(text):
     words = len(text.split())
     minutes = math.ceil(words / 200)
     return minutes
 
-def get_tags_and_categories(filename, title):
-    # Define tags and categories based on filename or title
+def get_metadata(filename, content):
+    # Default assignments based on filename
     assignments = {
         'Jai Jagannath.md': {'category': 'Journey', 'tags': ['spiritual', 'cultural', 'historical', 'mythological', 'pilgrimage', 'temples', 'Shakti Peethas', 'Odisha']},
         'odisha_sacred_odyssey_temp.md': {'category': 'Journey', 'tags': ['spiritual', 'cultural', 'historical', 'mythological', 'pilgrimage', 'temples', 'Shakti Peethas', 'Odisha']},
@@ -46,8 +47,27 @@ def get_tags_and_categories(filename, title):
         'The Rajarani Temple.md': {'category': 'Temples', 'tags': ['spiritual', 'architectural', 'temples', 'Odisha']},
         'THE MIRROR OF THE SOUL': {'category': 'Temples', 'tags': ['spiritual', 'mythological', 'historical', 'temples', 'Odisha']},
     }
+
     key = os.path.basename(filename)
-    return assignments.get(key, {'category': 'Sacred Sites', 'tags': ['spiritual', 'Odisha']})
+    meta = assignments.get(key)
+
+    if not meta:
+        # Fallback: Inference from content
+        category = 'General'
+        tags = ['Odisha', 'Journey']
+
+        lower_content = content.lower()
+        if 'temple' in lower_content:
+            category = 'Temples'
+            tags.append('temples')
+        if 'shakti' in lower_content:
+            tags.append('shakti')
+        if 'history' in lower_content:
+            tags.append('historical')
+
+        meta = {'category': category, 'tags': tags}
+
+    return meta
 
 def parse_markdown_file(filepath):
     with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
@@ -55,54 +75,74 @@ def parse_markdown_file(filepath):
 
     # Extract Title
     title_match = re.search(r'^#\s+(.*)', content, re.MULTILINE)
-    title = title_match.group(1) if title_match else os.path.basename(filepath).replace('.md', '')
+    title = title_match.group(1).strip() if title_match else os.path.basename(filepath).replace('.md', '').replace('_', ' ').title()
 
     # Get tags and categories
-    metadata = get_tags_and_categories(filepath, title)
+    metadata = get_metadata(filepath, content)
 
-    # Handle Image Suggestions
+    # Handle Image Suggestions (Transform to placeholders or actual img tags if we had them)
+    # The requirement is "Zero information loss", so we keep the placeholder text visible but styled
     content = re.sub(
         r'> \*\*\[🖼️ (.*?)\]\*\*',
         r'<div class="image-placeholder"><span class="icon">🖼️</span> \1</div>',
         content
     )
 
-    # Pre-process citations
+    # Pre-process citations (<sup>1</sup> -> <sup id="cite-ref-1"><a href="#ref-1">1</a></sup>)
     content = re.sub(r'<sup>(\d+)</sup>', r'<sup id="cite-ref-\1"><a href="#ref-\1">\1</a></sup>', content)
 
     # Render Markdown
-    md = markdown.Markdown(extensions=['toc', 'extra', 'smarty'])
+    md = markdown.Markdown(extensions=['toc', 'extra', 'smarty', 'footnotes'])
     html_content = md.convert(content)
 
-    # Post-process HTML
+    # Post-process HTML with BeautifulSoup
     soup = BeautifulSoup(html_content, 'html.parser')
 
-    # Identify References List
+    # 1. Add IDs to headers for TOC/Linking if missing
+    for header in soup.find_all(['h2', 'h3']):
+        if not header.get('id'):
+            header['id'] = slugify(header.get_text())
+
+    # 2. Identify References List and add back links
     ref_list = None
     ref_header = None
 
+    # Try to find a header saying "References"
     for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-        if 'reference' in header.get_text().lower() or 'source' in header.get_text().lower() or 'bibliography' in header.get_text().lower():
+        text = header.get_text().lower()
+        if 'reference' in text or 'source' in text or 'bibliography' in text:
             ref_header = header
-            next_elem = ref_header.find_next_sibling(['ul', 'ol'])
+            # Look for the next UL or OL
+            next_elem = header.find_next_sibling(['ul', 'ol'])
             if next_elem:
                 ref_list = next_elem
             break
 
+    # Fallback: Look for the last list if it looks like references
     if not ref_list:
         lists = soup.find_all(['ul', 'ol'])
         if lists:
             last_list = lists[-1]
-            text_content = last_list.get_text()
+            text_content = last_list.get_text().lower()
             if "accessed on" in text_content or "http" in text_content:
                 ref_list = last_list
 
     if ref_list:
+        ref_list['class'] = ref_list.get('class', []) + ['references-list']
         for i, li in enumerate(ref_list.find_all('li'), 1):
             li['id'] = f'ref-{i}'
-            back_link = soup.new_tag('a', href=f'#cite-ref-{i}', **{'class': 'back-to-cite'})
-            back_link.string = '↩'
-            li.append(back_link)
+            # Check if back link already exists
+            if not li.find('a', class_='back-to-cite'):
+                back_link = soup.new_tag('a', href=f'#cite-ref-{i}', **{'class': 'back-to-cite'})
+                back_link.string = ' ↩'
+                li.append(back_link)
+
+    # 3. Apply Rustic Classes to elements
+    for img in soup.find_all('img'):
+        img['class'] = img.get('class', []) + ['rustic-img']
+
+    for quote in soup.find_all('blockquote'):
+        quote['class'] = quote.get('class', []) + ['rustic-quote']
 
     html_content = str(soup)
 
@@ -114,7 +154,7 @@ def parse_markdown_file(filepath):
         'filename': slugify(os.path.basename(filepath)) + '.html',
         'category': metadata['category'],
         'tags': metadata['tags'],
-        'excerpt': BeautifulSoup(html_content, 'html.parser').get_text()[:200] + '...'
+        'excerpt': BeautifulSoup(html_content, 'html.parser').get_text()[:180] + '...'
     }
 
 def main():
@@ -132,36 +172,33 @@ def main():
     pages = []
     search_index = []
 
-    # Collect all filepaths first to maintain order if needed (e.g. alphanumeric)
-    all_filepaths = []
-    for content_dir in CONTENT_DIRS:
-        if not os.path.exists(content_dir):
-            continue
-        files = sorted(os.listdir(content_dir))
+    # Walk Blog directory
+    print(f"Scanning {SOURCE_ROOT} for content...")
+    for root, dirs, files in os.walk(SOURCE_ROOT):
+        # Exclude 'html' directory if it exists to avoid processing generated files
+        if 'html' in dirs:
+            dirs.remove('html')
+
         for filename in files:
-            if filename.startswith('.'): continue
-            # Looser check to include more files, as we want complete population
-            if not filename.endswith('.md') and filename not in ['Sri Jagannath Temple Complex', 'THE MIRROR OF THE SOUL']:
-                 # Check if it is a folder or file without extension that contains markdown?
-                 # Assuming simple md files for now.
-                 continue
-            all_filepaths.append(os.path.join(content_dir, filename))
+            if filename.endswith('.md') or filename in ['Sri Jagannath Temple Complex', 'THE MIRROR OF THE SOUL']: # Handle known files without extension if any
+                filepath = os.path.join(root, filename)
+                print(f"Processing {filepath}...")
+                try:
+                    page_data = parse_markdown_file(filepath)
+                    pages.append(page_data)
 
-    # Process files
-    for filepath in all_filepaths:
-        print(f"Processing {filepath}...")
-        try:
-            page_data = parse_markdown_file(filepath)
-            pages.append(page_data)
+                    search_index.append({
+                        'title': page_data['title'],
+                        'url': page_data['filename'],
+                        'content': page_data['excerpt'],
+                        'category': page_data['category'],
+                        'tags': page_data['tags']
+                    })
+                except Exception as e:
+                    print(f"Error processing {filepath}: {e}")
 
-            search_index.append({
-                'title': page_data['title'],
-                'url': page_data['filename'],
-                'content': page_data['excerpt'],
-                'category': page_data['category']
-            })
-        except Exception as e:
-            print(f"Error processing {filepath}: {e}")
+    # Sort pages by title (or could be by date if we had it)
+    pages.sort(key=lambda x: x['title'])
 
     # Collect unique categories and tags
     categories = sorted(list(set(p['category'] for p in pages)))
@@ -170,7 +207,23 @@ def main():
         all_tags.update(p['tags'])
     tags = sorted(list(all_tags))
 
-    # Render pages with prev/next links
+    # Calculate Related Posts
+    for page in pages:
+        related = []
+        page_tags = set(page['tags'])
+        for other_page in pages:
+            if other_page['filename'] == page['filename']:
+                continue
+            other_tags = set(other_page['tags'])
+            overlap = len(page_tags.intersection(other_tags))
+            if overlap > 0:
+                related.append((overlap, other_page))
+
+        # Sort by overlap descending
+        related.sort(key=lambda x: x[0], reverse=True)
+        page['related_posts'] = [x[1] for x in related[:3]] # Top 3 related
+
+    # Render Article Pages
     template = env.get_template('article.html')
     for i, page in enumerate(pages):
         prev_page = pages[i-1] if i > 0 else None
@@ -184,9 +237,11 @@ def main():
             reading_time=page['reading_time'],
             prev_page=prev_page,
             next_page=next_page,
+            related_posts=page['related_posts'],
             body_class="article-page",
-            pages=pages, # Pass all pages to every template for navigation/sitemap
-            category=page['category']
+            pages=pages,
+            category=page['category'],
+            tags=page['tags']
         )
 
         with open(os.path.join(OUTPUT_DIR, page['filename']), 'w', encoding='utf-8') as f:
