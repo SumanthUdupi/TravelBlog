@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(101, 67, 33, 0.9);
     z-index: 10002;
     display: flex;
     justify-content: center;
@@ -33,23 +33,25 @@
 .lightbox-img-container {
     width: 100%;
     aspect-ratio: 16/9;
-    background: #222;
+    background: var(--color-deep-brown);
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
-    border: 1px solid var(--color-secondary);
+    box-shadow: var(--shadow-rustic);
+    border: 3px double var(--color-primary);
+    border-radius: 2px;
 }
 
 .lightbox-img-container .placeholder-img {
     font-size: 2rem;
-    color: white;
+    color: var(--color-cream);
+    font-family: var(--font-accent);
 }
 
 .lightbox-caption {
     margin-top: var(--spacing-sm);
-    color: var(--color-accent);
-    font-family: var(--font-heading);
+    color: var(--color-secondary);
+    font-family: var(--font-accent);
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -61,12 +63,12 @@
     right: 0;
     background: none;
     border: none;
-    color: white;
+    color: var(--color-cream);
     font-size: 2rem;
     cursor: pointer;
     transition: color 0.3s;
 }
 
 .lightbox-close:hover {
-    color: var(--color-primary);
+    color: var(--color-rust);
 }

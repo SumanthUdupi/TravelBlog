@@ -83,7 +83,7 @@ const BlogContent = (() => {
                 <h3>A Pilgrim's Journey Through Odisha: December 2024</h3>
                 <p>Embark on a sacred odyssey through the spiritual heart of Odisha. This journey takes you from the ancient temples of Bhubaneswar to the divine presence of Lord Jagannath in Puri, exploring the deep spiritual heritage and transformative power of India's sacred sites.</p>
                 <p><strong>Day 1:</strong> Arrival in Bhubaneswar. The syncretism of Lingaraj, the tribal heartbeat, and the Jain silence of Udayagiri.</p>
-                <p><strong>Day 2:</strong> Deep dive into Bhubaneswar's culinary delights (Dahibara Aloodum) and spiritual anchors.</p>
+                <p><strong>Day 2:</strong> Deep dive into Bhubaneswar's spiritual anchors and cultural heritage.</p>
                 <p><strong>Day 3:</strong> The Shakti Trail. Cuttack Chandi, Netaji's Birthplace, Jajpur's Maa Biraja, and the futuristic fortress of Chhatia Bata.</p>
                 <p><strong>Day 4:</strong> The Solar Path culminating at Puri Jagannath Dham.</p>
                 <p><em>Full content loading... The complete spiritual journey will be available soon.</em></p>
@@ -94,7 +94,7 @@ const BlogContent = (() => {
                 <p><strong>The Sacred Itinerary:</strong></p>
                 <ul>
                     <li>Day 1: The Temple City of Bhubaneswar</li>
-                    <li>Day 2: Culinary & Spiritual Duality</li>
+                    <li>Day 2: Spiritual & Cultural Exploration</li>
                     <li>Day 3: The Shakti Trail & Inner War</li>
                     <li>Day 4: The Solar Chariot & Lord of the Universe</li>
                 </ul>
@@ -159,22 +159,6 @@ const BlogContent = (() => {
                 location: 'Odisha, India',
                 day: 1,
                 thematicArc: 'Spiritual Journey and Transformation'
-            },
-            {
-                id: 'odisha-sacred-odyssey',
-                title: 'Odisha Sacred Odyssey: Where the Divine Meets the Soul',
-                slug: 'odisha-sacred-odyssey',
-                excerpt: 'A comprehensive guide to the sacred itinerary through Odisha\'s spiritual and cultural landmarks.',
-                content: await getBlogContent('odisha-sacred-odyssey'),
-                date: '2024-12-24',
-                author: 'Sacred Odyssey',
-                categories: ['Travel Guide', 'Cultural Exploration'],
-                tags: ['Odisha', 'Travel', 'Culture', 'Spiritual', 'Itinerary'],
-                featuredImage: 'https://images.unsplash.com/photo-1599827473795-94e82390c96c?q=80&w=1920&auto=format&fit=crop',
-                readingTime: '15 min',
-                location: 'Odisha, India',
-                day: 1,
-                thematicArc: 'Historical and Mythological Exploration'
             }
         ];
         
@@ -236,22 +220,6 @@ const BlogContent = (() => {
                 location: 'Odisha, India',
                 day: 1,
                 thematicArc: 'Spiritual Journey and Transformation'
-            },
-            {
-                id: 'odisha-sacred-odyssey',
-                title: 'Odisha Sacred Odyssey: Where the Divine Meets the Soul',
-                slug: 'odisha-sacred-odyssey',
-                excerpt: 'A comprehensive guide to the sacred itinerary through Odisha\'s spiritual and cultural landmarks.',
-                content: '<p>Content loading failed. Please check your connection and try again.</p>',
-                date: '2024-12-24',
-                author: 'Sacred Odyssey',
-                categories: ['Travel Guide', 'Cultural Exploration'],
-                tags: ['Odisha', 'Travel', 'Culture', 'Spiritual', 'Itinerary'],
-                featuredImage: 'https://images.unsplash.com/photo-1599827473795-94e82390c96c?q=80&w=1920&auto=format&fit=crop',
-                readingTime: '15 min',
-                location: 'Odisha, India',
-                day: 1,
-                thematicArc: 'Historical and Mythological Exploration'
             }
         ];
     };
@@ -263,8 +231,6 @@ const BlogContent = (() => {
             let filePath = '';
             if (postId === 'jai-jagannath') {
                 filePath = 'built_site/Jai_Jagannath.html';
-            } else if (postId === 'odisha-sacred-odyssey') {
-                filePath = 'built_site/odisha_sacred_odyssey.html';
             }
 
             if (filePath) {
@@ -294,7 +260,7 @@ const BlogContent = (() => {
                 <h3>A Pilgrim's Journey Through Odisha: December 2024</h3>
                 <p>Embark on a sacred odyssey through the spiritual heart of Odisha. This journey takes you from the ancient temples of Bhubaneswar to the divine presence of Lord Jagannath in Puri, exploring the deep spiritual heritage and transformative power of India's sacred sites.</p>
                 <p><strong>Day 1:</strong> Arrival in Bhubaneswar and the Temple City's ancient energy</p>
-                <p><strong>Day 2:</strong> Deep dive into spiritual and culinary experiences</p>
+                <p><strong>Day 2:</strong> Deep dive into spiritual and cultural experiences</p>
                 <p><strong>Day 3:</strong> The Shakti Trail and revolutionary heritage</p>
                 <p><strong>Day 4:</strong> The Solar Path culminating at Puri Jagannath Dham</p>
                 <p><em>Full content loading... The complete spiritual journey will be available soon.</em></p>
@@ -305,7 +271,7 @@ const BlogContent = (() => {
                 <p><strong>The Sacred Itinerary:</strong></p>
                 <ul>
                     <li>Day 1: The Temple City of Bhubaneswar</li>
-                    <li>Day 2: Culinary & Spiritual Duality</li>
+                    <li>Day 2: Spiritual & Cultural Exploration</li>
                     <li>Day 3: The Shakti Trail & Inner War</li>
                     <li>Day 4: The Solar Chariot & Lord of the Universe</li>
                 </ul>

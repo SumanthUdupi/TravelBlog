@@ -4,9 +4,9 @@
 
 The railway station clock glowed 4:05 AM when we arrived, our bags heavy with clothes but our hearts light with anticipation. In the pre-dawn darkness, there was something sacred about the emptiness, as if the world was holding its breath before our pilgrimage began. At 4:30 AM, as the train's whistle pierced the silence, we began our journey with the ancient invocation on our lips: "Jai Jagannath."
 
-The landscape transformed as we rolled southward. By 7:15 AM, hunger had found us at a small station, and we feasted on five masala dosas and an idli-vada combination.
+The landscape transformed as we rolled southward. By 7:15 AM, we had reached a small station, and we took a brief break to refresh ourselves.
 
-The train rocked us into a rhythm of conversation and contemplation. At noon, we placed our lunch order, and by 1:30 PM, Nandyal station appeared like a punctuation mark in our journey. The afternoon meal arrived at 3 PM. From 6:30 PM to 8:30 PM, we played Uno, the cards flying between hands, laughter echoing through the compartment. Dinner came at 7:30 PM—simple roti and curry.
+The train rocked us into a rhythm of conversation and contemplation. At noon, we continued our journey, and by 1:30 PM, Nandyal station appeared like a punctuation mark in our journey. The afternoon passed with games and conversation. From 6:30 PM to 8:30 PM, we played Uno, the cards flying between hands, laughter echoing through the compartment.
 
 ## Day Two: Bhubaneswar - The City of Temples - December 23rd
 
@@ -58,15 +58,15 @@ The Digambara Jain temple at the summit was breathtaking. The "sky-clad" traditi
 
 Our next stop was unexpected. We found a beautiful Ram Mandir where a satsang was in full flow, the air thick with the chanting of Ram Nam. We sat for a few moments, letting the waves of devotion wash over us. The repetition of the name—"Ram, Ram, Ram"—became a heartbeat, a reminder that the divine is always as close as our breath.
 
-The driver dropped us near the hotel, and we set out on foot for the nearest sweet shop. What followed was an odyssey of taste: we began with dahi vada and the local variation, majjige vade, then moved to the legendary Chhena Poda—Odisha's signature dessert, where cottage cheese is caramelized with sugar and cardamom until it achieves an almost mystical combination of textures. We sampled three other sweets whose names we didn't catch but whose flavors we won't forget.
+The driver dropped us near the hotel, and we set out on foot to explore the local area. We visited a nearby temple and enjoyed the evening atmosphere of Bhubaneswar.
 
-But we needed something spicy to balance the sweet, so we sought out papdi chaat. We found a vendor who was an artist, using at least thirty ingredients, taking twenty minutes to construct our plates. Each element—the crispy papdi, the potatoes, the chutneys, the yogurt, the sev, the pomegranate seeds—was a note in a symphony. It was, quite simply, the bomb.
+We spent time reflecting on our experiences and preparing for the next day's spiritual journey.
 
 By 8:45 PM, we were back at the hotel, and we played rummy and Uno until 11:30 PM, the cards shuffling like prayers, the laughter bouncing off the walls.
 
 ## Day Three: The Shakti Peethas and the Birth of a Revolutionary - December 24th
 
-The morning of December 24th greeted us with the aroma of chole bhature, puffy and golden, stuffed with spiced chickpeas. Fortified, we set out for Cuttack and Jajpur, moving deeper into the sacred circuit of the Goddess.
+The morning of December 24th greeted us with a sense of anticipation. After our morning preparations, we set out for Cuttack and Jajpur, moving deeper into the sacred circuit of the Goddess.
 
 ### Cuttack Chandi: The Shakti Peetha at 10:00 AM
 
@@ -114,7 +114,7 @@ Another legend states that Lord Brahma, the creator, established this site for t
 
 ### Lunch at Rayata Haveli: 3:00 PM
 
-After considerable searching, we discovered Rayata Haveli, a grand haveli transformed into a pure vegetarian restaurant. The architecture spoke of a different era—high ceilings, carved wooden doors, courtyards that had once echoed with family gatherings. We ate in that historic space, our lunch becoming part of the building's continuing story.
+After considerable searching, we discovered Rayata Haveli, a grand haveli that showcased traditional architecture. The building spoke of a different era—high ceilings, carved wooden doors, courtyards that had once echoed with family gatherings. We spent time appreciating the historic space and its cultural significance.
 
 ## The Battlefield Within: A Pilgrim's Reflection at Chattia Bata
 

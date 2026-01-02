@@ -1,6 +1,7 @@
 /* Blog Section Styles */
 .blog-section {
-    background-color: var(--color-surface);
+    background-color: var(--color-bg);
+    background-image: var(--paper-texture);
     padding: var(--spacing-xl) 0;
 }
 
@@ -107,17 +108,30 @@
 
 /* Blog Card Styles */
 .blog-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-surface);
     border: 1px solid var(--color-secondary);
-    border-radius: 8px;
+    border-radius: 2px;
     overflow: hidden;
     transition: transform var(--transition-base), box-shadow var(--transition-base);
     cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.blog-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: var(--paper-texture);
+    opacity: 0.3;
+    pointer-events: none;
+    mix-blend-mode: multiply;
 }
 
 .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px) rotate(0.3deg);
+    box-shadow: var(--shadow-rustic);
+    border-color: var(--color-rust);
 }
 
 .blog-card-image {
@@ -134,7 +148,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to top, rgba(15, 14, 14, 0.8), rgba(15, 14, 14, 0.3));
+    background: linear-gradient(to top, rgba(101, 67, 33, 0.8), rgba(101, 67, 33, 0.3));
 }
 
 .blog-card-content {
@@ -144,7 +158,7 @@
 .blog-card-title {
     font-family: var(--font-heading);
     font-size: 1.3rem;
-    color: var(--color-accent);
+    color: var(--color-deep-brown);
     margin-bottom: var(--spacing-xs);
     line-height: 1.3;
 }
@@ -153,7 +167,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.8rem;
-    color: var(--color-text);
+    color: var(--color-muted);
     opacity: 0.8;
     margin-bottom: var(--spacing-sm);
 }
@@ -412,7 +426,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(101, 67, 33, 0.9);
     z-index: 10000;
     overflow-y: auto;
     padding: var(--spacing-xl) 0;
@@ -426,10 +440,12 @@
     max-width: 800px;
     margin: 0 auto;
     background: var(--color-surface);
-    border: 1px solid var(--color-accent);
-    border-radius: 8px;
+    background-image: var(--paper-texture);
+    border: 3px double var(--color-primary);
+    border-radius: 2px;
     padding: var(--spacing-lg);
     position: relative;
+    box-shadow: var(--shadow-rustic);
 }
 
 .blog-modal-close {
