@@ -101,6 +101,15 @@ const ScrollReveal = (() => {
         // Observe various animation classes
         const elements = document.querySelectorAll('.reveal, .fade-in, .scroll-fade-in, .timeline-item, .timeline-marker, .card');
         elements.forEach(el => observer.observe(el));
+
+        // Fail-safe: Ensure content is visible if JS takes too long or observer fails
+        setTimeout(() => {
+            elements.forEach(el => {
+                if (!el.classList.contains('visible')) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 2000); // 2 seconds fallback
     };
 
     return { init };
