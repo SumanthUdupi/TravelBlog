@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Immersive Odyssey - Odisha's Sacred Journey{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="assets/css/immersive.css">
+{% endblock %}
+
+{% block content %}
+<main class="immersive-page">
+    <div class="hero-section">
+        <h1>Odisha's Sacred Odyssey</h1>
+        <p class="subtitle">An Immersive Journey Through Time and Spirit</p>
+    </div>
+
+    <div class="timeline-container">
+        {% for page in pages %}
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h2>{{ page.title }}</h2>
+                <p>{{ page.excerpt }}</p>
+                <a href="{{ page.filename }}" class="read-more">Read Full Story</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
