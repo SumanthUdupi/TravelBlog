@@ -61,7 +61,7 @@
                 <a href="index.html#hero">Home</a>
                 <a href="index.html#timeline">Itinerary</a>
                 <a href="index.html#gallery">Gallery</a>
-                <a href="search.json">Search</a>
+                <a href="search.html">Search</a>
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2024 Sacred Odyssey. Created with reverence.</p>
@@ -82,18 +82,24 @@
         if (localStorage.getItem('darkMode') === 'enabled') {
             darkModeCss.removeAttribute('disabled');
             toggleButton.textContent = '☀️';
+            toggleButton.setAttribute('aria-pressed', 'true');
+        } else {
+            toggleButton.setAttribute('aria-pressed', 'false');
         }
 
         if (toggleButton) {
             toggleButton.addEventListener('click', () => {
-                if (darkModeCss.hasAttribute('disabled')) {
-                    darkModeCss.removeAttribute('disabled');
-                    localStorage.setItem('darkMode', 'enabled');
-                    toggleButton.textContent = '☀️';
-                } else {
+                const isPressed = toggleButton.getAttribute('aria-pressed') === 'true';
+                if (isPressed) {
                     darkModeCss.setAttribute('disabled', 'true');
                     localStorage.setItem('darkMode', 'disabled');
                     toggleButton.textContent = '🌙';
+                    toggleButton.setAttribute('aria-pressed', 'false');
+                } else {
+                    darkModeCss.removeAttribute('disabled');
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggleButton.textContent = '☀️';
+                    toggleButton.setAttribute('aria-pressed', 'true');
                 }
             });
         }

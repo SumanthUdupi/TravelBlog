@@ -26,6 +26,14 @@ def estimate_reading_time(text):
     minutes = math.ceil(words / 200)
     return minutes
 
+def generate_breadcrumbs(page_data):
+    breadcrumbs = [{'name': 'Home', 'url': 'index.html'}]
+    if 'category' in page_data:
+        breadcrumbs.append({'name': page_data['category'], 'url': 'blog.html'}) # Assumption: all categories are on blog page
+    breadcrumbs.append({'name': page_data['title'], 'url': page_data['filename']})
+    return breadcrumbs
+
+
 def get_metadata(filename, content):
     # Default assignments based on filename
     assignments = {
@@ -228,6 +236,8 @@ def main():
     for i, page in enumerate(pages):
         prev_page = pages[i-1] if i > 0 else None
         next_page = pages[i+1] if i < len(pages) - 1 else None
+        
+        page['breadcrumbs'] = generate_breadcrumbs(page)
 
         output_html = template.render(
             title=page['title'],
@@ -241,7 +251,8 @@ def main():
             body_class="article-page",
             pages=pages,
             category=page['category'],
-            tags=page['tags']
+            tags=page['tags'],
+            breadcrumbs=page['breadcrumbs']
         )
 
         with open(os.path.join(OUTPUT_DIR, page['filename']), 'w', encoding='utf-8') as f:
@@ -283,6 +294,16 @@ def main():
 
     with open(os.path.join(OUTPUT_DIR, 'immersive_odyssey.html'), 'w', encoding='utf-8') as f:
         f.write(immersive_html)
+
+    # Render Search Page
+    search_template = env.get_template('search.html')
+    search_html = search_template.render(
+        title="Search",
+        categories=categories,
+        tags=tags
+    )
+    with open(os.path.join(OUTPUT_DIR, 'search.html'), 'w', encoding='utf-8') as f:
+        f.write(search_html)
 
     # Write Search Index
     with open(os.path.join(OUTPUT_DIR, 'search.json'), 'w', encoding='utf-8') as f:

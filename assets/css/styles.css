@@ -51,6 +51,14 @@
     padding: 0;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid var(--color-secondary);
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -672,6 +680,10 @@ a:hover {
         font-size: 1.4rem;
     }
 
+    .btn {
+        padding: 1rem 2.5rem;
+    }
+
     .card img, .timeline-content img {
         max-height: 180px;
     }
@@ -758,4 +770,15 @@ a:hover {
     color: var(--color-deep-brown);
     background: rgba(139, 69, 19, 0.05);
     padding: 1.5rem;
+}
+
+/* -- Accessibility Enhancements -- */
+*:focus {
+    outline: 3px solid var(--color-accent, #C06C52); /* A fallback color is provided */
+    outline-offset: 2px;
+    transition: outline 0.1s ease-in-out;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
 }

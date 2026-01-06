@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Search | Odisha Sacred Odyssey{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Search</h1>
+        <div class="search-container">
+            <input type="search" id="search-input" placeholder="Search for anything...">
+        </div>
+        <div class="filter-container">
+            <div class="filter-group">
+                <h4>Categories:</h4>
+                <button class="filter-btn active" data-filter="all">All</button>
+                {% for category in categories %}
+                <button class="filter-btn" data-filter="{{ category|lower|replace(' ', '-') }}">{{ category }}</button>
+                {% endfor %}
+            </div>
+            <div class="filter-group" style="margin-top: 1rem;">
+                <h4>Tags:</h4>
+                {% for tag in tags %}
+                <button class="filter-btn" data-filter="{{ tag|lower|replace(' ', '-') }}">#{{ tag }}</button>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="search-results" class="grid-3"></div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    let posts = [];
+
+    fetch('search.json')
+        .then(response => response.json())
+        .then(data => {
+            posts = data;
+            displayResults(posts);
+        });
+
+    function displayResults(results) {
+        searchResults.innerHTML = '';
+        if (results.length === 0) {
+            searchResults.innerHTML = '<p>No results found.</p>';
+            return;
+        }
+        results.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.classList.add('card');
+            postElement.innerHTML = `
+                <div class="card-content">
+                    <h3><a href="${post.url}">${post.title}</a></h3>
+                    <p>${post.content}</p>
+                    <div class="meta-tags">
+                        <span class="tag-pill">${post.category}</span>
+                        ${post.tags.map(tag => `<span class="tag-pill">#${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            searchResults.appendChild(postElement);
+        });
+    }
+
+    function filterPosts() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const activeFilters = Array.from(filterButtons).filter(btn => btn.classList.contains('active') && btn.dataset.filter !== 'all');
+
+        const filteredPosts = posts.filter(post => {
+            const titleMatch = post.title.toLowerCase().includes(searchTerm);
+            const contentMatch = post.content.toLowerCase().includes(searchTerm);
+            const categoryMatch = activeFilters.length === 0 || activeFilters.some(filter => post.category.toLowerCase().replace(' ', '-') === filter.dataset.filter);
+            const tagMatch = activeFilters.length === 0 || activeFilters.some(filter => post.tags.map(t => t.toLowerCase().replace(' ', '-')).includes(filter.dataset.filter));
+
+            return (titleMatch || contentMatch) && (categoryMatch || tagMatch);
+        });
+
+        displayResults(filteredPosts);
+    }
+
+    searchInput.addEventListener('input', filterPosts);
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.filter;
+            if (filter === 'all') {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            } else {
+                document.querySelector('.filter-btn[data-filter="all"]').classList.remove('active');
+                button.classList.toggle('active');
+            }
+            filterPosts();
+        });
+    });
+});
+</script>
+{% endblock %}
