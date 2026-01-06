@@ -25,11 +25,11 @@
     </div>
 
     <!-- Header & Navigation -->
-    <header class="site-header" id="site-header">
+    <header class="site-header" id="site-header" role="banner">
         <div class="container header-container">
             <a href="index.html" class="logo">Sacred Odyssey</a>
 
-            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle">
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle" aria-controls="main-nav">
                 <span class="hamburger"></span>
             </button>
 
@@ -47,17 +47,17 @@
         </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" role="main" tabindex="-1">
         {% block content %}{% endblock %}
     </main>
 
-    <footer id="footer" class="site-footer">
+    <footer id="footer" class="site-footer" role="contentinfo">
         <div class="container footer-content">
             <div class="footer-brand">
                 <h3>Odisha Sacred Odyssey</h3>
                 <p>A journey into the soul of Incredible India.</p>
             </div>
-            <div class="footer-links">
+            <div class="footer-links" role="navigation" aria-label="Footer Navigation">
                 <a href="index.html#hero">Home</a>
                 <a href="index.html#timeline">Itinerary</a>
                 <a href="index.html#gallery">Gallery</a>

@@ -25,11 +25,11 @@
     </div>
 
     <!-- Header & Navigation -->
-    <header class="site-header" id="site-header">
+    <header class="site-header" id="site-header" role="banner">
         <div class="container header-container">
             <a href="index.html" class="logo">Sacred Odyssey</a>
 
-            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle">
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle" aria-controls="main-nav">
                 <span class="hamburger"></span>
             </button>
 
@@ -47,7 +47,7 @@
         </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" role="main" tabindex="-1">
 
         <!-- Hero Section -->
         <section id="hero" class="hero-section parallax-container">
@@ -209,12 +209,24 @@
             <div class="container">
                 <h2 class="section-title text-center reveal">Glimpses of Divinity</h2>
                 <div class="gallery-grid" id="gallery-grid">
-                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #4a3b32;"><span>Lingaraj Temple</span></div></div>
-                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #d45d00;"><span>Konark Wheel</span></div></div>
-                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #cfaa6d;"><span>Jagannath Flag</span></div></div>
-                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #3a3532;"><span>Chausathi Yogini</span></div></div>
-                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #6d5a45;"><span>Tribal Art</span></div></div>
-                    <div class="gallery-item reveal"><div class="placeholder-img" style="background-color: #8c7b65;"><span>Puri Beach</span></div></div>
+                    <div class="gallery-item reveal">
+                        <img src="https://via.placeholder.com/300x300.png?text=Lingaraj+Temple" alt="A placeholder image for Lingaraj Temple, a majestic Hindu temple dedicated to Shiva, located in Bhubaneswar, the capital of the Indian state of Odisha." class="placeholder-img" width="300" height="300" loading="lazy">
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://via.placeholder.com/300x300.png?text=Konark+Wheel" alt="A placeholder image for the Konark Wheel, one of the gigantic stone wheels of the Sun Temple at Konark, Odisha, which is a UNESCO World Heritage Site." class="placeholder-img" width="300" height="300" loading="lazy">
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://via.placeholder.com/300x300.png?text=Jagannath+Flag" alt="A placeholder image for the Jagannath Flag (Patitapabana), which flies atop the Jagannath Temple in Puri and is said to fly in the opposite direction of the wind." class="placeholder-img" width="300" height="300" loading="lazy">
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://via.placeholder.com/300x300.png?text=Chausath+Yogini" alt="A placeholder image for the Chausath Yogini Temple, a 9th-century temple in Hirapur, Odisha, known for its circular architecture and carvings of 64 yoginis." class="placeholder-img" width="300" height="300" loading="lazy">
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://via.placeholder.com/300x300.png?text=Tribal+Art" alt="A placeholder image representing the rich and diverse tribal art of Odisha, which includes various forms of painting, sculpture, and crafts." class="placeholder-img" width="300" height="300" loading="lazy">
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="https://via.placeholder.com/300x300.png?text=Puri+Beach" alt="A placeholder image of Puri Beach, a popular beach on the coast of the Bay of Bengal in Puri, Odisha, which is also a sacred pilgrimage site." class="placeholder-img" width="300" height="300" loading="lazy">
+                    </div>
                 </div>
             </div>
         </section>
@@ -375,17 +387,17 @@
 
     </main>
 
-    <footer id="footer" class="site-footer">
+    <footer id="footer" class="site-footer" role="contentinfo">
         <div class="container footer-content">
             <div class="footer-brand">
                 <h3>Odisha Sacred Odyssey</h3>
                 <p>A journey into the soul of Incredible India.</p>
             </div>
-            <div class="footer-links">
+            <div class="footer-links" role="navigation" aria-label="Footer Navigation">
                 <a href="index.html#hero">Home</a>
                 <a href="index.html#timeline">Itinerary</a>
                 <a href="index.html#gallery">Gallery</a>
-                <a href="search.json">Search</a>
+                <a href="search.html">Search</a>
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2024 Sacred Odyssey. Created with reverence.</p>
@@ -406,18 +418,24 @@
         if (localStorage.getItem('darkMode') === 'enabled') {
             darkModeCss.removeAttribute('disabled');
             toggleButton.textContent = '☀️';
+            toggleButton.setAttribute('aria-pressed', 'true');
+        } else {
+            toggleButton.setAttribute('aria-pressed', 'false');
         }
 
         if (toggleButton) {
             toggleButton.addEventListener('click', () => {
-                if (darkModeCss.hasAttribute('disabled')) {
-                    darkModeCss.removeAttribute('disabled');
-                    localStorage.setItem('darkMode', 'enabled');
-                    toggleButton.textContent = '☀️';
-                } else {
+                const isPressed = toggleButton.getAttribute('aria-pressed') === 'true';
+                if (isPressed) {
                     darkModeCss.setAttribute('disabled', 'true');
                     localStorage.setItem('darkMode', 'disabled');
                     toggleButton.textContent = '🌙';
+                    toggleButton.setAttribute('aria-pressed', 'false');
+                } else {
+                    darkModeCss.removeAttribute('disabled');
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggleButton.textContent = '☀️';
+                    toggleButton.setAttribute('aria-pressed', 'true');
                 }
             });
         }
