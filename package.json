@@ -1,5 +1,22 @@
 {
+  "name": "odisha-sacred-odyssey",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "test": "vitest"
+  },
   "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
     "playwright": "^1.57.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "eslint": "^8.54.0",
+    "vitest": "^1.0.0"
   }
 }
