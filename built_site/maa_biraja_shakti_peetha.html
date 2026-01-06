@@ -25,11 +25,11 @@
     </div>
 
     <!-- Header & Navigation -->
-    <header class="site-header" id="site-header">
+    <header class="site-header" id="site-header" role="banner">
         <div class="container header-container">
             <a href="index.html" class="logo">Sacred Odyssey</a>
 
-            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle">
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle" aria-controls="main-nav">
                 <span class="hamburger"></span>
             </button>
 
@@ -47,18 +47,34 @@
         </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" role="main" tabindex="-1">
 
 <article class="article-page section">
     <div class="container">
         <!-- Breadcrumb -->
         <nav aria-label="Breadcrumb" class="breadcrumb">
             <ol>
-                <li><a href="index.html">Home</a></li>
-                <li><span aria-hidden="true">/</span></li>
-                <li><a href="index.html#research">Shakti Peethas</a></li>
-                <li><span aria-hidden="true">/</span></li>
-                <li aria-current="page">Maa Biraja Shakti Peetha: An Archetypal Monograph on the History, Theology, and Living Traditions of the Viraja Kshetra</li>
+
+                <li>
+
+                        <a href="index.html">Home</a>
+                        <span aria-hidden="true">/</span>
+
+                </li>
+
+                <li>
+
+                        <a href="blog.html">Shakti Peethas</a>
+                        <span aria-hidden="true">/</span>
+
+                </li>
+
+                <li>
+
+                        <span aria-current="page">Maa Biraja Shakti Peetha: An Archetypal Monograph on the History, Theology, and Living Traditions of the Viraja Kshetra</span>
+
+                </li>
+
             </ol>
         </nav>
 
@@ -71,7 +87,7 @@
         </header>
 
         <div class="featured-image reveal">
-            <div class="image-placeholder">Featured Image for Maa Biraja Shakti Peetha: An Archetypal Monograph on the History, Theology, and Living Traditions of the Viraja Kshetra</div>
+            <img src="https://via.placeholder.com/800x400.png?text=Maa%20Biraja%20Shakti%20Peetha%3A%20An%20Archetypal%20Monograph%20on%20the%20History%2C%20Theology%2C%20and%20Living%20Traditions%20of%20the%20Viraja%20Kshetra" alt="Featured image for Maa Biraja Shakti Peetha: An Archetypal Monograph on the History, Theology, and Living Traditions of the Viraja Kshetra" class="image-placeholder featured-image-tag" style="width: 100%; height: auto; border-radius: 8px;" width="800" height="400" loading="eager">
         </div>
 
         <div class="content-wrapper reveal">
@@ -738,17 +754,17 @@ Day One: The Journey...</p>
 
     </main>
 
-    <footer id="footer" class="site-footer">
+    <footer id="footer" class="site-footer" role="contentinfo">
         <div class="container footer-content">
             <div class="footer-brand">
                 <h3>Odisha Sacred Odyssey</h3>
                 <p>A journey into the soul of Incredible India.</p>
             </div>
-            <div class="footer-links">
+            <div class="footer-links" role="navigation" aria-label="Footer Navigation">
                 <a href="index.html#hero">Home</a>
                 <a href="index.html#timeline">Itinerary</a>
                 <a href="index.html#gallery">Gallery</a>
-                <a href="search.json">Search</a>
+                <a href="search.html">Search</a>
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2024 Sacred Odyssey. Created with reverence.</p>
@@ -769,18 +785,24 @@ Day One: The Journey...</p>
         if (localStorage.getItem('darkMode') === 'enabled') {
             darkModeCss.removeAttribute('disabled');
             toggleButton.textContent = '☀️';
+            toggleButton.setAttribute('aria-pressed', 'true');
+        } else {
+            toggleButton.setAttribute('aria-pressed', 'false');
         }
 
         if (toggleButton) {
             toggleButton.addEventListener('click', () => {
-                if (darkModeCss.hasAttribute('disabled')) {
-                    darkModeCss.removeAttribute('disabled');
-                    localStorage.setItem('darkMode', 'enabled');
-                    toggleButton.textContent = '☀️';
-                } else {
+                const isPressed = toggleButton.getAttribute('aria-pressed') === 'true';
+                if (isPressed) {
                     darkModeCss.setAttribute('disabled', 'true');
                     localStorage.setItem('darkMode', 'disabled');
                     toggleButton.textContent = '🌙';
+                    toggleButton.setAttribute('aria-pressed', 'false');
+                } else {
+                    darkModeCss.removeAttribute('disabled');
+                    localStorage.setItem('darkMode', 'enabled');
+                    toggleButton.textContent = '☀️';
+                    toggleButton.setAttribute('aria-pressed', 'true');
                 }
             });
         }
