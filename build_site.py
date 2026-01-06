@@ -6,6 +6,13 @@ import math
 import json
 import shutil
 from bs4 import BeautifulSoup
+try:
+    import cssmin
+    import jsmin
+except ImportError:
+    print("cssmin and jsmin not installed. Install with pip install cssmin jsmin")
+    cssmin = None
+    jsmin = None
 
 # Configuration
 # Source directories - we will walk 'Blog' but filter for .md
@@ -20,6 +27,36 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 def slugify(text):
     text = text.replace('.md', '').replace(' ', '_').lower()
     return re.sub(r'[^a-z0-9_]', '', text)
+
+def minify_assets(output_assets):
+    css_dir = os.path.join(output_assets, 'css')
+    js_dir = os.path.join(output_assets, 'js')
+
+    # Minify CSS
+    for file in os.listdir(css_dir):
+        if file.endswith('.css'):
+            filepath = os.path.join(css_dir, file)
+            with open(filepath, 'r', encoding='utf-8') as f:
+                content = f.read()
+            minified = cssmin.cssmin(content)
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(minified)
+            print(f"Minified {file}")
+
+    # Bundle and minify JS
+    js_files = ['script.js', 'gallery.js', 'back-to-top.js', 'blog-filtering.js', 'immersive.js', 'markdown-parser.js']
+    bundled_content = ''
+    for js_file in js_files:
+        filepath = os.path.join(js_dir, js_file)
+        if os.path.exists(filepath):
+            with open(filepath, 'r', encoding='utf-8') as f:
+                bundled_content += f.read() + '\n'
+    if bundled_content:
+        minified_js = jsmin.jsmin(bundled_content)
+        bundled_filepath = os.path.join(js_dir, 'bundled.min.js')
+        with open(bundled_filepath, 'w', encoding='utf-8') as f:
+            f.write(minified_js)
+        print("Bundled and minified JS to bundled.min.js")
 
 def estimate_reading_time(text):
     words = len(text.split())
@@ -176,6 +213,12 @@ def main():
             shutil.rmtree(output_assets)
         shutil.copytree(ASSETS_DIR, output_assets)
         print("Assets copied.")
+
+        # Minify CSS and JS
+        if cssmin and jsmin:
+            minify_assets(output_assets)
+        else:
+            print("Skipping minification: cssmin/jsmin not available.")
 
     pages = []
     search_index = []

@@ -54,6 +54,11 @@
 
     /* Focus Indicators */
     --focus-color: #FFD700;
+
+    /* Semantic Colors */
+    --color-success: #228B22; /* Forest Green */
+    --color-warning: #FFD700; /* Gold */
+    --color-error: #B22222; /* Firebrick */
 }
 
 /* Reset & Base Styles */

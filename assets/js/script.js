@@ -159,6 +159,36 @@ const ProgressiveDisclosure = (() => {
     return { init };
 })();
 
+// Module for Pull-to-Refresh
+const PullToRefresh = (() => {
+    let startY = 0;
+    let isRefreshing = false;
+
+    const init = () => {
+        if ('ontouchstart' in window) {
+            document.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (window.pageYOffset === 0 && !isRefreshing) {
+                    const currentY = e.touches[0].clientY;
+                    if (currentY - startY > 100) {
+                        isRefreshing = true;
+                        location.reload();
+                    }
+                }
+            });
+
+            document.addEventListener('touchend', () => {
+                isRefreshing = false;
+            });
+        }
+    };
+
+    return { init };
+})();
+
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -184,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollReveal.init();
     Parallax.init();
     ProgressiveDisclosure.init();
+    PullToRefresh.init();
 
     // Readiness signal for testing
     window.__BLOG_READY__ = true;

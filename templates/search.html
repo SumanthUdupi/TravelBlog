@@ -8,7 +8,8 @@
         <h1 class="section-title">Search</h1>
         <div class="search-container">
             <label for="search-input" class="sr-only" style="position:absolute; left:-9999px;">Search content</label>
-            <input type="search" id="search-input" placeholder="Search for anything..." aria-label="Search content">
+            <input type="search" id="search-input" placeholder="Search for anything..." aria-label="Search content" list="search-suggestions">
+            <datalist id="search-suggestions"></datalist>
         </div>
         <div class="filter-container">
             <div class="filter-group">
@@ -25,7 +26,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div id="search-results" class="grid-3"></div>
+        <div id="search-results" class="grid-3" aria-live="polite" aria-label="Search results"></div>
     </div>
 </section>
 
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             posts = data;
             displayResults(posts);
+            populateSuggestions(posts);
         });
 
     function displayResults(results) {
@@ -63,6 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             searchResults.appendChild(postElement);
+        });
+    }
+
+    function populateSuggestions(posts) {
+        const datalist = document.getElementById('search-suggestions');
+        const titles = posts.map(post => post.title);
+        titles.forEach(title => {
+            const option = document.createElement('option');
+            option.value = title;
+            datalist.appendChild(option);
         });
     }
 

@@ -73,6 +73,25 @@ const GalleryLightbox = (() => {
                 closeLightbox();
             }
         });
+
+        // Swipe to close on mobile
+        let startX = 0;
+        let startY = 0;
+        elements.lightbox.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+        elements.lightbox.addEventListener('touchend', (e) => {
+            if (!elements.lightbox.classList.contains('active')) return;
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                // Horizontal swipe
+                closeLightbox();
+            }
+        });
     };
 
     return { init };

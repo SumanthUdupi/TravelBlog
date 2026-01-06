@@ -48,60 +48,61 @@
     </header>
 
     <main id="main-content" role="main" tabindex="-1">
-
+        
 <section class="section">
     <div class="container">
         <h1 class="section-title">Search</h1>
         <div class="search-container">
             <label for="search-input" class="sr-only" style="position:absolute; left:-9999px;">Search content</label>
-            <input type="search" id="search-input" placeholder="Search for anything..." aria-label="Search content">
+            <input type="search" id="search-input" placeholder="Search for anything..." aria-label="Search content" list="search-suggestions">
+            <datalist id="search-suggestions"></datalist>
         </div>
         <div class="filter-container">
             <div class="filter-group">
                 <h4>Categories:</h4>
                 <button class="filter-btn active" data-filter="all">All</button>
-
+                
                 <button class="filter-btn" data-filter="jain-sites">Jain Sites</button>
-
+                
                 <button class="filter-btn" data-filter="journey">Journey</button>
-
+                
                 <button class="filter-btn" data-filter="museums">Museums</button>
-
+                
                 <button class="filter-btn" data-filter="shakti-peethas">Shakti Peethas</button>
-
+                
                 <button class="filter-btn" data-filter="temples">Temples</button>
-
+                
             </div>
             <div class="filter-group" style="margin-top: 1rem;">
                 <h4>Tags:</h4>
-
+                
                 <button class="filter-btn" data-filter="jain">#Jain</button>
-
+                
                 <button class="filter-btn" data-filter="odisha">#Odisha</button>
-
+                
                 <button class="filter-btn" data-filter="shakti-peethas">#Shakti Peethas</button>
-
+                
                 <button class="filter-btn" data-filter="architectural">#architectural</button>
-
+                
                 <button class="filter-btn" data-filter="cultural">#cultural</button>
-
+                
                 <button class="filter-btn" data-filter="historical">#historical</button>
-
+                
                 <button class="filter-btn" data-filter="mythological">#mythological</button>
-
+                
                 <button class="filter-btn" data-filter="pilgrimage">#pilgrimage</button>
-
+                
                 <button class="filter-btn" data-filter="revolution">#revolution</button>
-
+                
                 <button class="filter-btn" data-filter="science">#science</button>
-
+                
                 <button class="filter-btn" data-filter="spiritual">#spiritual</button>
-
+                
                 <button class="filter-btn" data-filter="temples">#temples</button>
-
+                
             </div>
         </div>
-        <div id="search-results" class="grid-3"></div>
+        <div id="search-results" class="grid-3" aria-live="polite" aria-label="Search results"></div>
     </div>
 </section>
 
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             posts = data;
             displayResults(posts);
+            populateSuggestions(posts);
         });
 
     function displayResults(results) {
@@ -139,6 +141,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             searchResults.appendChild(postElement);
+        });
+    }
+
+    function populateSuggestions(posts) {
+        const datalist = document.getElementById('search-suggestions');
+        const titles = posts.map(post => post.title);
+        titles.forEach(title => {
+            const option = document.createElement('option');
+            option.value = title;
+            datalist.appendChild(option);
         });
     }
 
@@ -197,9 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </footer>
 
     <!-- Scripts -->
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/gallery.js"></script>
-    <script src="assets/js/back-to-top.js"></script>
+    <script src="assets/js/bundled.min.js"></script>
 
     <script>
          // Dark Mode Toggle Logic (Simple implementation to match memory)
