@@ -1,22 +1,27 @@
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Parallax Effect for Hero
-    const parallaxBg = document.querySelector('.parallax-bg');
-    if (parallaxBg) {
+    // 1. Hero Parallax Effect
+    const hero = document.querySelector('.immersive-hero');
+    const heroBg = document.querySelector('.parallax-bg');
+
+    if (hero && heroBg) {
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             if (scrollY < window.innerHeight) {
-                parallaxBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+                // Move background slower than foreground
+                heroBg.style.transform = `translateY(${scrollY * 0.5}px)`;
             }
         });
     }
 
-    // Intersection Observer for Reveal Animations
+    // 2. Scrollytelling Animation (Intersection Observer)
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of element is visible
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const scrollyObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
@@ -26,92 +31,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Observe Hero Content
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) observer.observe(heroContent);
+    const scrollyElements = document.querySelectorAll('.scrolly-content, .hero-content');
+    scrollyElements.forEach(el => scrollyObserver.observe(el));
 
-    // Observe Scrollytelling Sections
-    document.querySelectorAll('.scrolly-content').forEach(el => observer.observe(el));
 
-    // Observe Blog Cards for Staggered Fade In
-    document.querySelectorAll('.card').forEach((el, index) => {
-        el.classList.add('stagger-item');
-        el.style.transitionDelay = `${index * 0.1}s`; // Stagger effect
-        observer.observe(el);
-    });
+    // 3. Chapter Navigation (Progress Tracker)
+    // Create the navigation dynamically if it doesn't exist, or manage active state
+    const chapters = document.querySelectorAll('.scrolly-section');
+    const navContainer = document.getElementById('chapter-nav');
 
-    // Observe Timeline Items for Animated Progression
-    document.querySelectorAll('.timeline-item').forEach((el, index) => {
-        el.classList.add('scroll-slide-right');
-        el.style.transitionDelay = `${index * 0.2}s`;
-        observer.observe(el);
-    });
+    if (navContainer && chapters.length > 0) {
+        // Create dots
+        chapters.forEach((chapter, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('chapter-dot');
+            dot.dataset.target = chapter.id;
+            dot.title = chapter.dataset.title || `Chapter ${index + 1}`;
 
-    // Interactive Map Logic
-    const mapMarkers = document.querySelectorAll('.location-marker');
-    const mapTooltip = document.getElementById('mapTooltip');
+            dot.addEventListener('click', () => {
+                chapter.scrollIntoView({ behavior: 'smooth' });
+            });
 
-    mapMarkers.forEach(marker => {
-        marker.addEventListener('mouseenter', (e) => {
-            const title = e.target.getAttribute('data-title');
-            if (mapTooltip) {
-                mapTooltip.textContent = title;
-                mapTooltip.style.opacity = '1';
-                mapTooltip.style.left = `${e.pageX + 10}px`;
-                mapTooltip.style.top = `${e.pageY - 30}px`;
-            }
+            navContainer.appendChild(dot);
         });
 
-        marker.addEventListener('mouseleave', () => {
-            if (mapTooltip) {
-                mapTooltip.style.opacity = '0';
-            }
-        });
+        // Update active dot on scroll
+        const chapterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all
+                    document.querySelectorAll('.chapter-dot').forEach(d => d.classList.remove('active'));
+                    // Add to current
+                    const activeDot = document.querySelector(`.chapter-dot[data-target="${entry.target.id}"]`);
+                    if (activeDot) activeDot.classList.add('active');
 
-        marker.addEventListener('click', (e) => {
-            const link = e.target.getAttribute('data-link');
-            if (link) {
-                window.location.href = link;
-            }
-        });
-    });
+                    // Update background based on chapter data-bg
+                    const newBg = entry.target.dataset.bg;
+                    if (newBg) {
+                         const fixedBg = document.getElementById('fixed-bg');
+                         if (fixedBg) {
+                             // Simple fade via CSS transition
+                             fixedBg.style.backgroundImage = `url('${newBg}')`;
+                         }
+                    }
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% visible
 
-    // Dark Mode Integration with LocalStorage (sync with existing)
-    // Note: The existing app.js handles the toggle button event.
-    // We just need to ensure our new styles respect the body attribute or the stylesheet toggle.
-    // The existing site toggles `disabled` on the stylesheet.
-    // `immersive.css` uses `body[data-theme='dark']` for overrides,
-    // BUT the existing site uses a separate CSS file for dark mode.
-    // To be consistent, we should probably stick to the existing pattern OR
-    // update the dark mode toggle to add a class to body.
-
-    // Check existing app.js: It toggles `disabled` on `dark-mode.css`.
-    // And sets localStorage.
-
-    // To support `immersive.css` dark mode styles, we should check the state
-    // and add a class to body if dark mode is active, or rely on `dark-mode.css` if we put our overrides there.
-    // Since we can't easily modify `dark-mode.css` in the build process without overwriting,
-    // let's add a script here to sync body class.
-
-    const darkModeCss = document.getElementById('darkModeCss');
-    const toggleButton = document.getElementById('darkModeToggle');
-
-    function updateThemeState() {
-        if (!darkModeCss.disabled) {
-            document.body.setAttribute('data-theme', 'dark');
-        } else {
-            document.body.removeAttribute('data-theme');
-        }
-    }
-
-    // Initial check
-    updateThemeState();
-
-    // Listen for clicks on the toggle button (which exists in the header)
-    if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
-            // Slight delay to allow app.js to process first
-            setTimeout(updateThemeState, 50);
-        });
+        chapters.forEach(chapter => chapterObserver.observe(chapter));
     }
 });
