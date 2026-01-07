@@ -1,0 +1,101 @@
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--color-saddle-brown);
+    color: var(--color-aged-paper);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--color-terracotta);
+    transform: translateY(-3px);
+}
+
+/* Article Specifics */
+.long-form-article {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-aged-paper);
+    padding: 2rem;
+    border: 1px solid transparent; /* Placeholder for parchment border if needed */
+}
+
+.article-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--color-warm-tan);
+    padding-bottom: 2rem;
+}
+
+.article-meta {
+    font-family: var(--font-ui);
+    color: var(--color-saddle-brown);
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.article-tags {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.tag-link {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--color-terracotta);
+}
+
+.citation-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-warm-tan);
+    font-size: 0.9rem;
+}
+
+.citation-list {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+}
+
+.citation-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 1001;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--color-terracotta);
+    width: 0%;
+    transition: width 0.1s;
+}

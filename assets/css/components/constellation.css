@@ -1,0 +1,89 @@
+/* Constellation Drawer */
+.constellation-drawer {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Hidden by default */
+  width: 400px;
+  max-width: 90vw;
+  height: 100vh;
+  background-color: var(--color-parchment);
+  border-left: 2px solid var(--color-saddle-brown);
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: right 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.constellation-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-warm-tan);
+  padding-bottom: 1rem;
+}
+
+.drawer-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-saddle-brown);
+}
+
+.close-drawer {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--color-saddle-brown);
+  padding: 0.5rem;
+}
+
+/* Constellation Tree */
+.constellation-list,
+.constellation-sublist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.constellation-sublist {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--color-warm-tan);
+  margin-left: 0.5rem;
+  display: none; /* Collapsed by default */
+}
+
+.constellation-sublist.expanded {
+  display: block;
+}
+
+.constellation-item {
+  margin-bottom: 0.5rem;
+}
+
+.constellation-link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  color: var(--color-ink-black);
+  font-family: var(--font-ui);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.constellation-link:hover {
+  background-color: rgba(210, 180, 140, 0.2);
+}
+
+.constellation-toggle {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-saddle-brown);
+}

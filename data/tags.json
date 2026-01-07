@@ -1,0 +1,29 @@
+{
+  "domains": [
+    {
+      "id": "odisha_odyssey",
+      "name": "Odisha Odyssey",
+      "topics": [
+        {
+          "id": "temples",
+          "name": "Temples",
+          "subtopics": [
+             { "id": "konark", "name": "Konark Sun Temple" },
+             { "id": "puri", "name": "Jagannath Puri" }
+          ]
+        },
+        {
+          "id": "rituals",
+          "name": "Rituals & Myths"
+        }
+      ]
+    },
+    {
+        "id": "philosophy",
+        "name": "Philosophy",
+        "topics": [
+            { "id": "general", "name": "General Philosophy" }
+        ]
+    }
+  ]
+}

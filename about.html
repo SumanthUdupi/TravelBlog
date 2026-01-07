@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - TravelBlog</title>
+    <meta name="description" content="About the Odisha Sacred Odyssey project and its mission.">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body>
+    <div class="texture-overlay"></div>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-icon">🛕</span>
+                TravelBlog
+            </a>
+            <div class="search-container">
+                <input type="text" id="site-search" placeholder="Search scrolls..." aria-label="Search">
+                <div id="search-results" class="search-results"></div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">🕯️</button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">✨</button>
+                <button id="menu-toggle" class="control-btn mobile-only" aria-label="Open Menu" aria-expanded="false">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+
+<article class="blog-post">
+    <header class="post-header">
+        <h1 class="post-title">About the Odyssey</h1>
+        <div class="post-meta">
+            <span>Established 2024</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        <p class="drop-cap">This digital chronicle is dedicated to the timeless narratives of Odisha, a land where history whispers through the stone of ancient temples and the rustle of sacred groves.</p>
+
+        <h2>Our Mission</h2>
+        <p>The Odisha Sacred Odyssey aims to preserve and present the cultural heritage of the Kalinga region through a "Digital Parchment" aesthetic. We believe that the medium of storytelling should reflect the essence of the story itself—rustic, enduring, and deeply connected to the earth.</p>
+
+        <h2>The Constellation</h2>
+        <p>Our unique "Constellation" system organizes knowledge not just as lists, but as interconnected stars in a galaxy of meaning. Use the drawer on the right to navigate through Domains, Topics, and Subtopics.</p>
+
+        <h2>Lantern Mode</h2>
+        <p>For late-night scholars and travelers, we offer "Lantern Mode". Toggle the candle icon to dim the lights and focus on the text with a warm, flickering guide.</p>
+
+        <h2>Contact</h2>
+        <p>Have a story to share or a correction to make? Please reach out via our <a href="contact.html">Contact page</a>.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TravelBlog. All rights reserved.</p>
+        <p>Designed with Digital Parchment Aesthetic.</p>
+    </footer>
+
+    <aside id="constellation-drawer" class="constellation-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Constellation</h2>
+            <button id="close-drawer" class="close-drawer">&times;</button>
+        </div>
+        <div id="constellation-content"></div>
+    </aside>
+
+    <script type="module" src="assets/js/main.js"></script>
+
+</body>
+</html>

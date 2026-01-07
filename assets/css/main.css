@@ -1,0 +1,71 @@
+@import 'base/variables.css';
+@import 'base/reset.css';
+@import 'base/typography.css';
+@import 'components/navigation.css';
+@import 'components/constellation.css';
+@import 'components/reading-mode.css';
+@import 'components/article.css';
+@import 'components/timeline.css';
+@import 'utilities/animations.css';
+@import 'utilities/textures.css';
+@import 'utilities/responsive.css';
+
+/* Global Polish */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+main {
+  min-height: 80vh;
+  padding: 2rem 0;
+}
+
+/* Enhanced Footer */
+footer {
+  background-color: var(--color-parchment);
+  border-top: 1px solid var(--color-warm-tan);
+  padding: 4rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  font-family: var(--font-ui);
+  color: var(--color-saddle-brown);
+  position: relative;
+}
+
+footer::before {
+    content: '§';
+    display: block;
+    font-size: 2rem;
+    color: var(--color-terracotta);
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* UI Components Polish */
+button, .control-btn {
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+button:hover, .control-btn:hover {
+    transform: scale(1.05);
+}
+
+a {
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-terracotta);
+}

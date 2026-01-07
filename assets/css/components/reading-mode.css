@@ -1,0 +1,112 @@
+/* Enhanced Lantern Mode */
+
+/* Base Lantern Styles */
+body.lantern-mode {
+    background-color: var(--color-night-sky, #121212);
+    color: #e0e0e0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* The Vignette Effect (Main Cursor) */
+body.lantern-mode::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    /* Warm amber center fading to transparent/dark */
+    /* Mix blend mode multiply means white is transparent, black is dark.
+       We want the CENTER to be the "light" source (so it should be lighter color that tints underlying text),
+       and the EDGES to be dark (hiding underlying text).
+    */
+    background: radial-gradient(
+        circle 300px at var(--cursor-x) var(--cursor-y),
+        rgba(255, 179, 71, 0.4) 0%,   /* Warm Amber Light (transparent-ish to show text) */
+        rgba(255, 140, 0, 0.2) 30%,    /* Darker Amber */
+        rgba(0, 0, 0, 0.95) 100%       /* Darkness at edges */
+    );
+    mix-blend-mode: multiply;
+}
+
+/* Trailing Circles for Motion Blur */
+.lantern-trail {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Center on coordinates */
+    background: radial-gradient(
+        circle,
+        rgba(255, 179, 71, 0.15) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    mix-blend-mode: screen; /* Additive glow */
+    z-index: 9998;
+}
+
+/* Text Readability in Lantern Mode */
+body.lantern-mode h1,
+body.lantern-mode h2,
+body.lantern-mode h3,
+body.lantern-mode h4,
+body.lantern-mode h5,
+body.lantern-mode h6,
+body.lantern-mode a {
+    color: var(--color-warm-tan, #D2B48C);
+    text-shadow: 0 0 10px rgba(210, 180, 140, 0.3);
+}
+
+body.lantern-mode .post-content {
+    color: #dcdcdc;
+}
+
+/* Panel/Drawer dark mode overrides */
+body.lantern-mode .typography-panel,
+body.lantern-mode .constellation-drawer,
+body.lantern-mode .nav-links {
+    background-color: #1a1a1a;
+    border-color: #333;
+    color: #dcdcdc;
+}
+
+body.lantern-mode .typography-panel h3,
+body.lantern-mode .drawer-title {
+    color: var(--color-warm-tan);
+    border-bottom-color: #444;
+}
+
+body.lantern-mode .control-group label {
+    color: #b0b0b0;
+}
+
+body.lantern-mode .font-btn {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #ccc;
+}
+
+body.lantern-mode .font-btn.active {
+    background-color: var(--color-saddle-brown);
+    color: white;
+}
+
+/* Footer & UI Adjustments */
+body.lantern-mode footer {
+    background-color: #0d0d0d;
+    border-top-color: #333;
+    color: #888;
+}
+
+body.lantern-mode .site-header {
+    background-color: rgba(18, 18, 18, 0.95);
+    border-bottom-color: #333;
+}
+
+/* Texture adjustments */
+body.lantern-mode .texture-overlay {
+    opacity: 0.03; /* Greatly reduce texture noise in dark mode */
+}

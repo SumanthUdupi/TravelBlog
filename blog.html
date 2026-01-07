@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TravelBlog</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .blog-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            background-color: transparent;
+            border: 1px solid var(--color-saddle-brown);
+            color: var(--color-saddle-brown);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: var(--font-ui);
+            transition: all 0.2s;
+        }
+
+        .filter-chip.active, .filter-chip:hover {
+            background-color: var(--color-saddle-brown);
+            color: var(--color-aged-paper);
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background-color: var(--color-parchment);
+            border: 1px solid var(--color-warm-tan);
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            font-size: 0.875rem;
+            color: var(--color-saddle-brown);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-excerpt {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .post-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag-pill {
+            font-size: 0.75rem;
+            background-color: rgba(210, 180, 140, 0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: var(--color-saddle-brown);
+        }
+
+        .read-more {
+            align-self: flex-start;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-icon">🛕</span>
+                TravelBlog
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="blog.html" class="active">Blog</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">🕯️</button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">✨</button>
+                <button id="menu-toggle" class="control-btn" aria-label="Open Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+        <div class="blog-header">
+            <h1>Journal of the Odyssey</h1>
+            <p>Notes from the field, architectural studies, and spiritual reflections.</p>
+        </div>
+
+        <div class="blog-filters" id="blog-filters">
+            <button class="filter-chip active" data-tag="all">All</button>
+            <!-- Tags injected via JS -->
+        </div>
+
+        <div class="post-grid" id="post-grid">
+            <!-- Posts injected via JS -->
+            <p>Loading journal entries...</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TravelBlog. All rights reserved.</p>
+    </footer>
+
+    <aside id="constellation-drawer" class="constellation-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Constellation</h2>
+            <button id="close-drawer" class="close-drawer">&times;</button>
+        </div>
+        <div id="constellation-content"></div>
+    </aside>
+
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/blog-filtering.js"></script>
+</body>
+</html>

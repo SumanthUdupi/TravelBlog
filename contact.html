@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - TravelBlog</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--color-parchment);
+            padding: 2rem;
+            border: 1px solid var(--color-warm-tan);
+            border-radius: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-saddle-brown);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-warm-tan);
+            background-color: var(--color-aged-paper);
+            color: var(--color-ink-black);
+            font-family: var(--font-ui);
+            border-radius: 4px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-terracotta);
+            box-shadow: 0 0 0 2px rgba(226, 114, 91, 0.2);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--color-saddle-brown);
+            color: var(--color-aged-paper);
+            border: none;
+            padding: 1rem 2rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--color-terracotta);
+        }
+
+        .form-error {
+            color: #d32f2f;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-success {
+            display: none;
+            background-color: var(--color-moss-green);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-icon">🛕</span>
+                TravelBlog
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">🕯️</button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">✨</button>
+                <button id="menu-toggle" class="control-btn" aria-label="Open Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+        <h1 style="text-align: center; margin-bottom: 1rem;">Send a Missive</h1>
+        <p style="text-align: center; margin-bottom: 3rem;">Questions about the Odyssey? Reach out.</p>
+
+        <div class="contact-form-container">
+            <div id="form-success" class="form-success">
+                Your message has been sealed and sent. We shall respond upon the turning of the tide.
+            </div>
+
+            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" required minlength="2">
+                    <div class="form-error" id="name-error">Please enter your name.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                    <div class="form-error" id="email-error">Please enter a valid email address.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-input" required minlength="5">
+                    <div class="form-error" id="subject-error">Subject must be at least 5 characters.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-textarea" required minlength="10" maxlength="1000"></textarea>
+                    <div class="form-error" id="message-error">Message must be between 10 and 1000 characters.</div>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Missive</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TravelBlog. All rights reserved.</p>
+    </footer>
+
+    <aside id="constellation-drawer" class="constellation-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Constellation</h2>
+            <button id="close-drawer" class="close-drawer">&times;</button>
+        </div>
+        <div id="constellation-content"></div>
+    </aside>
+
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/contact.js"></script>
+</body>
+</html>
