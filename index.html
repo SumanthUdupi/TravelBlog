@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBlog - Odisha Sacred Odyssey</title>
+    <meta name="description" content="Exploring the spiritual and architectural heritage of Odisha, India.">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="texture-overlay"></div>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-icon">🛕</span>
+                TravelBlog
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-controls">
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode" title="Lantern Mode">
+                    🕯️
+                </button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags" title="Constellation Drawer">
+                    ✨
+                </button>
+                <button id="menu-toggle" class="control-btn" aria-label="Open Menu">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+        <!-- Main content injected here -->
+        <section class="hero">
+            <h1>The Odisha Sacred Odyssey</h1>
+            <p>Journey into the heart of ancient Kalinga, exploring the timeless narratives of temples, myths, and stone.</p>
+        </section>
+
+        <section id="featured-posts">
+            <!-- Featured posts will be loaded here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TravelBlog. All rights reserved.</p>
+        <p>Designed with Digital Parchment Aesthetic.</p>
+    </footer>
+
+    <!-- Constellation Drawer -->
+    <aside id="constellation-drawer" class="constellation-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Constellation</h2>
+            <button id="close-drawer" class="close-drawer" aria-label="Close Drawer">&times;</button>
+        </div>
+        <div id="constellation-content">
+            <!-- Tags loaded via JS -->
+        </div>
+    </aside>
+
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

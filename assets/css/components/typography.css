@@ -1,0 +1,101 @@
+/* Typography Controls Panel */
+.typography-controls-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    margin-right: 0.5rem;
+}
+
+.typography-controls-btn:hover {
+    background-color: rgba(139, 69, 19, 0.1);
+}
+
+.typography-panel {
+    position: absolute;
+    top: 60px; /* Below the header */
+    right: 20px;
+    width: 300px;
+    background-color: var(--color-parchment);
+    border: 1px solid var(--color-saddle-brown);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1001;
+    display: none; /* Hidden by default */
+    font-family: var(--font-ui);
+}
+
+.typography-panel.active {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.typography-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    color: var(--color-saddle-brown);
+    border-bottom: 1px solid var(--color-warm-tan);
+    padding-bottom: 0.5rem;
+}
+
+.control-group {
+    margin-bottom: 1.25rem;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-ink-black);
+}
+
+.range-slider {
+    width: 100%;
+    accent-color: var(--color-terracotta);
+    cursor: pointer;
+}
+
+.font-toggle-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.font-btn {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--color-warm-tan);
+    background-color: var(--color-aged-paper);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.font-btn.active {
+    background-color: var(--color-saddle-brown);
+    color: var(--color-aged-paper);
+    border-color: var(--color-saddle-brown);
+}
+
+.reset-btn {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    background: none;
+    border: 1px solid var(--color-terracotta);
+    color: var(--color-terracotta);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.reset-btn:hover {
+    background-color: var(--color-terracotta);
+    color: white;
+}

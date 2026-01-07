@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TravelBlog{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <link rel="stylesheet" href="assets/css/main.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="texture-overlay"></div>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-icon">🛕</span>
+                TravelBlog
+            </a>
+            <div class="search-container">
+                <input type="text" id="site-search" placeholder="Search scrolls..." aria-label="Search">
+                <div id="search-results" class="search-results"></div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">🕯️</button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">✨</button>
+                <button id="menu-toggle" class="control-btn mobile-only" aria-label="Open Menu" aria-expanded="false">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TravelBlog. All rights reserved.</p>
+        <p>Designed with Digital Parchment Aesthetic.</p>
+    </footer>
+
+    <aside id="constellation-drawer" class="constellation-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Constellation</h2>
+            <button id="close-drawer" class="close-drawer">&times;</button>
+        </div>
+        <div id="constellation-content"></div>
+    </aside>
+
+    <script type="module" src="assets/js/main.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

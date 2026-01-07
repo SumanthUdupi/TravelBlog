@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - TravelBlog</title>
+    <meta name="description" content="{{ excerpt }}">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components/typography.css">
+</head>
+<body>
+    <div class="texture-overlay"></div>
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="reading-progress"></div>
+    </div>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-icon">🛕</span>
+                TravelBlog
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-controls">
+                <div class="typography-container" style="position: relative;">
+                    <button id="typography-toggle" class="control-btn" aria-label="Typography Settings" aria-expanded="false">Aa</button>
+                    <div id="typography-panel" class="typography-panel" aria-hidden="true">
+                        <h3>Reading Settings</h3>
+
+                        <div class="control-group">
+                            <label for="font-size">Font Size</label>
+                            <input type="range" id="font-size" class="range-slider" min="14" max="24" value="18" step="1">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="line-height">Line Height</label>
+                            <input type="range" id="line-height" class="range-slider" min="1.2" max="2.0" value="1.6" step="0.1">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="margin-size">Page Margins</label>
+                            <input type="range" id="margin-size" class="range-slider" min="0" max="100" value="20" step="5">
+                        </div>
+
+                        <div class="control-group">
+                            <label>Font Family</label>
+                            <div class="font-toggle-group">
+                                <button id="font-serif" class="font-btn active">Serif</button>
+                                <button id="font-sans" class="font-btn">Sans</button>
+                            </div>
+                        </div>
+
+                        <button id="reset-typography" class="reset-btn">Reset to Defaults</button>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">🕯️</button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">✨</button>
+                <button id="menu-toggle" class="control-btn" aria-label="Open Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+        <article class="long-form-article">
+            <header class="article-header">
+                <h1>{{ title }}</h1>
+                <div class="article-meta">
+                    <span class="author">By {{ author }}</span> •
+                    <span class="date">{{ date }}</span> •
+                    <span class="read-time">{{ reading_time }} min read</span>
+                </div>
+                {% if tags %}
+                <div class="article-tags">
+                    {% for tag in tags %}
+                    <a href="blog.html?tag={{ tag }}" class="tag-link">#{{ tag }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </header>
+
+            <div class="article-content drop-cap">
+                {{ content }}
+            </div>
+
+            <section class="citation-section">
+                <h3>References</h3>
+                <ul class="citation-list">
+                    {% for citation in citations %}
+                    <li id="{{ citation.id }}">
+                        <p>{{ citation.text }} {% if citation.url %}<a href="{{ citation.url }}" target="_blank">[Link]</a>{% endif %}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TravelBlog. All rights reserved.</p>
+    </footer>
+
+    <aside id="constellation-drawer" class="constellation-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Constellation</h2>
+            <button id="close-drawer" class="close-drawer">&times;</button>
+        </div>
+        <div id="constellation-content"></div>
+    </aside>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to Top">↑</button>
+
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/reading-progress.js"></script>
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+</html>

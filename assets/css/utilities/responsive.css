@@ -1,0 +1,30 @@
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .constellation-drawer {
+        width: 100%;
+        right: -100%;
+    }
+
+    .post-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-container {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-controls {
+        gap: 0.5rem;
+    }
+
+    .control-btn {
+        width: 35px;
+        height: 35px;
+    }
+}

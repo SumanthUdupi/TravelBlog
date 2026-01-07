@@ -1,0 +1,34 @@
+:root {
+  /* Colors */
+  --color-parchment: #F5F1E6;
+  --color-saddle-brown: #8B4513;
+  --color-warm-tan: #D2B48C;
+  --color-terracotta: #E2725B;
+  --color-ink: #2C2C2C;
+  --color-night-sky: #121212;
+  --color-gold: #DAA520;
+
+  /* Fonts */
+  --font-heading: 'Merriweather', serif;
+  --font-ui: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Borders */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(139, 69, 19, 0.1);
+  --shadow-md: 0 4px 8px rgba(139, 69, 19, 0.15);
+  --shadow-lg: 0 8px 16px rgba(139, 69, 19, 0.2);
+
+  /* Lantern Mode Variables */
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
+}
