@@ -47,7 +47,7 @@ travelblog/
 
 #### JavaScript (Vanilla)
 - ES6+ features for modern browser compatibility
-- No frameworks to minimize bundle size and maintain $0 budget
+- No frameworks (no React, Vue, jQuery) to minimize bundle size and maintain $0 budget
 - Progressive enhancement for core functionality
 - Client-side routing for single-page app feel (optional, using History API)
 
@@ -58,49 +58,54 @@ travelblog/
 - Cached search results and filter states
 - Reading session data (current position, bookmarks)
 
-#### IndexedDB
-- Full-text search index for blog posts
-- Tag relationships and constellation mappings
-- User-generated content (bookmarks, notes) if implemented
-
 #### Static JSON Files
-- Blog post metadata and content (pre-processed from Markdown)
-- Tag definitions and hierarchical relationships
-- Site configuration and navigation structure
+- **posts.json**: Primary data source. Contains blog post metadata, tags, and search tokens.
+- **tags.json**: Tag definitions, hierarchies (Domain > Topic > Subtopic), and relationships.
+- **site_config.json**: Global site settings (title, author, nav links).
+
+#### IndexedDB (Optional/Future)
+- Only if post count exceeds 500+ or full-text search performance degrades significantly.
+- Initially, `fetch('data/posts.json')` + client-side filter is sufficient.
 
 ### File/Folder Structure with Tree Diagram
 
 ```
 c:/Users/su2/OneDrive - rgbsi.co.in/Desktop/NEWEHS/TravelBlog/
 ├── Blog/
-│   ├── raw/                # Source Markdown files
+│   ├── raw/                # Source Markdown files (Published Content)
 │   │   ├── Jai Jagannath.md
 │   │   └── odisha_sacred_odyssey.md
-│   └── research/           # Additional research content
+│   └── research/           # Research notes (NOT Published automatically)
 │       ├── Chausath Yogini.md
-│       ├── Konark Sun Temple.md
 │       └── ...
-├── Design_Documents/       # This documentation
-│   ├── Architecture_Overview.md
-│   ├── Feature_Specifications.md
-│   ├── Component_Details.md
-│   ├── Data_Models.md
-│   ├── Implementation_Guidance.md
-│   └── Technical_Specifications.md
-├── Requirements/           # Project requirements
-├── plans/                  # Implementation plans
-└── [Future Build Output]/
+├── Documents/
+│   ├── Design_Documents/   # This documentation
+│   └── Requirements/       # Project requirements
+├── templates/              # Jinja2 HTML Templates
+│   ├── base.html
+│   ├── article.html
+│   └── components/
+├── build_site.py           # Python Static Site Generator
+└── [Build Output Root]/
     ├── index.html
     ├── assets/
     └── data/
 ```
 
-### Build Process
+### Build Process (Python Static Generator)
 
-1. **Content Processing**: Convert Markdown files from Blog/raw and Blog/research to HTML using a static site generator (e.g., Eleventy or custom Node.js script)
-2. **Asset Optimization**: Minify CSS/JS, compress images, generate responsive image variants
-3. **Data Generation**: Create JSON files for post metadata, search indexes, and tag relationships
-4. **Deployment**: Push built files to GitHub repository, enable Pages deployment
+The project relies on a custom Python script (`build_site.py`) to generate the static site.
+
+1.  **Environment**: Python 3.9+ with `markdown`, `jinja2`, `beautifulsoup4`.
+2.  **Source Scanning**: Recursively scan `Blog/raw/*.md` for publishable content.
+3.  **Processing**:
+    *   **Frontmatter Parsing**: Extract metadata (title, date, tags, citation_ids).
+    *   **Markdown Conversion**: Convert body text to HTML.
+    *   **Citation Mapping**: Transform `[Superscript]^1` to HTML anchors linking to a reference list.
+    *   **Slugification**: Convert filenames to snake_case for clean URLs.
+4.  **Templating**: Inject content into `templates/base.html` and `templates/article.html`.
+5.  **Output**: Write static HTML files to the root directory (or `docs/` depending on GitHub Pages config).
+6.  **Index Generation**: Build `data/posts.json` containing search metadata (title, tags, excerpt, slug).
 
 ### Performance Considerations
 
@@ -113,8 +118,6 @@ c:/Users/su2/OneDrive - rgbsi.co.in/Desktop/NEWEHS/TravelBlog/
 ### Scalability
 
 - Static generation allows handling thousands of posts without performance degradation
-- Client-side search scales with IndexedDB indexing
+- Client-side search scales with JSON fetching (up to ~1MB JSON is acceptable)
 - CDN delivery through GitHub's global infrastructure
 - No database queries or server-side bottlenecks
-
-This architecture ensures the site remains fast, accessible, and maintainable while adhering to the $0 budget constraint and static hosting requirements.
