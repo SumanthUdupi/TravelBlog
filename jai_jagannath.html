@@ -19,7 +19,12 @@ The railway station clock glowed 4:05 AM when we arrived...">
     <header class="site-header">
         <div class="nav-container">
             <a href="index.html" class="site-logo">
-                <span class="logo-icon">🛕</span>
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12 2L2 22h20L12 2zm0 3.5L18.5 19H5.5L12 5.5z"/>
+                        <rect x="10" y="12" width="4" height="6"/>
+                    </svg>
+                </span>
                 TravelBlog
             </a>
             <nav>
@@ -35,22 +40,18 @@ The railway station clock glowed 4:05 AM when we arrived...">
                     <button id="typography-toggle" class="control-btn" aria-label="Typography Settings" aria-expanded="false">Aa</button>
                     <div id="typography-panel" class="typography-panel" aria-hidden="true">
                         <h3>Reading Settings</h3>
-
                         <div class="control-group">
                             <label for="font-size">Font Size</label>
                             <input type="range" id="font-size" class="range-slider" min="14" max="24" value="18" step="1">
                         </div>
-
                         <div class="control-group">
                             <label for="line-height">Line Height</label>
                             <input type="range" id="line-height" class="range-slider" min="1.2" max="2.0" value="1.6" step="0.1">
                         </div>
-
                         <div class="control-group">
                             <label for="margin-size">Page Margins</label>
                             <input type="range" id="margin-size" class="range-slider" min="0" max="100" value="20" step="5">
                         </div>
-
                         <div class="control-group">
                             <label>Font Family</label>
                             <div class="font-toggle-group">
@@ -58,28 +59,56 @@ The railway station clock glowed 4:05 AM when we arrived...">
                                 <button id="font-sans" class="font-btn">Sans</button>
                             </div>
                         </div>
-
                         <button id="reset-typography" class="reset-btn">Reset to Defaults</button>
                     </div>
                 </div>
-                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">🕯️</button>
-                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">✨</button>
-                <button id="menu-toggle" class="control-btn" aria-label="Open Menu">☰</button>
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                         <path d="M12 2c0 0-3 5-3 8s3 4 3 4 3-1 3-4-3-8-3-8z" opacity="0.6"/>
+                         <path d="M2 14c0 4.418 3.582 8 8 8h4c4.418 0 8-3.582 8-8H2z"/>
+                    </svg>
+                </button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="5" cy="5" r="2"/>
+                        <circle cx="19" cy="5" r="2"/>
+                        <circle cx="5" cy="19" r="2"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <path d="M5 7v10M7 5h10M17 19H7M19 7l-5 5"/>
+                    </svg>
+                </button>
+                <button id="menu-toggle" class="control-btn mobile-only" aria-label="Open Menu" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M3 6h18M3 12h18M3 18h18"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
 
     <main class="container fade-in">
         <article class="long-form-article">
+            <!-- Point 21: Breadcrumbs -->
+            <nav class="breadcrumbs">
+                Path: <a href="index.html">Home</a> <span>›</span> <a href="blog.html">Articles</a> <span>›</span> Jai Jagannath
+            </nav>
+
             <header class="article-header">
                 <h1>Jai Jagannath</h1>
                 <div class="article-meta">
                     <span class="author">By Anonymous Pilgrim</span> •
-                    <span class="date">2026-01-07</span> •
+                    <span class="date">2026-01-08</span> •
                     <span class="read-time">39 min read</span>
                 </div>
 
             </header>
+
+            <!-- Point 30: Floral Divider -->
+            <div class="divider-floral">
+                <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+                    <path d="M0 10 Q 25 20, 50 10 T 100 10" fill="none" stroke="var(--color-saddle-brown)" stroke-width="2"/>
+                </svg>
+            </div>
 
             <div class="article-content drop-cap">
                 <h1>A Pilgrim's Journey Through Odisha: December 2024</h1>

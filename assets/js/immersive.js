@@ -33,11 +33,44 @@ export function initImmersiveMode() {
             requestAnimationFrame(() => {
                 body.style.setProperty('--cursor-x', `${mouseX}px`);
                 body.style.setProperty('--cursor-y', `${mouseY}px`);
+
+                // Point 16: Dynamic Shadows
+                // Calculate shadow direction relative to center of screen or element
+                // Simple implementation: Text shadow moves opposite to cursor
+                const xOffset = (window.innerWidth / 2 - mouseX) / 50;
+                const yOffset = (window.innerHeight / 2 - mouseY) / 50;
+                body.style.setProperty('--shadow-x', `${xOffset}px`);
+                body.style.setProperty('--shadow-y', `${yOffset}px`);
             });
+
+            // Point 11: Cursor Trail (Sparks)
+            if (Math.random() > 0.8) { // Throttle spark creation
+                createSpark(mouseX, mouseY);
+            }
         }
     });
 
-    // Trailing Effect Animation Loop
+    // Point 11: Spark Logic
+    function createSpark(x, y) {
+        const spark = document.createElement('div');
+        spark.classList.add('lantern-spark');
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+        // Random drift
+        const dx = (Math.random() - 0.5) * 20;
+        const dy = (Math.random() - 0.5) * 20 + 20; // Falling sparks? Or floating up? Let's say falling ash.
+        spark.style.setProperty('--dx', `${dx}px`);
+        spark.style.setProperty('--dy', `${dy}px`);
+
+        document.body.appendChild(spark);
+
+        // Remove after animation
+        setTimeout(() => {
+            spark.remove();
+        }, 1000); // Match animation duration
+    }
+
+    // Trailing Effect Animation Loop (Existing)
     const trails = [];
     const TRAIL_COUNT = 3;
 
@@ -67,7 +100,6 @@ export function initImmersiveMode() {
         }
         body.appendChild(container);
     } else {
-        // Re-attach to existing logic if needed (idempotent check above handles it)
         const els = document.querySelectorAll('.lantern-trail');
         els.forEach((el, i) => {
             trails.push({
@@ -83,7 +115,6 @@ export function initImmersiveMode() {
         if (!body.classList.contains('lantern-mode')) return;
 
         trails.forEach(trail => {
-            // Linear interpolation (Lerp) for smooth trailing
             trail.x += (mouseX - trail.x) * trail.delay;
             trail.y += (mouseY - trail.y) * trail.delay;
 
@@ -94,7 +125,6 @@ export function initImmersiveMode() {
         requestAnimationFrame(animateTrails);
     }
 
-    // Expose animation starter
     window.startLanternAnimation = animateTrails;
     if (savedTheme === 'lantern') {
         animateTrails();
@@ -102,23 +132,30 @@ export function initImmersiveMode() {
 }
 
 function enableLanternMode() {
-    document.body.classList.add('lantern-mode');
-    userPrefs.setTheme('lantern');
+    // Point 14: Toggle Animation (Flare up)
+    // We can add a class that triggers a CSS animation
+    document.body.classList.add('lantern-activating');
 
-    const trailsContainer = document.getElementById('lantern-trails');
-    if (trailsContainer) {
-        trailsContainer.style.display = 'block';
-    }
+    setTimeout(() => {
+        document.body.classList.remove('lantern-activating');
+        document.body.classList.add('lantern-mode');
+        userPrefs.setTheme('lantern');
+
+        const trailsContainer = document.getElementById('lantern-trails');
+        if (trailsContainer) {
+            trailsContainer.style.display = 'block';
+        }
+
+        if (window.startLanternAnimation) {
+            window.startLanternAnimation();
+        }
+    }, 500); // Delay for "flare" effect
 
     // Initialize cursor position
     const x = window.innerWidth / 2;
     const y = window.innerHeight / 2;
     document.body.style.setProperty('--cursor-x', `${x}px`);
     document.body.style.setProperty('--cursor-y', `${y}px`);
-
-    if (window.startLanternAnimation) {
-        window.startLanternAnimation();
-    }
 }
 
 function disableLanternMode() {

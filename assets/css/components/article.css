@@ -6,7 +6,7 @@
     height: 3rem;
     border-radius: 50%;
     background-color: var(--color-saddle-brown);
-    color: var(--color-aged-paper);
+    color: var(--color-parchment);
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
@@ -34,16 +34,29 @@
 .long-form-article {
     max-width: 800px;
     margin: 0 auto;
-    background-color: var(--color-aged-paper);
-    padding: 2rem;
-    border: 1px solid transparent; /* Placeholder for parchment border if needed */
+    background-color: var(--color-parchment);
+    padding: 3rem 4rem; /* More padding for book feel */
+
+    /* Point 26: Rough Borders for Content Container (Simulating Pages) */
+    /* Using box-shadow and border-radius for rough page look */
+    border-radius: 2px 5px 2px 4px;
+    box-shadow:
+        0 0 15px rgba(0,0,0,0.1),
+        inset 0 0 40px rgba(139, 69, 19, 0.05);
 }
 
 .article-header {
     text-align: center;
     margin-bottom: 3rem;
-    border-bottom: 1px solid var(--color-warm-tan);
     padding-bottom: 2rem;
+    position: relative;
+}
+
+/* Point 30: Divider logic is handled by inline SVG in template, but here is fallback/spacing */
+.divider-floral {
+    text-align: center;
+    margin: 2rem 0;
+    opacity: 0.8;
 }
 
 .article-meta {
@@ -51,6 +64,8 @@
     color: var(--color-saddle-brown);
     margin: 1rem 0;
     font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .article-tags {
@@ -64,7 +79,79 @@
     font-family: var(--font-ui);
     font-size: 0.85rem;
     color: var(--color-terracotta);
+    padding: 0.2rem 0.5rem;
+    border: 1px solid transparent;
+    transition: all 0.2s;
 }
+
+.tag-link:hover {
+    border-color: var(--color-terracotta);
+    border-radius: 10px 2px 10px 2px; /* Slight jagged shape */
+}
+
+/* Point 31: Blockquotes */
+blockquote {
+    position: relative;
+    margin: 2rem 0;
+    padding: 1rem 2rem 1rem 3rem;
+    border-left: 4px solid var(--color-warm-tan); /* Bamboo pole approx */
+    background: linear-gradient(90deg, rgba(210, 180, 140, 0.1), transparent);
+    font-style: italic;
+    color: var(--color-saddle-brown);
+}
+
+blockquote::before {
+    content: '“';
+    position: absolute;
+    top: -1rem;
+    left: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--color-warm-tan);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+/* Point 27: Image Filters & Point 28: Torn Edges */
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    filter: sepia(30%); /* Point 27 */
+    transition: filter 0.3s ease, transform 0.3s ease;
+
+    /* Point 28: Torn Edges via Mask (simple polygon approximation) */
+    /* Note: clip-path cuts off shadows. A better approach for torn edges with shadow is a wrapper,
+       but for single element, we can use clip-path. */
+    clip-path: polygon(
+        0% 0%, 100% 0%, 100% 100%,
+        98% 99%, 95% 100%, 92% 99%, 89% 100%, 85% 99%, 80% 100%,
+        75% 99%, 70% 100%, 65% 99%, 60% 100%, 55% 99%, 50% 100%,
+        45% 99%, 40% 100%, 35% 99%, 30% 100%, 25% 99%, 20% 100%,
+        15% 99%, 10% 100%, 5% 99%, 2% 100%, 0% 99%
+    );
+}
+
+.article-content img:hover {
+    filter: sepia(0%);
+    transform: scale(1.01);
+}
+
+/* Point 42: Image Captions */
+figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+figcaption {
+    font-family: 'Caveat', cursive; /* Handwritten font */
+    font-size: 1.1rem;
+    color: var(--color-ink);
+    margin-top: 0.5rem;
+    transform: rotate(-1deg);
+    display: inline-block;
+}
+
 
 .citation-section {
     margin-top: 4rem;
@@ -80,22 +167,4 @@
 
 .citation-list li {
     margin-bottom: 0.5rem;
-}
-
-/* Progress Bar */
-.progress-bar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: transparent;
-    z-index: 1001;
-}
-
-.progress-bar {
-    height: 100%;
-    background-color: var(--color-terracotta);
-    width: 0%;
-    transition: width 0.1s;
 }
