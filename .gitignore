@@ -1,9 +1,18 @@
 # Dependencies
 /node_modules
+__pycache__/
 
-# Vite
+# Build artifacts
 /dist
-/.vite/
+/_site
+*.pyc
+
+# Generated Content
+index.html
+about.html
+data/posts.json
+a_pilgrim_s_journey_through_odisha_december_2024.html
+odisha_sacred_odyssey_where_the_divine_meets_the_soul.html
 
 # IDEs
 .idea/

@@ -30,30 +30,15 @@ jobs:
       - name: Install Python dependencies
         run: pip install markdown jinja2 beautifulsoup4
 
-      - name: Create public directory and move static files
-        run: |
-          mkdir public
-          if [ -f blog.html ]; then mv blog.html public/; fi
-          if [ -f contact.html ]; then mv contact.html public/; fi
-          if [ -f 404.html ]; then mv 404.html public/; fi
-
-      - name: Set build output to public directory
-        run: sed -i "s/OUTPUT_DIR = '.'/OUTPUT_DIR = 'public'/" build_site.py
-
       - name: Run build_site.py
         run: python build_site.py
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
+      - name: Prepare site for deployment
+        run: |
+          mkdir _site
+          cp *.html _site/
+          cp -r assets _site/
+          cp -r data _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -61,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./_site
 
   deploy:
     environment:

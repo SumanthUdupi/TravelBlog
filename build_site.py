@@ -158,5 +158,18 @@ def build_site():
         json.dump(posts_data, f, indent=2)
     print(f"Generated data/posts.json with {len(posts_data)} posts.")
 
+    # 3. Build Index Page
+    try:
+        index_template = env.get_template('index.html')
+        # Sort posts by date descending
+        posts_data.sort(key=lambda x: x.get('date', ''), reverse=True)
+
+        output_html = index_template.render(posts=posts_data)
+        with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+            f.write(output_html)
+        print("Generated index.html")
+    except Exception as e:
+        print(f"Error building index.html: {e}")
+
 if __name__ == "__main__":
     build_site()
