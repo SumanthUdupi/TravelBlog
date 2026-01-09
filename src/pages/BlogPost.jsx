@@ -4,9 +4,9 @@ import posts from '../data/posts';
 import { useNavigate } from 'react-router-dom';
 
 const BlogPost = () => {
-  const { postId } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
-  const post = posts.find(p => p.id === postId);
+  const post = posts.find(p => p.slug === slug);
 
   if (!post) {
     return <div>Post not found</div>;

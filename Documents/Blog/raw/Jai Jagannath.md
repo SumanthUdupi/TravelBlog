@@ -1,3 +1,10 @@
+---
+title: "A Pilgrim's Journey Through Odisha: December 2024"
+author: "Anonymous Pilgrim"
+date: "2025-01-08"
+tags: ["pilgrimage", "odisha", "jagannath"]
+imageUrl: "https://images.unsplash.com/photo-1564511219259-e8e19c109748?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+---
 # A Pilgrim's Journey Through Odisha: December 2024
 
 ## Day One: The Journey Begins - December 22nd
@@ -168,7 +175,7 @@ This truth culminated in the vision of Maha Kali. She stood in her Rudra Rupa, o
 
 The story behind this image reveals a profound truth: Kali had been born from Durga's forehead to destroy the demon Raktabija, whose every drop of blood spawned a new demon. Kali had to drink all his blood to prevent this multiplication, and in doing so, she consumed so much violence that she became drunk on destruction. Her rage, unchecked, began to threaten the world itself.
 
-Shiva, her beloved, lay down in her path. When her foot touched his chest, the recognition of her beloved jolted her back to consciousness. The rage transformed into grace. We realized that peace is not merely the absence of conflict; often, peace is the result of a war won. Kali's rage was necessary to devour the evil of Mahishasura and Raktabija, but without the consciousness of Shiva to ground her, that energy would have unmade the world.
+Shiva, her beloved, lay down in her path. When her foot touched his chest, the recognition of her beloved- jolted her back to consciousness. The rage transformed into grace. We realized that peace is not merely the absence of conflict; often, peace is the result of a war won. Kali's rage was necessary to devour the evil of Mahishasura and Raktabija, but without the consciousness of Shiva to ground her, that energy would have unmade the world.
 
 Emotions are like nuclear fire; controlled, they illuminate. Unchecked, they incinerate.
 
@@ -382,7 +389,7 @@ We ate slowly, savoring each bite, aware that we were participating in a ritual 
 
 As we were guided out, our pandit became serious. "Watch your steps carefully," he warned us. "Do not step on the Yama Pata."
 
-The Yama Pata, or Yama Stone, is a specific stone in the exit path of the temple. According to belief, stepping on this stone nullifies all the spiritual merit (punya) gained from the darshan. It represents the final test: after receiving divine grace, will you leave with awareness, or will you fall back into unconsciousness?
+The Yama Pata, or Yama Stone, is a specific stone in the exit path of monetize all the spiritual merit (punya) gained from the darshan. It represents the final test: after receiving divine grace, will you leave with awareness, or will you fall back into unconsciousness?
 
 We walked carefully, mindfully, each step deliberate. This, too, was part of the pilgrimage—the lesson that spiritual awakening requires constant vigilance. One moment of carelessness, one step in the wrong direction, and the grace can slip away.
 

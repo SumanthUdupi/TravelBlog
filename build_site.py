@@ -107,6 +107,7 @@ def build_site():
                 tags = metadata.get('tags', [])
                 if isinstance(tags, str): tags = [tags]
                 author = metadata.get('author', 'Anonymous Pilgrim')
+                imageUrl = metadata.get('imageUrl', '')
 
                 slug = slugify(title)
 
@@ -131,7 +132,8 @@ def build_site():
                     reading_time=reading_time,
                     tags=tags,
                     citations=citations,
-                    excerpt=excerpt
+                    excerpt=excerpt,
+                    imageUrl=imageUrl
                 )
 
                 output_filename = f"{slug}.html"
@@ -147,7 +149,8 @@ def build_site():
                     'excerpt': excerpt,
                     'tags': tags,
                     'reading_time': reading_time,
-                    'author': author
+                    'author': author,
+                    'imageUrl': imageUrl
                 })
 
     # Write posts.json

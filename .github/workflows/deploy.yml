@@ -1,37 +1,68 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: pip install markdown jinja2 beautifulsoup4
+
+      - name: Create public directory and move static files
+        run: |
+          mkdir public
+          if [ -f blog.html ]; then mv blog.html public/; fi
+          if [ -f contact.html ]; then mv contact.html public/; fi
+          if [ -f 404.html ]; then mv 404.html public/; fi
+
+      - name: Set build output to public directory
+        run: sed -i "s/OUTPUT_DIR = '.'/OUTPUT_DIR = 'public'/" build_site.py
+
+      - name: Run build_site.py
+        run: python build_site.py
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm
+
       - name: Install dependencies
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+
   deploy:
     environment:
       name: github-pages

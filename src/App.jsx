@@ -14,7 +14,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/post/:postId" element={<BlogPost />} />
+          <Route path="/post/:slug" element={<BlogPost />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>

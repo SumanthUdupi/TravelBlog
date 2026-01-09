@@ -1,3 +1,10 @@
+---
+title: "Odisha Sacred Odyssey: Where the Divine Meets the Soul"
+author: "Anonymous Pilgrim"
+date: "2025-01-09"
+tags: ["odisha", "sacred", "pilgrimage"]
+imageUrl: "https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+---
 # Odisha Sacred Odyssey: Where the Divine Meets the Soul
 
 *"Jai Jagannath!"*
@@ -198,4 +205,3 @@ As I stood on the beach in Puri, watching the waves crash against the shore, the
 The Odisha Sacred Odyssey was more than a tour. It was a reminder that we are not human beings having a spiritual experience; we are spiritual beings having a human experience. In the stone of Konark, the darkness of the Chhatia sanctum, and the wide eyes of Jagannath, we didn't just see history. We saw ourselves.
 
 **Jai Jagannath.**
-
