@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}The Æsthetic | A Luxury Editorial{% endblock %}
+
+{% block head %}
+    <!-- Home specific styles could go here -->
+    <style>
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--color-cyan), var(--color-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .post-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-cyan);
+        }
+        .post-content {
+            padding: 1.5rem;
+        }
+        .post-title {
+            margin: 0 0 1rem;
+            font-family: var(--font-heading);
+        }
+        .post-meta {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-bottom: 1rem;
+        }
+        .post-excerpt {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .read-more {
+            color: var(--color-cyan);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <h1>The Æsthetic</h1>
+        <p>A Luxury Editorial on Travel, Culture, and the Divine.</p>
+    </section>
+
+    <section class="post-grid">
+        {% for post in posts %}
+        <article class="post-card">
+            <div class="post-content">
+                <div class="post-meta">{{ post.date }} | {{ post.reading_time }} min read</div>
+                <h2 class="post-title"><a href="{{ post.slug }}.html" style="color: inherit; text-decoration: none;">{{ post.title }}</a></h2>
+                <p class="post-excerpt">{{ post.excerpt }}</p>
+                <a href="{{ post.slug }}.html" class="read-more">Read Journey &rarr;</a>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="assets/js/home.js"></script>
+{% endblock %}
