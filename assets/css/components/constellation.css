@@ -1,96 +1,72 @@
-/* Constellation Drawer */
+/* Constellation Drawer - Glass Overlay */
 .constellation-drawer {
-  position: fixed;
-  top: 0;
-  right: -400px; /* Hidden by default */
-  width: 400px;
-  max-width: 90vw;
-  height: 100vh;
-  /* Point 20: Leather Binding Texture */
-  background-color: #3e2723; /* Dark Brown Base */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
-  color: #e0e0e0; /* Light text for contrast */
-  border-left: 4px solid var(--color-gold); /* Gold accent */
-  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-  z-index: 1000;
-  transition: right 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  padding: 2rem;
-  overflow-y: auto;
+    position: fixed;
+    top: 0; right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: rgba(5, 5, 16, 0.95);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    flex-direction: column;
 }
 
-.constellation-drawer.open {
-  right: 0;
+.constellation-drawer[aria-hidden="false"] {
+    transform: translateX(0);
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .drawer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--color-gold);
-  padding-bottom: 1rem;
+    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .drawer-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: var(--color-warm-tan);
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--color-cyan);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
 }
 
 .close-drawer {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: var(--color-gold);
-  padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--color-text-main);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
-/* Constellation Tree */
-.constellation-list,
-.constellation-sublist {
-  list-style: none;
-  padding-left: 0;
+.close-drawer:hover {
+    color: var(--color-purple);
 }
 
-.constellation-sublist {
-  padding-left: 1.5rem;
-  border-left: 1px solid rgba(218, 165, 32, 0.3); /* Gold faint line */
-  margin-left: 0.5rem;
-  display: none; /* Collapsed by default */
+#constellation-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
 }
 
-.constellation-sublist.expanded {
-  display: block;
+/* Constellation Node Styles */
+.node {
+    fill: var(--color-cyan);
+    filter: drop-shadow(0 0 5px var(--color-cyan));
+    transition: r 0.3s;
 }
 
-.constellation-item {
-  margin-bottom: 0.5rem;
-  transition: opacity 0.2s ease;
+.node:hover {
+    r: 8;
+    fill: var(--color-purple);
 }
 
-.constellation-link {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  color: var(--color-parchment);
-  font-family: var(--font-ui);
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  position: relative;
-  z-index: 2; /* Above canvas */
-}
-
-.constellation-link:hover {
-  background-color: rgba(218, 165, 32, 0.2);
-  color: var(--color-gold);
-}
-
-.constellation-toggle {
-  margin-left: auto;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--color-warm-tan);
+.link {
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 1px;
 }

@@ -1,30 +1,109 @@
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .constellation-drawer {
-        width: 100%;
-        right: -100%;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
-    .post-grid {
-        grid-template-columns: 1fr;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .nav-container {
-        padding: 0.5rem 1rem;
-    }
+/* Redefine global visual context for templates */
+:root {
+    --color-bg-dark: #050510;
 }
 
-@media (max-width: 576px) {
-    .nav-controls {
-        gap: 0.5rem;
-    }
+body {
+    background-color: var(--color-bg-dark);
+}
 
-    .control-btn {
-        width: 35px;
-        height: 35px;
-    }
+/* Ensure images are responsive and styled */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-sm);
+}
+
+/* Hero Section Specifics */
+.hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-xxl) var(--spacing-md);
+    overflow: hidden;
+    /* Use CSS variable for parallax if set by JS */
+    transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+    transition: transform 0.1s ease-out;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(191, 64, 191, 0.2), transparent 70%);
+    filter: blur(80px);
+    z-index: -1;
+    animation: pulseGlow 10s infinite alternate;
+}
+
+.hero h1 {
+    margin-bottom: var(--spacing-md);
+    animation: slideUp 1s ease-out;
+}
+
+.hero p {
+    max-width: 600px;
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    animation: slideUp 1.2s ease-out;
+}
+
+@keyframes pulseGlow {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Featured Posts Grid */
+#featured-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl) 0;
+}
+
+.post-card {
+    /* Inherits .glass-card via JS or HTML class addition */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-card h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.post-card p {
+    font-size: 1rem;
+    flex-grow: 1;
+}
+
+.post-meta {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
