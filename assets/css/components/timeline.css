@@ -1,134 +1,61 @@
-/* Timeline UI - Rustic Rope & Wax Seal */
+/* Timeline Component */
+/* Using vertical line with glowing nodes */
+
 .timeline-container {
     position: relative;
-    max-width: 800px;
-    margin: 4rem auto;
     padding: 2rem 0;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Central Rope Line */
-.timeline-container::before {
-    content: '';
+.timeline-line {
     position: absolute;
+    left: 50%;
     top: 0;
     bottom: 0;
-    left: 50%;
-    width: 4px;
-    background-image: url("data:image/svg+xml,%3Csvg width='4' height='12' viewBox='0 0 4 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0C1 2 3 2 4 4C3 6 1 6 0 8C1 10 3 10 4 12' stroke='%238B4513' fill='none' stroke-width='1'/%3E%3C/svg%3E");
-    background-repeat: repeat-y;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--color-cyan), transparent);
     transform: translateX(-50%);
-    opacity: 0.8;
 }
 
-.timeline-event {
+.timeline-item {
     position: relative;
+    margin-bottom: 4rem;
     width: 50%;
-    padding: 2rem;
-    box-sizing: border-box;
-}
-
-.timeline-event:nth-child(odd) {
-    left: 0;
+    padding-right: 2rem;
     text-align: right;
-    padding-right: 3rem;
 }
 
-.timeline-event:nth-child(even) {
+.timeline-item:nth-child(even) {
     left: 50%;
+    padding-right: 0;
+    padding-left: 2rem;
     text-align: left;
-    padding-left: 3rem;
 }
 
-/* Wax Seal Marker */
 .timeline-marker {
     position: absolute;
-    top: 2rem;
-    width: 24px;
-    height: 24px;
-    background-color: var(--color-terracotta);
+    right: -6px;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    background: var(--color-void);
+    border: 2px solid var(--color-cyan);
     border-radius: 50%;
-    border: 2px solid var(--color-saddle-brown);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px var(--color-cyan);
     z-index: 2;
 }
 
-.timeline-event:nth-child(odd) .timeline-marker {
-    right: -12px;
-}
-
-.timeline-event:nth-child(even) .timeline-marker {
-    left: -12px;
-}
-
-/* Marker inner detail (seal stamp) */
-.timeline-marker::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.2);
-    transform: translate(-50%, -50%);
+.timeline-item:nth-child(even) .timeline-marker {
+    left: -8px;
+    right: auto;
 }
 
 .timeline-content {
-    background: var(--color-parchment);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
     padding: 1.5rem;
-    border: 1px solid var(--color-warm-tan);
-    border-radius: 4px;
-    box-shadow: 2px 2px 0 rgba(139, 69, 19, 0.1);
-    position: relative;
-    transition: transform 0.3s ease;
-}
-
-.timeline-content:hover {
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0 rgba(139, 69, 19, 0.15);
-}
-
-.timeline-date {
-    font-family: var(--font-header);
-    color: var(--color-terracotta);
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.timeline-title {
-    font-size: 1.2rem;
-    color: var(--color-saddle-brown);
-    margin-bottom: 0.5rem;
-}
-
-.timeline-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .timeline-container::before {
-        left: 20px;
-    }
-
-    .timeline-event {
-        width: 100%;
-        left: 0;
-        padding-left: 4rem;
-        padding-right: 1rem;
-        text-align: left;
-    }
-
-    .timeline-event:nth-child(odd) {
-        text-align: left;
-        padding-right: 1rem;
-    }
-
-    .timeline-event:nth-child(odd) .timeline-marker,
-    .timeline-event:nth-child(even) .timeline-marker {
-        left: 8px; /* 20px - 12px */
-        right: auto;
-    }
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--glass-shadow);
 }

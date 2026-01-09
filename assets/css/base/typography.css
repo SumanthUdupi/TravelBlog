@@ -1,77 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Caveat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
 body {
   font-family: var(--font-body);
-  color: var(--color-ink);
-  background-color: var(--color-parchment);
-  line-height: 1.8; /* Scholarly reading standard */
-  font-variant-ligatures: common-ligatures; /* Point 9: Ligatures */
+  color: var(--color-text-main);
+  background-color: var(--color-void);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  color: var(--color-saddle-brown);
+  color: var(--color-text-main);
   line-height: 1.2;
+  letter-spacing: 0.02em;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 30px rgba(0, 210, 255, 0.3); /* Soft glow behind transparent text */
 }
 
 h2 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-cyan);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
-h3 {
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
 p {
   font-size: 1.125rem;
-  line-height: 1.8; /* Point 10: Relaxed pace */
+  color: var(--color-text-muted);
   margin-bottom: 1.5rem;
+  font-weight: 400;
 }
 
-/* Drop Cap for first paragraph of essays - Point 3 */
-/* Targeted via class or structure */
-article .post-content > p:first-of-type::first-letter,
-.drop-cap::first-letter {
-  font-family: 'Cinzel', serif; /* Use heading font for drop cap */
-  font-size: 4rem;
-  float: left;
-  line-height: 0.8;
-  margin-right: 0.5rem;
-  margin-top: 0.1rem;
-  color: var(--color-saddle-brown);
-  font-weight: 700;
+/* UI Elements */
+.text-ui {
+    font-family: var(--font-ui);
 }
 
-/* Link Styling - Point 8 */
+/* Links */
 a {
-  color: var(--color-saddle-brown); /* Default link color to brown/ink? User said remove underlines */
+  color: var(--color-cyan);
   text-decoration: none;
-  background-image: linear-gradient(var(--color-gold), var(--color-gold));
-  background-size: 0% 2px;
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  transition: background-size 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 a:hover {
-  color: var(--color-terracotta);
-  background-size: 100% 2px;
+  color: var(--color-purple);
+  text-shadow: 0 0 8px rgba(191, 64, 191, 0.6);
 }
 
-/* Selection Color - Point 6 */
+/* Selection */
 ::selection {
-    background-color: var(--color-terracotta);
-    color: #ffffff;
+    background-color: var(--color-cyan);
+    color: var(--color-void);
 }

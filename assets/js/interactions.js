@@ -1,71 +1,52 @@
 export function initInteractions() {
-    initHaptics();
-    initRipples();
-    initSnapScroll();
-    initGlobalFadeIn();
-}
+    // Reveal on Scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
 
-// Point 40: Haptics
-function initHaptics() {
-    if (!navigator.vibrate) return;
-
-    const links = document.querySelectorAll('a, button, .control-btn');
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            try {
-                navigator.vibrate(5);
-            } catch (e) {
-                // Ignore if not supported/allowed
-            }
-        });
-    });
-}
-
-// Point 41: Touch Ripples (Ink Ripple)
-function initRipples() {
-    document.addEventListener('click', (e) => {
-        const ripple = document.createElement('div');
-        ripple.className = 'ink-ripple';
-
-        // Position
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-
-        document.body.appendChild(ripple);
-
-        // Remove after animation
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
-}
-
-// Point 39: Snap Scroll (CSS is main driver, this creates container class if needed)
-function initSnapScroll() {
-    // Apply scroll snap to main sections if valid
-    const main = document.querySelector('main');
-    if (main) {
-        // main.style.scrollSnapType = 'y mandatory'; // Can be jarring for long content, let's limit to specific pages or sections if requested.
-        // Prompt says "Implement CSS Scroll Snap... for major sections".
-        // We will add a class to body or main and handle in CSS.
-        document.documentElement.style.scrollSnapType = 'y proximity'; // Less aggressive
-    }
-}
-
-// Point 50: Global Fade In
-function initGlobalFadeIn() {
-    const observer = new IntersectionObserver((entries) => {
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                // Optional: Unobserve after reveal
+                // observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    const targets = document.querySelectorAll('article, section, .post-card, h2, img');
-    targets.forEach(target => {
-        target.classList.add('fade-up-element');
-        observer.observe(target);
+    document.querySelectorAll('section, .post-card, article').forEach(el => {
+        el.classList.add('reveal-hidden');
+        revealOnScroll.observe(el);
+    });
+
+    // Magnetic Buttons
+    const buttons = document.querySelectorAll('.btn-stone, .control-btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+
+    // Parallax Effect for Hero
+    document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth - e.pageX * 2) / 100;
+        const y = (window.innerHeight - e.pageY * 2) / 100;
+
+        const hero = document.querySelector('.hero::before');
+        if (hero) {
+             // hero pseudo-elements can't be transformed directly via JS easily without CSS variables
+             // So let's update a variable on body or hero
+             document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+        }
     });
 }

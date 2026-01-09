@@ -1,35 +1,45 @@
 :root {
-  /* Colors */
-  --color-parchment: #F5F1E6;
-  --color-saddle-brown: #8B4513;
-  --color-warm-tan: #D2B48C;
-  --color-terracotta: #E2725B;
-  --color-ink: #2C2C2C;
-  --color-night-sky: #121212;
-  --color-gold: #DAA520; /* Point 8 */
+  /* Colors - Nebula Palette */
+  --color-void: #050510;
+  --color-void-light: #1a1a2e;
+  --color-text-main: #F0F8FF;
+  --color-text-muted: #a0a0b0;
+
+  --color-cyan: #00D2FF;
+  --color-purple: #BF40BF;
+  --color-gold: #FFD700;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-cyan), var(--color-purple));
+  --gradient-glow: radial-gradient(circle at center, rgba(0, 210, 255, 0.4) 0%, transparent 70%);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-blur: blur(12px);
 
   /* Fonts */
-  --font-heading: 'Cinzel', serif; /* Point 2 */
-  --font-ui: 'Lora', serif; /* UI generally follows body in this aesthetic, or maybe Cinzel for buttons? kept Lora for now */
-  --font-body: 'Lora', serif; /* Point 1 */
-  --font-accent: 'Cinzel', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Lora', serif;
+  --font-ui: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   /* Spacing */
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
   --spacing-xl: 4rem;
+  --spacing-xxl: 8rem;
 
   /* Borders */
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
 
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(139, 69, 19, 0.1);
-  --shadow-md: 0 4px 8px rgba(139, 69, 19, 0.15);
-  --shadow-lg: 0 8px 16px rgba(139, 69, 19, 0.2);
+  --shadow-neon: 0 0 10px rgba(0, 210, 255, 0.5), 0 0 20px rgba(0, 210, 255, 0.3);
 
-  /* Lantern Mode Variables */
+  /* Lantern/Aura Mode Variables */
   --cursor-x: 50vw;
   --cursor-y: 50vh;
 }
