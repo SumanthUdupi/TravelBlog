@@ -7,6 +7,36 @@ body.lantern-mode {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* Point 14: Toggle Animation - Flare Up */
+body.lantern-activating::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffaa00;
+    mix-blend-mode: overlay;
+    animation: flareUp 0.5s ease-out forwards;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+@keyframes flareUp {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* Point 12: Flicker Effect */
+@keyframes lanternFlicker {
+    0% { opacity: 0.95; transform: scale(1); }
+    25% { opacity: 0.9; transform: scale(1.01); }
+    50% { opacity: 0.95; transform: scale(0.99); }
+    75% { opacity: 0.92; transform: scale(1.02); }
+    100% { opacity: 0.95; transform: scale(1); }
+}
+
 /* The Vignette Effect (Main Cursor) */
 body.lantern-mode::before {
     content: '';
@@ -18,17 +48,14 @@ body.lantern-mode::before {
     pointer-events: none;
     z-index: 9999;
     /* Warm amber center fading to transparent/dark */
-    /* Mix blend mode multiply means white is transparent, black is dark.
-       We want the CENTER to be the "light" source (so it should be lighter color that tints underlying text),
-       and the EDGES to be dark (hiding underlying text).
-    */
     background: radial-gradient(
         circle 300px at var(--cursor-x) var(--cursor-y),
-        rgba(255, 179, 71, 0.4) 0%,   /* Warm Amber Light (transparent-ish to show text) */
-        rgba(255, 140, 0, 0.2) 30%,    /* Darker Amber */
-        rgba(0, 0, 0, 0.95) 100%       /* Darkness at edges */
+        rgba(255, 179, 71, 0.4) 0%,
+        rgba(255, 140, 0, 0.2) 30%,
+        rgba(0, 0, 0, 0.95) 100%
     );
     mix-blend-mode: multiply;
+    animation: lanternFlicker 3s infinite alternate; /* Point 12 */
 }
 
 /* Trailing Circles for Motion Blur */
@@ -37,18 +64,36 @@ body.lantern-mode::before {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    transform: translate(-50%, -50%); /* Center on coordinates */
+    transform: translate(-50%, -50%);
     background: radial-gradient(
         circle,
         rgba(255, 179, 71, 0.15) 0%,
         transparent 70%
     );
     pointer-events: none;
-    mix-blend-mode: screen; /* Additive glow */
+    mix-blend-mode: screen;
     z-index: 9998;
 }
 
-/* Text Readability in Lantern Mode */
+/* Point 11: Spark Particles */
+.lantern-spark {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: sparkFade 1s linear forwards;
+    mix-blend-mode: screen;
+}
+
+@keyframes sparkFade {
+    0% { opacity: 1; transform: translate(0, 0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
+}
+
+/* Point 16: Dynamic Shadows & Text Readability */
 body.lantern-mode h1,
 body.lantern-mode h2,
 body.lantern-mode h3,
@@ -57,11 +102,23 @@ body.lantern-mode h5,
 body.lantern-mode h6,
 body.lantern-mode a {
     color: var(--color-warm-tan, #D2B48C);
-    text-shadow: 0 0 10px rgba(210, 180, 140, 0.3);
+    /* Dynamic shadow calculated in JS */
+    text-shadow: var(--shadow-x, 2px) var(--shadow-y, 2px) 10px rgba(0, 0, 0, 0.8);
 }
 
 body.lantern-mode .post-content {
     color: #dcdcdc;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Point 13: Darkness Depth (Images) */
+body.lantern-mode img {
+    opacity: 0.4;
+    transition: opacity 0.5s ease;
+}
+
+body.lantern-mode img:hover {
+    opacity: 1.0;
 }
 
 /* Panel/Drawer dark mode overrides */
@@ -108,5 +165,5 @@ body.lantern-mode .site-header {
 
 /* Texture adjustments */
 body.lantern-mode .texture-overlay {
-    opacity: 0.03; /* Greatly reduce texture noise in dark mode */
+    opacity: 0.03;
 }

@@ -6,12 +6,13 @@
   --color-terracotta: #E2725B;
   --color-ink: #2C2C2C;
   --color-night-sky: #121212;
-  --color-gold: #DAA520;
+  --color-gold: #DAA520; /* Point 8 */
 
   /* Fonts */
-  --font-heading: 'Merriweather', serif;
-  --font-ui: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Cinzel', serif; /* Point 2 */
+  --font-ui: 'Lora', serif; /* UI generally follows body in this aesthetic, or maybe Cinzel for buttons? kept Lora for now */
+  --font-body: 'Lora', serif; /* Point 1 */
+  --font-accent: 'Cinzel', serif;
 
   /* Spacing */
   --spacing-sm: 0.5rem;

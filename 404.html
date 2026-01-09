@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost in the Ruins - 404</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components/typography.css">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 8rem 2rem;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .error-title {
+            font-size: 6rem;
+            color: var(--color-saddle-brown);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+            text-shadow: 2px 2px 0 var(--color-parchment), 4px 4px 0 rgba(0,0,0,0.1);
+        }
+        .ruin-icon {
+            width: 150px;
+            height: 150px;
+            margin: 2rem auto;
+            opacity: 0.8;
+            /* Placeholder for Broken Pillar Graphic */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 90 L30 30 L70 30 L70 90 Z M35 30 L35 10 L65 10 L65 30' fill='none' stroke='%238B4513' stroke-width='3'/%3E%3Cpath d='M30 50 L70 40 M30 70 L70 65' stroke='%238B4513' stroke-width='1' stroke-dasharray='5,5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="site-logo">TravelBlog</a>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+        <div class="error-container">
+            <div class="ruin-icon"></div>
+            <h1 class="error-title">404</h1>
+            <h2>Lost in the Ruins</h2>
+            <p>The scroll you seek has crumbled to dust or never existed.</p>
+            <a href="index.html" class="btn-stone" style="margin-top: 2rem; text-decoration: none; display: inline-block;">Return to Safety</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TravelBlog. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

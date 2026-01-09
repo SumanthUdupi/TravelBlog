@@ -14,7 +14,13 @@
     <header class="site-header">
         <div class="nav-container">
             <a href="index.html" class="site-logo">
-                <span class="logo-icon">🛕</span>
+                <span class="logo-icon">
+                    <!-- Point 17: Temple Spire SVG -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12 2L2 22h20L12 2zm0 3.5L18.5 19H5.5L12 5.5z"/>
+                        <rect x="10" y="12" width="4" height="6"/>
+                    </svg>
+                </span>
                 TravelBlog
             </a>
             <div class="search-container">
@@ -30,9 +36,29 @@
                 </ul>
             </nav>
             <div class="nav-controls">
-                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">🕯️</button>
-                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">✨</button>
-                <button id="menu-toggle" class="control-btn mobile-only" aria-label="Open Menu" aria-expanded="false">☰</button>
+                <button id="theme-toggle" class="control-btn" aria-label="Toggle Lantern Mode">
+                    <!-- Point 17: Diya Lamp SVG -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                         <path d="M12 2c0 0-3 5-3 8s3 4 3 4 3-1 3-4-3-8-3-8z" opacity="0.6"/>
+                         <path d="M2 14c0 4.418 3.582 8 8 8h4c4.418 0 8-3.582 8-8H2z"/>
+                    </svg>
+                </button>
+                <button id="drawer-toggle" class="control-btn" aria-label="Open Tags">
+                     <!-- Constellation Icon -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="5" cy="5" r="2"/>
+                        <circle cx="19" cy="5" r="2"/>
+                        <circle cx="5" cy="19" r="2"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <path d="M5 7v10M7 5h10M17 19H7M19 7l-5 5"/>
+                    </svg>
+                </button>
+                <button id="menu-toggle" class="control-btn mobile-only" aria-label="Open Menu" aria-expanded="false">
+                    <!-- Point 17: Brush Strokes SVG (Hamburger replacement) -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M3 6h18M3 12h18M3 18h18"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>

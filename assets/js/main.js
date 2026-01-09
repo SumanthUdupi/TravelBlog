@@ -5,6 +5,7 @@ import { initSearch } from './search.js';
 import { initTimeline } from './timeline.js';
 import { initTypography } from './typography.js';
 import { initReadingProgress } from './reading-progress.js';
+import { initInteractions } from './interactions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Core Features
@@ -14,70 +15,40 @@ document.addEventListener('DOMContentLoaded', () => {
     initTimeline();
     initTypography();
     initReadingProgress();
-    initScrollAnimations();
+    initInteractions();
 
     console.log('TravelBlog initialized with Digital Parchment aesthetic.');
 
-    // Readiness signal for automated testing
     window.__BLOG_READY__ = true;
 
     // Mobile Menu Toggle
     const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.querySelector('.nav-links'); // On mobile this target might need adjustment if using bottom nav logic in CSS
 
-    if (menuToggle && navLinks) {
+    if (menuToggle) {
         menuToggle.addEventListener('click', () => {
+            // For the bottom nav design, the menu toggle might just toggle the Constellation or "More" options if links are already visible?
+            // Or if we hide links behind menu on mobile.
+            // The request said "Move main navigation to a fixed bottom bar".
+            // If the links are visible at the bottom, we might not need the hamburger for them,
+            // but we might need it for extra controls.
+            // Let's assume the nav-links are the bottom bar, and the menu button opens the side drawer or extra options.
+            // For now, let's keep existing logic but ensure it works with the new layout.
+
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             menuToggle.setAttribute('aria-expanded', !isExpanded);
 
-            if (!isExpanded) {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = 'var(--color-parchment)';
-                navLinks.style.padding = '1rem';
-                navLinks.style.borderBottom = '1px solid var(--color-warm-tan)';
-                navLinks.style.zIndex = '1000';
+            // If bottom nav is active (CSS media query), this might toggle a popup menu instead.
+            if (window.innerWidth <= 768) {
+                // Logic for mobile menu expansion if not fully using bottom bar for all links
+                // or if bottom bar overflows.
+                // Currently CSS shows .nav-links at bottom.
             } else {
-                navLinks.style.display = 'none';
-                navLinks.style.position = '';
-                navLinks.style.top = '';
-                navLinks.style.left = '';
-                navLinks.style.width = '';
-                navLinks.style.backgroundColor = '';
-                navLinks.style.padding = '';
-                navLinks.style.borderBottom = '';
-                navLinks.style.zIndex = '';
+                // Desktop dropdown logic
+                if (navLinks) {
+                    navLinks.classList.toggle('active');
+                }
             }
         });
     }
 });
-
-// Scroll Reveal Logic
-function initScrollAnimations() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Target elements to animate
-    const targets = document.querySelectorAll('article, .blog-card, section, h2, .post-content > p');
-    targets.forEach(target => {
-        target.classList.add('reveal-on-scroll');
-        target.classList.add('fade-in'); // Fallback or base
-        observer.observe(target);
-    });
-}
