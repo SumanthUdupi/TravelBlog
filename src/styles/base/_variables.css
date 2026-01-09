@@ -1,0 +1,35 @@
+/* src/styles/base/_variables.css */
+
+:root {
+  /* Colors - Warm, Sophisticated Palette */
+  --color-background: #FDFBF8; /* Creamy white */
+  --color-surface: #FFFFFF;
+  --color-primary: #8C3A3A; /* Rich Burgundy */
+  --color-secondary: #B08D57; /* Soft Gold */
+  --color-text-primary: #333333; /* Warm, dark gray */
+  --color-text-secondary: #707070; /* Softer gray */
+  --color-border: #EAE0D6; /* Light, warm gray */
+  --color-accent: #C89F76; /* Muted gold accent */
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+  --font-accent: 'Cormorant', serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;  /* 4px */
+  --space-sm: 0.5rem;   /* 8px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 2rem;     /* 32px */
+  --space-xl: 4rem;     /* 64px */
+  --space-xxl: 8rem;    /* 128px */
+  
+  /* Shadows - Soft and Subtle */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+  --shadow-md: 0 5px 15px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.07);
+
+  /* Transitions */
+  --transition-fast: all 0.2s ease-in-out;
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

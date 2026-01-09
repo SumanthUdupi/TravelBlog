@@ -1,0 +1,61 @@
+/* src/styles/components/_header.css */
+
+.main-header {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(253, 251, 248, 0.85);
+}
+
+.main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 1px;
+}
+
+.main-header nav ul {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.main-header nav a {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  position: relative;
+  padding-bottom: var(--space-sm);
+}
+
+.main-header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-primary);
+  transition: var(--transition-smooth);
+}
+
+.main-header nav a:hover::after,
+.main-header nav a.active::after {
+  width: 100%;
+}
+
+.main-header nav a.active {
+    color: var(--color-text-primary);
+}

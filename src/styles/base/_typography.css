@@ -1,0 +1,55 @@
+/* src/styles/base/_typography.css */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 3.052rem;
+}
+
+h2 {
+  font-size: 2.441rem;
+}
+
+h3 {
+  font-size: 1.953rem;
+}
+
+h4 {
+  font-size: 1.563rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* Slightly larger for a more premium feel */
+  line-height: 1.8;
+  margin-bottom: var(--space-md);
+}
+
+a {
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+blockquote {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-secondary);
+  padding-left: var(--space-lg);
+  border-left: 3px solid var(--color-accent);
+  margin: var(--space-lg) 0;
+}

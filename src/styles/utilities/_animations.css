@@ -1,0 +1,46 @@
+/* src/styles/utilities/_animations.css */
+
+/* --- Fade In Animation --- */
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Gentle Parallax on Scroll (can be applied to hero images) --- */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* --- Smooth underline effect (used in header) --- */
+/* This is implemented directly in the _header.css for component-specific logic */
+
+/* --- Hover lift effect (used in blog cards) --- */
+/* This is implemented directly in the _blog-card.css */
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

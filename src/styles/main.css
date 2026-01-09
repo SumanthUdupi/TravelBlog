@@ -1,0 +1,95 @@
+/* src/styles/main.css */
+
+/* Import Base Styles */
+@import './base/_reset.css';
+@import './base/_variables.css';
+@import './base/_typography.css';
+
+/* Import Component Styles */
+@import './components/_header.css';
+@import './components/_footer.css';
+@import './components/_blog-card.css';
+@import './components/_blog-post.css';
+
+/* Import Utilities */
+@import './utilities/_animations.css';
+
+/* --- Global Styles --- */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* --- Page Transitions --- */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.page-exit {
+  opacity: 1;
+}
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+/* --- Hero Section on Homepage --- */
+.hero {
+  padding: var(--space-xl) 0;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  letter-spacing: 1.5px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Blog Grid --- */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
