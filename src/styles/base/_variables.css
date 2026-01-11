@@ -1,35 +1,83 @@
-/* src/styles/base/_variables.css */
-
 :root {
-  /* Colors - Warm, Sophisticated Palette */
-  --color-background: #FDFBF8; /* Creamy white */
-  --color-surface: #FFFFFF;
-  --color-primary: #8C3A3A; /* Rich Burgundy */
-  --color-secondary: #B08D57; /* Soft Gold */
-  --color-text-primary: #333333; /* Warm, dark gray */
-  --color-text-secondary: #707070; /* Softer gray */
-  --color-border: #EAE0D6; /* Light, warm gray */
-  --color-accent: #C89F76; /* Muted gold accent */
+  /* --- Palette: Midnight Luxe --- */
 
-  /* Typography */
+  /* Backgrounds */
+  --color-bg-paper: #050505;
+  /* Void Black */
+  --color-bg-marble: #121212;
+  /* Off-Black / Matte */
+  --color-bg-stone: #1E1E1E;
+  /* Dark Grey for cards */
+  --color-bg-overlay: rgba(0, 0, 0, 0.75);
+  /* Cinematic Darkening */
+  --color-bg-glass: rgba(255, 255, 255, 0.03);
+  /* Subtle Glass */
+
+  /* Text */
+  --color-text-primary: #F0F0F0;
+  /* Titanium White */
+  --color-text-secondary: #B0B0B0;
+  /* Silver Mist */
+  --color-text-muted: #666666;
+  /* Dark Grey Text */
+  --color-text-accent: #D4AF37;
+  /* Metallic Gold */
+  --color-text-inverse: #050505;
+
+  /* Accents */
+  --color-accent-gold: #D4AF37;
+  /* Metallic Gold */
+  --color-accent-terracotta: #FF2E00;
+  /* Neon Red/Orange (Impact) */
+  --color-accent-olive: #00FF9D;
+  /* Cyber Mint (Modern pop) */
+  --color-accent-burgundy: #800020;
+  /* Deep Royal Burgundy */
+  --color-accent-glow: rgba(212, 175, 55, 0.3);
+  /* Gold Glow */
+
+  /* Borders / UI */
+  --color-border-subtle: #333333;
+  --color-border-strong: #555555;
+  --color-border-gold: #D4AF37;
+
+  /* --- Typography --- */
+
+  /* Fonts */
   --font-heading: 'Playfair Display', serif;
-  --font-body: 'Lora', serif;
-  --font-accent: 'Cormorant', serif;
+  /* Editorial Luxury */
+  --font-body: 'Inter', sans-serif;
+  /* Modern, clean, readable */
+  --font-ui: 'Inter', sans-serif;
 
-  /* Spacing */
-  --space-xs: 0.25rem;  /* 4px */
-  --space-sm: 0.5rem;   /* 8px */
-  --space-md: 1rem;     /* 16px */
-  --space-lg: 2rem;     /* 32px */
-  --space-xl: 4rem;     /* 64px */
-  --space-xxl: 8rem;    /* 128px */
-  
-  /* Shadows - Soft and Subtle */
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-  --shadow-md: 0 5px 15px rgba(0,0,0,0.05);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.07);
+  /* Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.125rem;
+  /* Larger base size (18px) */
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 3rem;
+  --text-4xl: 4.5rem;
+  /* Impactful */
+  --text-display: 8rem;
+  /* Massive Hero Text */
 
-  /* Transitions */
-  --transition-fast: all 0.2s ease-in-out;
-  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* --- Spacing --- */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 8rem;
+  --space-3xl: 12rem;
+
+  /* --- Shadows & Effects --- */
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.15);
+  --radius-sm: 2px;
+  --radius-md: 0px;
+  /* Sharp corners for premium feel */
+  --radius-lg: 0px;
 }

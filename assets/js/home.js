@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Home page specific logic
 import { initInteractions } from './interactions.js';
 

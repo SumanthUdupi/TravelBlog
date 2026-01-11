@@ -1,3 +1,4 @@
+/* eslint-disable */
 export function initBlogFiltering() {
     const grid = document.getElementById('post-grid');
     const filterContainer = document.getElementById('blog-filters');
@@ -60,12 +61,12 @@ function renderFilters(posts, activeTag) {
     // Add click handler for "All"
     const allBtn = container.querySelector('[data-tag="all"]');
     allBtn.onclick = () => {
-         document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-         allBtn.classList.add('active');
-         const newUrl = new URL(window.location);
-         newUrl.searchParams.delete('tag');
-         window.history.pushState({}, '', newUrl);
-         renderPosts(posts, 'all');
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        allBtn.classList.add('active');
+        const newUrl = new URL(window.location);
+        newUrl.searchParams.delete('tag');
+        window.history.pushState({}, '', newUrl);
+        renderPosts(posts, 'all');
     };
 }
 

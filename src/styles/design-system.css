@@ -1,0 +1,131 @@
+/* 
+  Imperial Tech - Modern Ancient Design System 
+  Fusion of Ancient Philosophy & Cyber-Minimalism
+*/
+
+:root {
+    /* --- 1. Color System --- */
+
+    /* Primary Theory: Lapis Lazuli & Gold (Ancient) + Neon (Future) */
+    --color-primary: #1a4cd2;
+    /* Digital Lapis */
+    --color-primary-light: #5e84ff;
+    --color-primary-dark: #002685;
+
+    --color-accent: #d4af37;
+    /* Ancient Gold */
+    --color-accent-glow: #ffd700;
+
+    --color-surface-100: #ffffff;
+    --color-surface-200: #f8f9fa;
+    --color-surface-300: #e9ecef;
+
+    --color-text-main: #1a1a1a;
+    --color-text-muted: #6c757d;
+    --color-text-invert: #ffffff;
+
+    /* Glassmorphism System */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-blur: 12px;
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --gradient-accent: linear-gradient(45deg, var(--color-primary), var(--color-primary-light));
+
+    /* --- 2. Typography Fluid Scale --- */
+    --font-display: 'Playfair Display', serif;
+    /* Classical Headlines */
+    --font-body: 'Lora', serif;
+    /* Editorial Body */
+    --font-ui: 'Inter', sans-serif;
+    /* Modern UI Elements */
+
+    /* Clamp based fluid typography */
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+    --text-3xl: clamp(2rem, 1.8rem + 1vw, 2.5rem);
+    --text-4xl: clamp(2.5rem, 2.2rem + 1.5vw, 3.5rem);
+
+    /* --- 3. Spacing & Layout --- */
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 5rem;
+
+    --container-max: 1280px;
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+    --border-radius-full: 9999px;
+
+    /* --- 4. Animation --- */
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 200ms var(--ease-smooth);
+    --transition-normal: 400ms var(--ease-smooth);
+    --transition-slow: 700ms var(--ease-smooth);
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-surface-100: #0a0a0a;
+        --color-surface-200: #121212;
+        --color-surface-300: #1e1e1e;
+
+        --color-text-main: #f0f0f0;
+        --color-text-muted: #a0a0a0;
+
+        --glass-bg: rgba(20, 20, 20, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+        --gradient-hero: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    }
+}
+
+/* --- Utility Classes --- */
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--border-radius-md);
+}
+
+.text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Visually Hidden (Accessibility) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

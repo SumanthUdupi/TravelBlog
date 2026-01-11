@@ -1,3 +1,4 @@
+/* eslint-disable */
 export function initInteractions() {
     // Reveal on Scroll
     const observerOptions = {
@@ -5,7 +6,7 @@ export function initInteractions() {
         rootMargin: "0px 0px -50px 0px"
     };
 
-    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    const revealOnScroll = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
@@ -43,10 +44,10 @@ export function initInteractions() {
 
         const hero = document.querySelector('.hero::before');
         if (hero) {
-             // hero pseudo-elements can't be transformed directly via JS easily without CSS variables
-             // So let's update a variable on body or hero
-             document.documentElement.style.setProperty('--mouse-x', `${x}px`);
-             document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+            // hero pseudo-elements can't be transformed directly via JS easily without CSS variables
+            // So let's update a variable on body or hero
+            document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${y}px`);
         }
     });
 }

@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 # Configuration
 BLOG_DIR = 'Documents/Blog/raw'
 RESEARCH_DIR = 'Documents/Blog/research'
-OUTPUT_DIR = '.'
+OUTPUT_DIR = os.getenv('BUILD_OUTPUT_DIR', '.')
 TEMPLATES_DIR = 'templates'
 DATA_DIR = 'data'
 

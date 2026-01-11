@@ -1,8 +1,12 @@
 # The Æsthetic | A Luxury Editorial Blog
 
+[![Deploy to GitHub Pages](https://github.com/SumanthUdupi/TravelBlog/actions/workflows/deploy.yml/badge.svg)](https://github.com/SumanthUdupi/TravelBlog/actions/workflows/deploy.yml)
+
 This project has been rebuilt from the ground up as a modern React application, following the detailed requirements for a luxury editorial blog platform.
 
 ## 🚀 Getting Started
+
+**[📖 Read the Deployment Guide](DEPLOYMENT.md)** for detailed instructions on how to deploy this blog to GitHub Pages.
 
 To view and interact with your new blog, please follow these steps:
 
