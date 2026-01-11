@@ -40,6 +40,7 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+
       - name: Create build artifacts
         # Environment variable BUILD_OUTPUT_DIR tells build_site.py to output HTML to 'public'
         # Vite will then find 'public/index.html' (if any) or simply copy 'public' assets to 'dist'
@@ -48,9 +49,15 @@ jobs:
         run: |
           mkdir -p public
           python build_site.py
+          echo "Listing public directory after python build:"
+          ls -R public
 
       - name: Build React App
-        run: npm run build
+        run: |
+          npm run build
+          echo "Listing dist directory after npm build:"
+          ls -R dist
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
