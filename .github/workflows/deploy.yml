@@ -33,7 +33,7 @@ jobs:
           cache: 'pip'
 
       - name: Install Python dependencies
-        run: pip install markdown jinja2 beautifulsoup4
+        run: pip install -r requirements.txt
 
       - name: Generate Static Site Content
         env:

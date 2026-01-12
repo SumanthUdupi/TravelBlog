@@ -22,7 +22,7 @@ After the *first* successful deployment:
 
 The workflow file is located at `.github/workflows/deploy.yml`. It performs the following steps:
 
-1.  **Setup Python**: Installs Python and dependencies (`markdown`, `jinja2`, `beautifulsoup4`).
+1.  **Setup Python**: Installs Python and dependencies from `requirements.txt` (`markdown`, `jinja2`, `beautifulsoup4`).
 2.  **Generate Static Content**: Runs `build_site.py` to generate `data/posts.json` and static HTML pages into the `public/` directory.
 3.  **Setup Node.js**: Installs Node.js v20.
 4.  **Build React App**: Runs `npm run build` (Vite), which bundles the app and copies `public/` (including generated data) to `dist/`.
