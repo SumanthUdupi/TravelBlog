@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-
-export const IdentityContext = createContext();
+import React, { useContext, useState, useEffect } from 'react';
+import { IdentityContext } from './IdentityContextValue';
 
 export const IdentityProvider = ({ children }) => {
     const [user, setUser] = useState(null);
