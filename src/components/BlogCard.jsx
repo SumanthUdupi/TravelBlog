@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BookmarkButton from './Engagement/BookmarkButton';
-import ImageOptimizer from './Performance/ImageOptimizer'; // This import is no longer needed if ImageOptimizer is removed
+import MagneticButton from './Effects/MagneticButton';
 import '../styles/components/blogcard.css';
 
 const BlogCard = ({ post, featured }) => {

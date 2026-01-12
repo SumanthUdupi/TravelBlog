@@ -21,14 +21,14 @@ const About = () => {
             The Æsthetic is a digital journal dedicated to the celebration of beauty in all its forms. We believe that thoughtful design and compelling art can enrich our lives, and our mission is to provide a space for exploration and inspiration.
           </p>
           <blockquote>
-            "Beauty is the harmony of purpose and form."
+            &quot;Beauty is the harmony of purpose and form.&quot;
           </blockquote>
           <p>
             Our content is curated for those who appreciate the finer things: the subtle details, the masterful craftsmanship, and the stories behind the objects and ideas that shape our world. We delve into a range of topics, from the timeless principles of design to the latest currents in contemporary art and culture.
           </p>
           <h2>Our Mission</h2>
           <p>
-            This platform is more than just a blog; it's a community of connoisseurs, creators, and enthusiasts who share a passion for the beautiful. We invite you to join us on this journey of discovery.
+            This platform is more than just a blog; it&apos;s a community of connoisseurs, creators, and enthusiasts who share a passion for the beautiful. We invite you to join us on this journey of discovery.
           </p>
         </div>
       </div>

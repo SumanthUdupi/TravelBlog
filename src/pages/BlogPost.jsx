@@ -22,8 +22,18 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
   const [readingProgress, setReadingProgress] = useState(0);
   const [relatedPosts, setRelatedPosts] = useState([]);
+  const [sections, setSections] = useState([]);
 
-  // Extract headers for Table of Contents
+  // Scroll Progress Listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setReadingProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   useEffect(() => {
     if (post && post.content) {
       const headers = post.content.match(/^#{2,3} (.*$)/gm);

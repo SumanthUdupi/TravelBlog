@@ -12,7 +12,7 @@ const Linter = ({ content }) => {
 
         // SEO Checks
         const h1Count = (content.match(/^# /gm) || []).length;
-        const firstSentence = content.split(/[.!?]/)[0] || '';
+
         const keyword = 'travel'; // Mock keyword for now, could be prop
         const keywordDensity = ((content.toLowerCase().match(new RegExp(keyword, 'g')) || []).length / words * 100).toFixed(1);
 

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
+const mockEvents = [
+    "Architect_X liked 'The Golden Ratio'",
+    "New comment on 'Sacred Geometry'",
+    "Design_Lover joined the community",
+    "Traveler_01 bookmarked 'Hidden Temples'",
+    "Editor posted 'The Future of Digital Art'"
+];
+
 const ActivityFeed = () => {
     const [activities, setActivities] = useState([]);
-
-    const mockEvents = [
-        "Architect_X liked 'The Golden Ratio'",
-        "New comment on 'Sacred Geometry'",
-        "Design_Lover joined the community",
-        "Traveler_01 bookmarked 'Hidden Temples'",
-        "Editor posted 'The Future of Digital Art'"
-    ];
 
     useEffect(() => {
         // Initial seed

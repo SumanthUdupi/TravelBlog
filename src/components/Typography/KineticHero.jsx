@@ -11,7 +11,7 @@ const KineticHero = ({ text = "The Æsthetic" }) => {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
 
-            spansRef.current.forEach((span, i) => {
+            spansRef.current.forEach((span) => {
                 if (!span) return;
                 const rect = span.getBoundingClientRect();
                 const charX = rect.left + rect.width / 2;
