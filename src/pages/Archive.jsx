@@ -1,5 +1,5 @@
 import { useSearchParams, Link } from 'react-router-dom';
-import { useBlog } from '../context/BlogContext';
+import { useBlog } from '../context/hooks';
 import { useState } from 'react';
 import ActivityFeed from '../components/Social/ActivityFeed';
 

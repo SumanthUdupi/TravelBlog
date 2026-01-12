@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const IdentityContext = createContext();
-
-export const useIdentity = () => useContext(IdentityContext);
+export const IdentityContext = createContext();
 
 export const IdentityProvider = ({ children }) => {
     const [user, setUser] = useState(null);

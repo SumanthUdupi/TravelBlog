@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useBlog } from '../context/BlogContext';
+import { useAuth } from '../context/hooks';
+import { useBlog } from '../context/hooks';
 
 const Profile = () => {
     const { user } = useAuth();

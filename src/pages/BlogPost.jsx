@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useBlog } from '../context/BlogContext';
+import { useBlog } from '../context/hooks';
 import StickySidebar from '../components/Layout/StickySidebar';
 import ShareTooltip from '../components/Engagement/ShareTooltip';
 import ReactionButton from '../components/Engagement/ReactionButton';

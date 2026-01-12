@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useBlog } from '../context/BlogContext';
+import { useBlog } from '../context/hooks';
 
 const AdminDashboard = () => {
     const { posts, deletePost, isLoading } = useBlog();

@@ -1,4 +1,4 @@
-import { useBlog } from '../context/BlogContext';
+import { useBlog } from '../context/hooks';
 import KineticHero from '../components/Typography/KineticHero';
 import BlogCard from '../components/BlogCard';
 import HeroArtifact from '../components/3D/HeroArtifact';

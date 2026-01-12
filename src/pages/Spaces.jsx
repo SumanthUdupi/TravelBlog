@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useBlog } from '../context/BlogContext';
+import { useBlog } from '../context/hooks';
 import { Link } from 'react-router-dom';
 
 const Spaces = () => {

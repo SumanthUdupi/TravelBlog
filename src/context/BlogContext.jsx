@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { storageService } from '../services/storage';
 
-const BlogContext = createContext();
+export const BlogContext = createContext();
 
 const initialState = {
     posts: [],
@@ -50,7 +50,7 @@ export const BlogProvider = ({ children }) => {
     useEffect(() => {
         const loadData = async () => {
             dispatch({ type: 'SET_LOADING', payload: true });
-            try {
+            try {.
                 const [posts, categories] = await Promise.all([
                     storageService.getPosts(),
                     storageService.getCategories()
@@ -124,12 +124,4 @@ export const BlogProvider = ({ children }) => {
             {children}
         </BlogContext.Provider>
     );
-};
-
-export const useBlog = () => {
-    const context = useContext(BlogContext);
-    if (!context) {
-        throw new Error('useBlog must be used within a BlogProvider');
-    }
-    return context;
 };

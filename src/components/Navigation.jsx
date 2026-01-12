@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useIdentity } from '../context/IdentityContext';
+import { useIdentity } from '../context/hooks';
 import '../styles/components/navigation.css';
 
 const Navigation = () => {

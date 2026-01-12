@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useIdentity } from '../../context/IdentityContext';
+import { useIdentity } from '../../context/hooks';
 
 const CommentSection = ({ slug }) => {
     const { user, login } = useIdentity();
