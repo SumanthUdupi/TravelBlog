@@ -11,7 +11,7 @@ const getBentoClass = (index) => {
 };
 
 const Home = () => {
-  const { posts, isLoading } = useBlog();
+  const { posts } = useBlog();
   // ... (keep middle content)
 
   return (

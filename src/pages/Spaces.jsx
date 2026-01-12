@@ -15,7 +15,7 @@ const Spaces = () => {
         return acc;
     }, {});
 
-    const spaces = ['All', ...Object.keys(tagCounts)];
+
 
     const filteredPosts = activeSpace === 'All'
         ? posts
