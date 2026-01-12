@@ -1,7 +1,18 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useBlog } from '../context/BlogContext';
 import StickySidebar from '../components/Layout/StickySidebar';
 import ShareTooltip from '../components/Engagement/ShareTooltip';
 import ReactionButton from '../components/Engagement/ReactionButton';
 import CommentSection from '../components/Social/CommentSection';
+import DOMPurify from 'dompurify';
+
+const SimpleMarkdown = ({ content }) => (
+  <div
+    className="prose"
+    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
+  />
+);
 
 const BlogPost = () => {
   const { slug } = useParams();

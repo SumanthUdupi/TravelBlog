@@ -95,38 +95,7 @@
 }
 
 
-/* Clamp based fluid typography */
---text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
---text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
---text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
---text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
---text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
---text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
---text-3xl: clamp(2rem, 1.8rem + 1vw, 2.5rem);
---text-4xl: clamp(2.5rem, 2.2rem + 1.5vw, 3.5rem);
 
-/* --- 3. Spacing & Layout --- */
---space-2xs: 0.25rem;
---space-xs: 0.5rem;
---space-sm: 0.75rem;
---space-md: 1.5rem;
---space-lg: 2rem;
---space-xl: 3rem;
---space-2xl: 5rem;
-
---container-max: 1280px;
---border-radius-sm: 8px;
---border-radius-md: 16px;
---border-radius-lg: 24px;
---border-radius-full: 9999px;
-
-/* --- 4. Animation --- */
---ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
---ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
---transition-fast: 200ms var(--ease-smooth);
---transition-normal: 400ms var(--ease-smooth);
---transition-slow: 700ms var(--ease-smooth);
-}
 
 /* Dark Mode Overrides */
 @media (prefers-color-scheme: dark) {

@@ -16,6 +16,7 @@ module.exports = {
             'warn',
             { allowConstantExport: true },
         ],
-        'react/prop-types': 'off', // Disable prop-types as we're moving fast, would use TS in ideal world
+        'react/prop-types': 'off',
+        'no-unused-vars': ['error', { 'varsIgnorePattern': '^React$|use[A-Z]' }],
     },
 }
