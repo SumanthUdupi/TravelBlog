@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { useContext, useReducer, useEffect } from 'react';
 import { storageService } from '../services/storage';
-
-export const BlogContext = createContext();
+import { BlogContext } from './BlogContextValue';
 
 const initialState = {
     posts: [],
@@ -50,7 +49,7 @@ export const BlogProvider = ({ children }) => {
     useEffect(() => {
         const loadData = async () => {
             dispatch({ type: 'SET_LOADING', payload: true });
-            try {.
+            try {
                 const [posts, categories] = await Promise.all([
                     storageService.getPosts(),
                     storageService.getCategories()
