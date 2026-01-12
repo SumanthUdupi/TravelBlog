@@ -1,26 +1,9 @@
 
-import BlogCard from '../components/BlogCard';
-import { useBlog } from '../context/BlogContext';
-import '../styles/pages/home.css';
+import HeroArtifact from '../components/3D/HeroArtifact';
 
 const Home = () => {
   const { posts, isLoading } = useBlog();
-
-  if (isLoading) {
-    return (
-      <div className="loading-screen">
-        <div className="loader"></div>
-      </div>
-    );
-  }
-
-  // Helper to determine bento class based on index
-  const getBentoClass = (index) => {
-    if (index === 0) return 'featured';
-    if (index === 1 || index === 2) return 'side';
-    if (index === 3) return 'wide';
-    return '';
-  };
+  // ... (keep middle content)
 
   return (
     <div className="home-page">
@@ -28,15 +11,21 @@ const Home = () => {
       <section className="hero-section">
         <div className="hero-bg">
           <div className="hero-gradient"></div>
-          <div className="hero-particles"></div>
         </div>
 
-        <div className="hero-content">
-          <span className="hero-eyebrow">Curated / Editorial / Timeless</span>
-          <h1 className="hero-title">The Æsthetic</h1>
-          <p className="hero-subtitle">
-            An exploration of sacred geography, ancient architecture, and the hidden narratives of the subcontinent.
-          </p>
+        <div className="hero-content container" style={{ display: 'flex', alignItems: 'center', minHeight: '80vh' }}>
+          <div className="hero-text" style={{ flex: 1 }}>
+            <span className="hero-eyebrow">Curated / Editorial / Timeless</span>
+            <div style={{ marginBottom: '1rem' }}>
+              <KineticHero text="The Æsthetic" />
+            </div>
+            <p className="hero-subtitle">
+              An exploration of sacred geography, ancient architecture, and the hidden narratives of the subcontinent.
+            </p>
+          </div>
+          <div className="hero-visual" style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <HeroArtifact />
+          </div>
         </div>
 
         <div className="scroll-indicator">

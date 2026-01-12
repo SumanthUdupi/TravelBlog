@@ -1,0 +1,20 @@
+/* Editor Global Overrides */
+.editor-layout {
+    --editor-bg: #ffffff;
+    --editor-text: #2d3748;
+    --editor-sidebar-bg: #f7fafc;
+}
+
+@media (prefers-color-scheme: dark) {
+    .editor-layout {
+        --editor-bg: #1a202c;
+        --editor-text: #e2e8f0;
+        --editor-sidebar-bg: #2d3748;
+    }
+}
+
+/* Reset for the editor area to prevent global blog styles from interfering */
+.editor-main textarea {
+    outline: none;
+    line-height: 1.6;
+}

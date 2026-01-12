@@ -1,87 +1,100 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { useBlog } from '../context/BlogContext';
-import BlogCard from '../components/BlogCard';
-import '../styles/pages/archive.css';
+import { useState } from 'react';
+import ActivityFeed from '../components/Social/ActivityFeed';
 
 const Archive = () => {
-    const { posts, categories, isLoading } = useBlog();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const activeCategory = searchParams.get('cat');
+    const { posts } = useBlog();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedTag, setSelectedTag] = useState('All');
 
-    const filteredPosts = activeCategory
-        ? posts.filter(p => p.category === activeCategory)
-        : posts;
+    const filteredPosts = posts.filter(post => {
+        const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesTag = selectedTag === 'All' || (post.tags && post.tags.includes(selectedTag));
+        return matchesSearch && matchesTag;
+    });
 
-    const handleCategoryClick = (categorySlug) => {
-        if (activeCategory === categorySlug) {
-            setSearchParams({});
-        } else {
-            setSearchParams({ cat: categorySlug });
-        }
-    };
-
-    if (isLoading) {
-        return (
-            <div className="loading-screen">
-                <div className="loader"></div>
-            </div>
-        );
-    }
+    const allTags = ['All', ...new Set(posts.flatMap(p => p.tags || []))];
 
     return (
-        <div className="container archive-layout fade-in">
-            {/* Sidebar */}
-            <aside className="archive-sidebar">
-                <div className="filter-group">
-                    <h3 className="sidebar-heading">Collections</h3>
-                    <button
-                        className={`filter-link ${!activeCategory ? 'active' : ''}`}
-                        onClick={() => setSearchParams({})}
-                    >
-                        All Artifacts
-                    </button>
-                    {categories.map(cat => (
-                        <button
-                            key={cat.id}
-                            className={`filter-link ${activeCategory === cat.slug ? 'active' : ''}`}
-                            onClick={() => handleCategoryClick(cat.slug)}
-                        >
-                            {cat.name}
-                        </button>
-                    ))}
+        <div className="archive-page fade-in">
+            <header className="archive-header">
+                <div className="container" style={{ textAlign: 'center', padding: '6rem 0 4rem' }}>
+                    <h1 className="archive-title">The Archive</h1>
+                    <p style={{ maxWidth: '600px', margin: '0 auto', opacity: 0.7 }}>
+                        A collection of thoughts, designs, and explorations.
+                    </p>
                 </div>
-            </aside>
+            </header>
 
-            {/* Main Content */}
-            <div className="archive-content">
-                <header className="archive-header">
-                    <h1 className="archive-title">
-                        {activeCategory
-                            ? categories.find(c => c.slug === activeCategory)?.name
-                            : 'The Archives'}
-                    </h1>
-                    <span className="archive-count">{filteredPosts.length} Artifacts</span>
-                </header>
+            <div className="container">
+                <div className="archive-layout-grid">
+                    <style>{`
+                    .archive-layout-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 300px;
+                        gap: var(--space-2xl);
+                    }
+                    @media (max-width: 968px) {
+                        .archive-layout-grid {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                `}</style>
 
-                <div className="archive-grid">
-                    {filteredPosts.length > 0 ? (
-                        filteredPosts.map((post, index) => (
-                            <div key={post.id} className="bento-item" style={{ animationDelay: `${index * 50}ms` }}>
-                                <BlogCard post={post} />
+                    <div className="archive-main">
+                        {/* Controls */}
+                        <div className="archive-controls">
+                            <input
+                                type="text"
+                                placeholder="Search artifacts..."
+                                className="search-input"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <div className="tags-row">
+                                {allTags.map(tag => (
+                                    <button
+                                        key={tag}
+                                        className={`tag-pill ${selectedTag === tag ? 'active' : ''}`}
+                                        onClick={() => setSelectedTag(tag)}
+                                    >
+                                        {tag}
+                                    </button>
+                                ))}
                             </div>
-                        ))
-                    ) : (
-                        <div className="text-center" style={{ padding: '4rem', gridColumn: '1 / -1' }}>
-                            <p className="text-muted">No artifacts found in this collection.</p>
-                            <button
-                                className="filter-link active"
-                                style={{ display: 'inline-block', marginTop: '1rem', width: 'auto' }}
-                                onClick={() => setSearchParams({})}
-                            >
-                                View All
-                            </button>
                         </div>
-                    )}
+
+                        <div className="grid-layout">
+                            {filteredPosts.map(post => (
+                                <Link to={`/post/${post.slug}`} key={post.id} className="blog-card fade-in">
+                                    <div className="card-image-container">
+                                        <img
+                                            src={post.image || 'https://via.placeholder.com/800x600'}
+                                            alt={post.title}
+                                            className="card-image"
+                                            loading="lazy"
+                                        />
+                                        <div className="card-overlay"></div>
+                                    </div>
+                                    <div className="card-content">
+                                        <div className="card-category">{post.tags ? post.tags[0] : 'Uncategorized'}</div>
+                                        <h2 className="card-title">{post.title}</h2>
+                                        <p className="card-excerpt">{post.excerpt}</p>
+                                        <div className="card-meta">
+                                            <span>{new Date(post.date).toLocaleDateString()}</span>
+                                            <span>&bull;</span>
+                                            <span>{post.readTime || '5 min'}</span>
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    <aside className="archive-sidebar">
+                        <ActivityFeed />
+                    </aside>
                 </div>
             </div>
         </div>

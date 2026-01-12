@@ -55,6 +55,24 @@ const Footer = () => {
       </div>
 
       <div className="container footer-bottom">
+        {/* Audio Visualizer Mock */}
+        <div className="audio-visualizer" style={{ display: 'flex', gap: '4px', height: '20px', alignItems: 'flex-end', marginBottom: '1rem', opacity: 0.7 }}>
+          {[...Array(20)].map((_, i) => (
+            <div key={i} style={{
+              width: '4px',
+              height: '100%',
+              backgroundColor: 'var(--color-accent)',
+              animation: `visualize 1s infinite ease-in-out ${Math.random()}s`
+            }}></div>
+          ))}
+          <style>{`
+            @keyframes visualize {
+              0%, 100% { height: 2px; }
+              50% { height: 100%; }
+            }
+          `}</style>
+        </div>
+
         <p>&copy; {new Date().getFullYear()} The Æsthetic. All rights reserved.</p>
         <p>Designed with Intent in 2026.</p>
       </div>
