@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import BookmarkButton from './Engagement/BookmarkButton';
 import MagneticButton from './Effects/MagneticButton';
-import '../styles/components/blogcard.css';
+import '../styles/components/_blog-card.css';
 
 const BlogCard = ({ post, featured }) => {
   // Safe fallback for image if none provided
