@@ -51,26 +51,39 @@ const Navigation = () => {
                     )}
                 </div>
 
-                {/* Mobile Toggle */}
-                <button
-                    className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Toggle Menu"
-                    aria-expanded={isMenuOpen}
-                >
-                    <div className="hamburger"></div>
-                </button>
+                {/* Mobile Bottom Bar (Replaces Top Hamburger) */}
+                <div className="mobile-bottom-bar">
+                    <Link to="/" className={`bottom-nav-item ${location.pathname === '/' ? 'active' : ''}`}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+                        <span>Home</span>
+                    </Link>
+                    <Link to="/blog" className={`bottom-nav-item ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
+                        <span>Journal</span>
+                    </Link>
+                    <button className="bottom-nav-item" onClick={() => {/* Placeholder for Search */ }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+                        <span>Search</span>
+                    </button>
+                    <button
+                        className={`bottom-nav-item ${isMenuOpen ? 'active' : ''}`}
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
+                        <span>Menu</span>
+                    </button>
+                </div>
 
-                {/* Mobile Overlay */}
+                {/* Mobile Overlay (Triggered by Bottom Bar Menu) */}
                 <div
                     className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
                     aria-hidden={!isMenuOpen}
                     style={{ visibility: isMenuOpen ? 'visible' : 'hidden' }}
                 >
-                    <Link to="/" className="nav-link">Home</Link>
-                    <Link to="/blog" className="nav-link">Journal</Link>
-                    <Link to="/about" className="nav-link">Philosophy</Link>
-                    <Link to="/contact" className="nav-link">Contact</Link>
+                    <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>Home</Link>
+                    <Link to="/blog" className="nav-link" onClick={() => setIsMenuOpen(false)}>Journal</Link>
+                    <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>Philosophy</Link>
+                    <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>Contact</Link>
                 </div>
             </div>
         </nav>

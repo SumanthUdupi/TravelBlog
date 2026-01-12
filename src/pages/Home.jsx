@@ -22,17 +22,17 @@ const Home = () => {
           <div className="hero-gradient"></div>
         </div>
 
-        <div className="hero-content container" style={{ display: 'flex', alignItems: 'center', minHeight: '80vh' }}>
-          <div className="hero-text" style={{ flex: 1 }}>
+        <div className="hero-content container">
+          <div className="hero-text">
             <span className="hero-eyebrow">Curated / Editorial / Timeless</span>
-            <div style={{ marginBottom: '1rem' }}>
+            <div className="hero-title-wrapper">
               <KineticHero text="The Æsthetic" />
             </div>
             <p className="hero-subtitle">
               An exploration of sacred geography, ancient architecture, and the hidden narratives of the subcontinent.
             </p>
           </div>
-          <div className="hero-visual" style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+          <div className="hero-visual">
             <HeroArtifact />
           </div>
         </div>
@@ -58,7 +58,7 @@ const Home = () => {
               </div>
             ))
           ) : (
-            <div className="text-center" style={{ gridColumn: 'span 12', padding: '4rem' }}>
+            <div className="bento-empty">
               <p className="text-muted">No artifacts found in the archives.</p>
             </div>
           )}

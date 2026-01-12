@@ -24,11 +24,18 @@ import ReadingModeToggle from './components/Reader/ReadingModeToggle';
 import OfflineBanner from './components/PWA/OfflineBanner';
 import HeatmapTracker from './components/Analytics/HeatmapTracker';
 
+import LiquidCursor from './components/Effects/LiquidCursor';
+import CurtainLoader from './components/Effects/CurtainLoader';
+import SmoothScroll from './components/Effects/SmoothScroll';
+
 function App() {
   return (
     <AuthProvider>
       <IdentityProvider>
         <div className="app-container">
+          <SmoothScroll />
+          <CurtainLoader />
+          <LiquidCursor />
           <ScrollToTop />
           <div className="grain-overlay"></div>
           <OfflineBanner />

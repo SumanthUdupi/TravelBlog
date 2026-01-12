@@ -5,57 +5,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-    /* --- 1. Color System (Lapis & Gold) --- */
-    --color-primary: #0a1128;
-    /* Deep Lapis */
-    --color-primary-light: #1c2b5e;
-    --color-primary-dark: #000000;
-
-    --color-accent: #d4af37;
+    /* --- 1. Color System (Midnight Luxe) --- */
+    --color-primary: #D4AF37;
     /* Metallic Gold */
-    --color-accent-glow: #ffd700;
+    --color-primary-light: #ffd700;
+    --color-primary-dark: #b4941f;
+
+    --color-accent: #D4AF37;
+    /* Metallic Gold */
+    --color-accent-glow: rgba(212, 175, 55, 0.3);
     --color-accent-dim: #b4941f;
+    --color-accent-terracotta: #FF2E00;
+    --color-accent-olive: #00FF9D;
+    --color-accent-burgundy: #800020;
 
-    --color-surface-100: #ffffff;
-    --color-surface-200: #f4f4f0;
-    /* Warm Paper */
-    --color-surface-300: #e8e8e0;
+    --color-surface-100: #050505;
+    /* Void Black */
+    --color-surface-200: #121212;
+    /* Off-Black / Matte */
+    --color-surface-300: #1E1E1E;
+    /* Dark Grey */
 
-    --color-text-main: #1a1a1a;
-    --color-text-muted: #666660;
-    --color-text-invert: #ffffff;
+    --color-bg-overlay: rgba(0, 0, 0, 0.75);
+    /* Cinematic Darkening */
+    --color-bg-glass: rgba(255, 255, 255, 0.03);
+    /* Subtle Glass */
+
+    --color-text-main: #F0F0F0;
+    /* Titanium White */
+    --color-text-muted: #B0B0B0;
+    /* Silver Mist */
+    --color-text-invert: #050505;
+    --color-text-accent: #D4AF37;
 
     /* Glassmorphism System */
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-bg: rgba(20, 20, 20, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
     --glass-blur: 20px;
-    --glass-shadow: 0 8px 32px 0 rgba(10, 17, 40, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 
     /* Gradients & Textures */
-    --gradient-hero: radial-gradient(circle at 50% 0%, #1c2b5e 0%, #0a1128 100%);
+    --gradient-hero: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    /* Deep cinematic default */
     --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-glow), var(--color-accent));
     --paper-texture-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 
     /* --- 2. Typography Fluid Scale --- */
-    --font-display: 'Playfair Display',
-        serif;
+    --font-display: 'Playfair Display', serif;
     /* Classical Headlines */
-    --font-body: 'Lora',
-        serif;
-    /* Editorial Body */
-    --font-ui: 'Inter',
-        sans-serif;
+    --font-body: 'Inter', sans-serif;
+    /* Modern, clean, readable */
+    --font-ui: 'Inter', sans-serif;
     /* Modern UI Elements */
 
     /* Clamp based fluid typography */
     --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
     --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-    --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-    --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
-    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-    --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-    --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
-    --text-4xl: clamp(3rem, 2.5rem + 2.5vw, 4.5rem);
+    --text-base: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+    /* Larger base */
+    --text-lg: clamp(1.25rem, 1.1rem + 0.625vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 1.3rem + 0.75vw, 2rem);
+    --text-2xl: clamp(2rem, 1.7rem + 1vw, 2.5rem);
+    --text-3xl: clamp(3rem, 2.5rem + 1.5vw, 4rem);
+    --text-4xl: clamp(4rem, 3rem + 2.5vw, 6rem);
+    /* Massive Impact */
+    --text-display: clamp(5rem, 4rem + 4vw, 8rem);
 
     /* --- 3. Spacing & Layout --- */
     --space-2xs: 0.25rem;
@@ -65,11 +79,13 @@
     --space-lg: 2rem;
     --space-xl: 3rem;
     --space-2xl: 5rem;
+    --space-3xl: 8rem;
 
     --container-max: 1280px;
-    --border-radius-sm: 8px;
-    --border-radius-md: 16px;
-    --border-radius-lg: 24px;
+    --border-radius-sm: 2px;
+    /* Sharp/Premium */
+    --border-radius-md: 4px;
+    --border-radius-lg: 8px;
     --border-radius-full: 9999px;
 
     /* --- 4. Animation --- */
@@ -85,35 +101,11 @@
     --grid-sidebar: 0.618fr;
     /* 1 / 1.618 */
     --grid-gap: var(--space-xl);
-}
 
-/* Global Focus Style for Accessibility */
-:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 4px;
-    border-radius: 2px;
+    color-scheme: dark;
 }
 
 
-
-
-/* Dark Mode Overrides */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-surface-100: #0a0a0a;
-        --color-surface-200: #121212;
-        --color-surface-300: #1e1e1e;
-
-        --color-text-main: #f0f0f0;
-        --color-text-muted: #a0a0a0;
-
-        --glass-bg: rgba(20, 20, 20, 0.7);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-        --gradient-hero: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-    }
-}
 
 /* --- Utility Classes --- */
 .container {
