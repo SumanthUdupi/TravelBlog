@@ -5,8 +5,8 @@ import HeroArtifact from '../components/3D/HeroArtifact';
 
 // Helper for grid layout
 const getBentoClass = (index) => {
-  if (index === 0) return 'col-span-2 row-span-2';
-  if (index === 3) return 'col-span-2';
+  if (index === 0) return 'featured';
+  if (index === 3) return 'wide';
   return '';
 };
 

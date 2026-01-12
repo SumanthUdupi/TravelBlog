@@ -1,0 +1,71 @@
+/* src/styles/components/_buttons.css */
+
+/* Reset for the magnetic button wrapper */
+.magnetic-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+}
+
+/* The visual button inside */
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.75rem 1.5rem;
+    background: var(--color-surface-200);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-full);
+    color: var(--color-text-main);
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.read-more-btn span {
+    transition: transform var(--transition-fast);
+}
+
+.magnetic-btn:hover .read-more-btn {
+    background: var(--color-primary);
+    border-color: var(--color-primary-light);
+    color: var(--color-surface-100);
+    /* Dark text on bright button */
+    box-shadow: 0 0 20px var(--color-primary-light);
+}
+
+.magnetic-btn:hover .read-more-btn span {
+    transform: translateX(4px);
+}
+
+/* Primary Button (Generic) */
+.btn-primary {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-surface-100);
+    border: none;
+    border-radius: var(--border-radius-full);
+    font-family: var(--font-ui);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--color-primary-dark);
+}

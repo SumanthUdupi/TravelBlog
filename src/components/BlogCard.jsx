@@ -20,7 +20,7 @@ const BlogCard = ({ post, featured }) => {
             decoding="async"
           />
           <div className="card-overlay"></div>
-          <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 10, background: 'rgba(255,255,255,0.8)', borderRadius: '50%' }}>
+          <div className="card-bookmark">
             <BookmarkButton postId={post.id} />
           </div>
         </div>

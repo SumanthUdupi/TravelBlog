@@ -1,4 +1,5 @@
 @import './design-system.css';
+@import './components/_buttons.css';
 
 /* Reset & Base */
 *,
@@ -11,7 +12,6 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
   height: 100%;
 }
 
@@ -210,10 +210,129 @@ body.reading-mode footer {
   transition: opacity var(--transition-slow);
 }
 
+/* ... (Reading Mode preserved) ... */
 body.reading-mode .main-content,
 body.reading-mode .container {
   display: block;
   max-width: 800px;
   /* Focus width */
   margin: 0 auto;
+}
+
+/* --- Typography: Prose (Blog Content) --- */
+.prose {
+  color: var(--color-text-main);
+  max-width: 65ch;
+  /* Optimal reading width */
+  margin: 0 auto;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-display);
+  color: var(--color-text-main);
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.25;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+  line-height: 1.8;
+  font-size: 1.125rem;
+  /* ~18px */
+  color: var(--color-text-main);
+  /* Ensure readability */
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+  line-height: 1.7;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--color-accent);
+  padding-left: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 1.5em;
+  font-style: italic;
+  color: var(--color-text-muted);
+  background: var(--color-bg-glass);
+  padding: 1rem;
+  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+}
+
+.prose img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-md);
+  margin-top: 2em;
+  margin-bottom: 2em;
+  box-shadow: var(--shadow-md);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  background: var(--color-surface-300);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background: var(--color-surface-100);
+  padding: 1em;
+  border-radius: var(--border-radius-md);
+  overflow-x: auto;
+  margin-bottom: 1.5em;
+  border: 1px solid var(--glass-border);
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--color-text-main);
+}
+
+.prose strong {
+  color: var(--color-primary-light);
+  font-weight: 700;
+}
+
+.prose a {
+  color: var(--color-primary-light);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+  color: var(--color-accent);
 }

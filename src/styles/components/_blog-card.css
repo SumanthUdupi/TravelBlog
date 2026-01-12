@@ -58,3 +58,24 @@
   gap: var(--space-sm);
   align-items: center;
 }
+
+.card-bookmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+  border: 1px solid var(--glass-border);
+}
+
+.card-bookmark:hover {
+  transform: scale(1.1);
+  background: var(--color-surface-100);
+}

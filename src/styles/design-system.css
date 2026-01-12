@@ -1,111 +1,117 @@
 /*
-  Imperial Tech - Modern Ancient Design System
-  Fusion of Ancient Philosophy & Cyber-Minimalism
+  Vibrant Adventure Design System
+  Nature-inspired, bold, and adventurous.
 */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap');
 
 :root {
-    /* --- 1. Color System (Midnight Luxe) --- */
-    --color-primary: #D4AF37;
-    /* Metallic Gold */
-    --color-primary-light: #ffd700;
-    --color-primary-dark: #b4941f;
+    /* --- 1. Color System (Vibrant Adventure) --- */
+    /* Primary: Deep Ocean Teal */
+    --color-primary: #0EA5E9;
+    /* Sky 500 */
+    --color-primary-light: #38BDF8;
+    --color-primary-dark: #0284C7;
+    --color-primary-deep: #0C4A6E;
 
-    --color-accent: #D4AF37;
-    /* Metallic Gold */
-    --color-accent-glow: rgba(212, 175, 55, 0.3);
-    --color-accent-dim: #b4941f;
-    --color-accent-terracotta: #FF2E00;
-    --color-accent-olive: #00FF9D;
-    --color-accent-burgundy: #800020;
+    /* Accent: Sunset Gold */
+    --color-accent: #F59E0B;
+    /* Amber 500 */
+    --color-accent-glow: rgba(245, 158, 11, 0.4);
+    --color-accent-dim: #D97706;
 
-    --color-surface-100: #050505;
-    /* Void Black */
-    --color-surface-200: #121212;
-    /* Off-Black / Matte */
-    --color-surface-300: #1E1E1E;
-    /* Dark Grey */
+    /* Secondary Accents */
+    --color-secondary: #10B981;
+    /* Emerald 500 - Nature */
+    --color-tertiary: #F43F5E;
+    /* Rose 500 - Passion */
 
-    --color-bg-overlay: rgba(0, 0, 0, 0.75);
-    /* Cinematic Darkening */
-    --color-bg-glass: rgba(255, 255, 255, 0.03);
-    /* Subtle Glass */
+    /* Surface Colors (Rich Navy/Slate Base) */
+    --color-surface-100: #0F172A;
+    /* Slate 900 */
+    --color-surface-200: #1E293B;
+    /* Slate 800 */
+    --color-surface-300: #334155;
+    /* Slate 700 */
+    --color-surface-400: #475569;
+    /* Slate 600 */
 
-    --color-text-main: #F0F0F0;
-    /* Titanium White */
-    --color-text-muted: #B0B0B0;
-    /* Silver Mist */
-    --color-text-invert: #050505;
-    --color-text-accent: #D4AF37;
+    /* Text Colors */
+    --color-text-main: #F8FAFC;
+    /* Slate 50 */
+    --color-text-muted: #94A3B8;
+    /* Slate 400 */
+    --color-text-invert: #0F172A;
+    --color-text-highlight: #38BDF8;
 
-    /* Glassmorphism System */
-    --glass-bg: rgba(20, 20, 20, 0.7);
+    /* Status */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #EF4444;
+
+    /* Overlays & Effects */
+    --color-bg-overlay: rgba(15, 23, 42, 0.85);
+    --color-bg-glass: rgba(30, 41, 59, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-blur: 20px;
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    --glass-blur: 16px;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 15px var(--color-primary-light);
 
-    /* Gradients & Textures */
-    --gradient-hero: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-    /* Deep cinematic default */
-    --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-glow), var(--color-accent));
-    --paper-texture-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    /* Gradients */
+    --gradient-hero: linear-gradient(to bottom right, #0F172A, #1E293B);
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-dim));
+    --gradient-glow: radial-gradient(circle at center, var(--color-primary-deep) 0%, transparent 70%);
 
     /* --- 2. Typography Fluid Scale --- */
     --font-display: 'Playfair Display', serif;
-    /* Classical Headlines */
-    --font-body: 'Inter', sans-serif;
-    /* Modern, clean, readable */
-    --font-ui: 'Inter', sans-serif;
-    /* Modern UI Elements */
+    --font-body: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
-    /* Clamp based fluid typography */
     --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
     --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-    --text-base: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
-    /* Larger base */
-    --text-lg: clamp(1.25rem, 1.1rem + 0.625vw, 1.5rem);
-    --text-xl: clamp(1.5rem, 1.3rem + 0.75vw, 2rem);
-    --text-2xl: clamp(2rem, 1.7rem + 1vw, 2.5rem);
-    --text-3xl: clamp(3rem, 2.5rem + 1.5vw, 4rem);
-    --text-4xl: clamp(4rem, 3rem + 2.5vw, 6rem);
-    /* Massive Impact */
-    --text-display: clamp(5rem, 4rem + 4vw, 8rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    /* ~16px-18px */
+    --text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+    --text-3xl: clamp(2rem, 1.8rem + 1vw, 2.5rem);
+    --text-4xl: clamp(2.5rem, 2.2rem + 1.5vw, 3.5rem);
+    --text-5xl: clamp(3rem, 2.5rem + 2vw, 4.5rem);
 
     /* --- 3. Spacing & Layout --- */
     --space-2xs: 0.25rem;
     --space-xs: 0.5rem;
     --space-sm: 0.75rem;
     --space-md: 1.5rem;
+    /* 24px */
     --space-lg: 2rem;
+    /* 32px */
     --space-xl: 3rem;
+    /* 48px */
     --space-2xl: 5rem;
+    /* 80px */
     --space-3xl: 8rem;
+    /* 128px */
 
-    --container-max: 1280px;
-    --border-radius-sm: 2px;
-    /* Sharp/Premium */
-    --border-radius-md: 4px;
-    --border-radius-lg: 8px;
+    --container-max: 1200px;
+
+    --border-radius-sm: 0.375rem;
+    --border-radius-md: 0.75rem;
+    --border-radius-lg: 1.5rem;
     --border-radius-full: 9999px;
 
     /* --- 4. Animation --- */
-    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: 200ms var(--ease-smooth);
-    --transition-normal: 400ms var(--ease-smooth);
-    --transition-slow: 700ms var(--ease-smooth);
-
-    /* --- 5. The Golden Layout (Fibonacci) --- */
-    --golden-ratio: 1.618;
-    --grid-main: 1fr;
-    --grid-sidebar: 0.618fr;
-    /* 1 / 1.618 */
-    --grid-gap: var(--space-xl);
+    --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --transition-fast: 150ms var(--ease-out);
+    --transition-normal: 300ms var(--ease-out);
+    --transition-slow: 500ms var(--ease-in-out);
 
     color-scheme: dark;
 }
-
-
 
 /* --- Utility Classes --- */
 .container {
@@ -116,22 +122,21 @@
 }
 
 .glass-panel {
-    background: var(--glass-bg);
+    background: var(--color-bg-glass);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+    box-shadow: var(--shadow-lg);
     border-radius: var(--border-radius-md);
 }
 
 .text-gradient {
-    background: var(--gradient-accent);
+    background: linear-gradient(to right, var(--color-primary-light), var(--color-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-/* Visually Hidden (Accessibility) */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -142,27 +147,4 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
-}
-
-/* Texture Overlay */
-.grain-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    background-image: var(--paper-texture-url);
-    opacity: 0.6;
-    mix-blend-mode: overlay;
-}
-
-/* --- 5. The Golden Layout (Fibonacci) --- */
-:root {
-    --golden-ratio: 1.618;
-    --grid-main: 1fr;
-    --grid-sidebar: 0.618fr;
-    /* 1 / 1.618 */
-    --grid-gap: var(--space-xl);
 }
