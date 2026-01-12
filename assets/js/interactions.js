@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 export function initInteractions() {
     // Reveal on Scroll
     const observerOptions = {
